@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,32 +22,29 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ADMIN
  */
 @Entity
-@Table(name = "Comment")
+@Table(name = "ProductImages")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")
-    , @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id")})
-public class Comment implements Serializable {
+    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")
+    , @NamedQuery(name = "ProductImages.findById", query = "SELECT p FROM ProductImages p WHERE p.id = :id")
+    , @NamedQuery(name = "ProductImages.findByFilePath", query = "SELECT p FROM ProductImages p WHERE p.filePath = :filePath")})
+public class ProductImages implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Lob
-    @Column(name = "content")
-    private String content;
-    @JoinColumn(name = "Username", referencedColumnName = "Username")
-    @ManyToOne
-    private Customers username;
+    @Column(name = "FilePath")
+    private String filePath;
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
     @ManyToOne
     private Products productID;
 
-    public Comment() {
+    public ProductImages() {
     }
 
-    public Comment(Integer id) {
+    public ProductImages(Integer id) {
         this.id = id;
     }
 
@@ -60,20 +56,12 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getFilePath() {
+        return filePath;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Customers getUsername() {
-        return username;
-    }
-
-    public void setUsername(Customers username) {
-        this.username = username;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public Products getProductID() {
@@ -94,10 +82,10 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
+        if (!(object instanceof ProductImages)) {
             return false;
         }
-        Comment other = (Comment) object;
+        ProductImages other = (ProductImages) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +94,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.Comment[ id=" + id + " ]";
+        return "Models.ProductImages[ id=" + id + " ]";
     }
     
 }

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,30 +23,53 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ADMIN
  */
 @Entity
-@Table(name = "ProductImages")
+@Table(name = "OderDetails")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")
-    , @NamedQuery(name = "ProductImages.findById", query = "SELECT p FROM ProductImages p WHERE p.id = :id")
-    , @NamedQuery(name = "ProductImages.findByFilePath", query = "SELECT p FROM ProductImages p WHERE p.filePath = :filePath")})
-public class ProductImages implements Serializable {
+    @NamedQuery(name = "OderDetails.findAll", query = "SELECT o FROM OderDetails o")
+    , @NamedQuery(name = "OderDetails.findByQuantity", query = "SELECT o FROM OderDetails o WHERE o.quantity = :quantity")
+    , @NamedQuery(name = "OderDetails.findByPrice", query = "SELECT o FROM OderDetails o WHERE o.price = :price")
+    , @NamedQuery(name = "OderDetails.findById", query = "SELECT o FROM OderDetails o WHERE o.id = :id")})
+public class OderDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Column(name = "Quantity")
+    private Integer quantity;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "Price")
+    private BigDecimal price;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "FilePath")
-    private String filePath;
+    @JoinColumn(name = "OderID", referencedColumnName = "OderID")
+    @ManyToOne
+    private Oders oderID;
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
     @ManyToOne
     private Products productID;
 
-    public ProductImages() {
+    public OderDetails() {
     }
 
-    public ProductImages(Integer id) {
+    public OderDetails(Integer id) {
         this.id = id;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public Integer getId() {
@@ -56,12 +80,12 @@ public class ProductImages implements Serializable {
         this.id = id;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public Oders getOderID() {
+        return oderID;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setOderID(Oders oderID) {
+        this.oderID = oderID;
     }
 
     public Products getProductID() {
@@ -82,10 +106,10 @@ public class ProductImages implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductImages)) {
+        if (!(object instanceof OderDetails)) {
             return false;
         }
-        ProductImages other = (ProductImages) object;
+        OderDetails other = (OderDetails) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,7 +118,7 @@ public class ProductImages implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.ProductImages[ id=" + id + " ]";
+        return "Models.OderDetails[ id=" + id + " ]";
     }
     
 }
