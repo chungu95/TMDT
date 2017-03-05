@@ -6,14 +6,11 @@
 package dao;
 
 import connector.Connector;
-import connector.connect;
 import model.Customers;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +35,7 @@ public class CustomerDAOs {
                     customer.setAccumulatedScore("AccumulatedScore");
                     customer.setUsername("Username");
                 }
-            }
+            } 
         } catch (SQLException ex) {
         } finally {
 //              connect.closeCon();
@@ -49,43 +46,31 @@ public class CustomerDAOs {
 
     public static void main(String args[]) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 300000; i++) {
-                    Customers cus = CustomerDAOs.getCustomer("1234");
-                    System.out.println(cus.getCustomerName() + (i + 23));
-                }
+        new Thread(() -> {
+            for (int i = 0; i < 300000; i++) {
+                Customers cus = CustomerDAOs.getCustomer("1234");
+                System.out.println(cus.getCustomerName() + (i + 23));
             }
         }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 300000; i++) {
-                    Customers cus = CustomerDAOs.getCustomer("1234");
-                    System.out.println(cus.getCustomerName() + i);
-                }
+        new Thread(() -> {
+            for (int i = 0; i < 300000; i++) {
+                Customers cus = CustomerDAOs.getCustomer("1234");
+                System.out.println(cus.getCustomerName() + i);
             }
         }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 300000; i++) {
-                    Customers cus = CustomerDAOs.getCustomer("1234");
-                    System.out.println(cus.getCustomerName() + "134");
-                }
+        new Thread(() -> {
+            for (int i = 0; i < 300000; i++) {
+                Customers cus = CustomerDAOs.getCustomer("1234");
+                System.out.println(cus.getCustomerName() + "134");
             }
         }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 100000; i++) {
-                    Customers cus = CustomerDAOs.getCustomer("1234");
-                    System.out.println(cus.getCustomerName() + i + "abc");
-                }
+        new Thread(() -> {
+            for (int i = 0; i < 100000; i++) {
+                Customers cus = CustomerDAOs.getCustomer("1234");
+                System.out.println(cus.getCustomerName() + i + "abc");
             }
         }).start();
     }

@@ -38,6 +38,7 @@ public class Connector {
     }
 
     private static class ConnectorHolder {
+
         private static final Connector INSTANCE = new Connector();
     }
 
