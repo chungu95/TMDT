@@ -21,31 +21,32 @@ public class FileIO {
 
     public static void writeLog(String logName, String content) {
         Calendar date = Calendar.getInstance();
-        String log = "---> At: " + date.get(Calendar.HOUR)
-                + ":" + date.get(Calendar.MINUTE)
-                + ":" + date.get(Calendar.SECOND)
+        File file = new File(FILE_PATH + getFileName());
+        String log = "---> At: "
+                + date.get(Calendar.HOUR) + ":"
+                + date.get(Calendar.MINUTE) + ":"
+                + date.get(Calendar.SECOND)
                 + "\n\n *** " + logName + " *** \n\n"
                 + content
-                + "\n\n -----------------------------------------------------------------------------------\n\n";
-        try {
-            File file = new File(FILE_PATH + getFileName());
+                + "\n\n ----------------------------------------------\n\n";
+
+        try (FileWriter fw = new FileWriter(file, true);
+                BufferedWriter bw = new BufferedWriter(fw)) {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            FileWriter fw = new FileWriter(file, true);
-            try (BufferedWriter bw = new BufferedWriter(fw)) {
-                bw.write(log);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            bw.write(log);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
     private static String getFileName() {
         Calendar date = Calendar.getInstance();
-        return "Log_" + date.get(Calendar.DATE)
-                + "-" + date.get(Calendar.MONTH)
-                + "-" + date.get(Calendar.YEAR)
+        return "Log_"
+                + date.get(Calendar.DATE) + "-"
+                + date.get(Calendar.MONTH) + "-"
+                + date.get(Calendar.YEAR)
                 + ".txt";
     }
 }
