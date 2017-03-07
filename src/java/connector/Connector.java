@@ -8,7 +8,6 @@ package connector;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.dbcp2.PoolableConnection;
 
 /**
  *
@@ -19,7 +18,7 @@ public class Connector {
     private static final String DRIVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Tivi";
     private static final String DB_USER = "sa";
-    private static final String DB_PASSWORD = "DEADLINE";
+    private static final String DB_PASSWORD = "0903952733";
     private static final int CONN_POOL_INIT_SIZE = 0;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
