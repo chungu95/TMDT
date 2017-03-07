@@ -8,6 +8,7 @@ package connector;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp2.PoolableConnection;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Connector {
     }
 
     private static class ConnectorHolder {
+
         private static final Connector INSTANCE = new Connector();
     }
 
