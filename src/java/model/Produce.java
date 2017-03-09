@@ -7,38 +7,17 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Produce")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Produce.findAll", query = "SELECT p FROM Produce p")
-    , @NamedQuery(name = "Produce.findByProduceID", query = "SELECT p FROM Produce p WHERE p.produceID = :produceID")
-    , @NamedQuery(name = "Produce.findByProduceName", query = "SELECT p FROM Produce p WHERE p.produceName = :produceName")})
+
 public class Produce implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ProduceID")
     private String produceID;
-    @Column(name = "ProduceName")
     private String produceName;
-    @OneToMany(mappedBy = "produceID")
     private List<Products> productsList;
 
     public Produce() {
@@ -64,7 +43,6 @@ public class Produce implements Serializable {
         this.produceName = produceName;
     }
 
-    @XmlTransient
     public List<Products> getProductsList() {
         return productsList;
     }
@@ -95,7 +73,7 @@ public class Produce implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.Produce[ produceID=" + produceID + " ]";
+        return "model.Produce[ produceID=" + produceID + " ]";
     }
     
 }

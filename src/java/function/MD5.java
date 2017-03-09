@@ -15,14 +15,25 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
 
-    public static String encryptMD5(String input) throws NoSuchAlgorithmException {
-        MessageDigest MD = MessageDigest.getInstance("MD5");
-        byte[] messageDigest = MD.digest(input.getBytes());
-        BigInteger number = new BigInteger(1, messageDigest);
-        String outPut = number.toString(16);
-        while (outPut.length() < 32) {
-            outPut = "0" + outPut;
+    public static String encryptMD5(String input) {
+        MessageDigest MD;
+        byte[] messageDigest;
+        BigInteger number;
+        String outPut = null;
+        try {
+            MD = MessageDigest.getInstance("MD5");
+            messageDigest = MD.digest(input.getBytes());
+            number = new BigInteger(1, messageDigest);
+            outPut = number.toString(16);
+            while (outPut.length() < 32) {
+                outPut = "0" + outPut;
+            }
+        } catch (NoSuchAlgorithmException ex) {
         }
         return outPut;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        System.out.println(MD5.encryptMD5("chung"));
     }
 }

@@ -6,39 +6,17 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "ProductImages")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")
-    , @NamedQuery(name = "ProductImages.findById", query = "SELECT p FROM ProductImages p WHERE p.id = :id")
-    , @NamedQuery(name = "ProductImages.findByFilePath", query = "SELECT p FROM ProductImages p WHERE p.filePath = :filePath")})
+
 public class ProductImages implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
     private Integer id;
-    @Column(name = "FilePath")
     private String filePath;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
-    @ManyToOne
     private Products productID;
 
     public ProductImages() {
@@ -94,7 +72,7 @@ public class ProductImages implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.ProductImages[ id=" + id + " ]";
+        return "model.ProductImages[ id=" + id + " ]";
     }
     
 }
