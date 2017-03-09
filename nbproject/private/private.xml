@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/D:/Hoc%20Tap/TMDT/ThuongMaiDienTu/src/java/model/ProductInfo.java</file>
             <file>file:/D:/Hoc%20Tap/TMDT/ThuongMaiDienTu/src/java/function/MD5.java</file>
@@ -17,5 +18,8 @@
             <file>file:/D:/Hoc%20Tap/TMDT/ThuongMaiDienTu/src/java/model/Comment.java</file>
             <file>file:/D:/Hoc%20Tap/TMDT/ThuongMaiDienTu/src/java/dao/ProductsDAO.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> e926dd500d66e1191eebc551d4d842e2a849dec6
     </open-files>
 </project-private>
