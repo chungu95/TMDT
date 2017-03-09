@@ -6,12 +6,14 @@
 package dao;
 
 import connector.Connector;
+import function.MD5;
 import model.Customers;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.apache.commons.dbcp2.PoolableConnection;
+import java.util.ArrayList;
+import java.sql.Date;
 
 /**
  *
@@ -19,9 +21,95 @@ import org.apache.commons.dbcp2.PoolableConnection;
  */
 public class CustomerDAOs {
 
+    public static Customers checkLogin(String username, String password) {
+        Connection con = Connector.getConnection();
+        Customers customer = null;
+        String sql = "SELECT * FROM Customers WHERE Username = '" + username
+                + "' AND Password = '" + MD5.encryptMD5(password) + "';";
+        try (PreparedStatement pr = con.prepareStatement(sql);
+                ResultSet rs = pr.executeQuery()) {
+            if (rs.next()) {
+                customer = new Customers();
+                customer.setCustomerID(rs.getString("CustomerID"));
+                customer.setCustomerName(rs.getString("CustomerName"));
+                customer.setDoB(rs.getDate("DoB"));
+                customer.setAddress(rs.getString("Address"));
+                customer.setEmail(rs.getString("Email"));
+                customer.setPhoneNumber(rs.getString("PhoneNumber"));
+                customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
+                customer.setUsername(rs.getString("Username"));
+                customer.setPassword(rs.getString("Password"));
+            }
+        } catch (SQLException ex) {
+        } finally {
+            Connector.close(con);
+        }
+        return customer;
+    }
+
+    public static boolean insertCustomer(Customers customer) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "INSERT into Customers (CustomerID, CustomerName, DoB, Address, Email, PhoneNumber, AccumulatedScore, Username, Password) "
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, customer.getCustomerID());
+            pr.setString(2, customer.getCustomerName());
+            pr.setDate(3, customer.getDoB());
+            pr.setString(4, customer.getAddress());
+            pr.setString(5, customer.getEmail());
+            pr.setString(6, customer.getPhoneNumber());
+            pr.setInt(7, customer.getAccumulatedScore());
+            pr.setString(8, customer.getUsername());
+            pr.setString(9, customer.getPassword());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+
+    public static boolean updateCustomer(Customers customer) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
+                + " Address = ?, Email = ?, PhoneNumber = ?, AccumulatedScore = ?,"
+                + " Username = ? , Password = ? WHERE CustomerID = '" + customer.getCustomerID() + "';";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, customer.getCustomerName());
+            pr.setDate(2, customer.getDoB());
+            pr.setString(3, customer.getAddress());
+            pr.setString(4, customer.getEmail());
+            pr.setString(5, customer.getPhoneNumber());
+            pr.setInt(6, customer.getAccumulatedScore());
+            pr.setString(7, customer.getUsername());
+            pr.setString(8, customer.getPassword());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+
+    public static boolean deleteCustomer(String customerID) {
+        Connection con = Connector.getConnection();
+        String sql = "DELETE FROM Customers WHERE CustomerID = '" + customerID + "';";
+        int result = 0;
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+
     public static Customers getCustomer(String customerID) {
         Customers customer = new Customers();
-        Connection conn = Connector.getConnec();
+        Connection conn = Connector.getConnection();
         String sql = "SELECT * FROM Customers WHERE CustomerID = '" + customerID + "';";
         try (PreparedStatement pr = conn.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
@@ -32,8 +120,8 @@ public class CustomerDAOs {
                 customer.setAddress(rs.getString("Address"));
                 customer.setEmail(rs.getString("Email"));
                 customer.setPhoneNumber(rs.getString("PhoneNumber"));
-                customer.setAccumulatedScore("AccumulatedScore");
-                customer.setUsername("Username");
+                customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
+                customer.setUsername(rs.getString("Username"));
             }
         } catch (SQLException ex) {
         } finally {
@@ -42,35 +130,27 @@ public class CustomerDAOs {
         return customer;
     }
 
-    public static void main(String args[]) {
-
-        new Thread(() -> {
-            for (int i = 0; i < 300000; i++) {
-                Customers cus = CustomerDAOs.getCustomer("1234");
-                System.out.println(cus.getCustomerName() + (i + 23));
+    public static ArrayList<Customers> getCustomers(String sql) {
+        ArrayList<Customers> custommers = new ArrayList<>();
+        Connection con = Connector.getConnection();
+        try (PreparedStatement pr = con.prepareStatement(sql);
+                ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                String customerID = rs.getString("CustomerID");
+                String customerName = rs.getString("CustomerName");
+                Date customerDoB = rs.getDate("DoB");
+                String customerAdd = rs.getString("Address");
+                String customerEmail = rs.getString("Email");
+                String customerPhone = rs.getString("PhoneNumber");
+                int customerScore = rs.getInt("AccumulatedScore");
+                String customerUsername = rs.getString("Username");
+                custommers.add(new Customers(customerID, customerName, customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername));
             }
-        }).start();
-
-        new Thread(() -> {
-            for (int i = 0; i < 300000; i++) {
-                Customers cus = CustomerDAOs.getCustomer("1234");
-                System.out.println(cus.getCustomerName() + i);
-            }
-        }).start();
-
-        new Thread(() -> {
-            for (int i = 0; i < 300000; i++) {
-                Customers cus = CustomerDAOs.getCustomer("1234");
-                System.out.println(cus.getCustomerName() + "134");
-            }
-        }).start();
-
-        new Thread(() -> {
-            for (int i = 0; i < 100000; i++) {
-                Customers cus = CustomerDAOs.getCustomer("1234");
-                System.out.println(cus.getCustomerName() + i + "abc");
-            }
-        }).start();
+        } catch (Exception ex) {
+        } finally {
+            Connector.close(con);
+        }
+        return custommers;
     }
 
 }

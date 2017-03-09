@@ -7,16 +7,14 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,36 +22,42 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "OderDetails")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OderDetails.findAll", query = "SELECT o FROM OderDetails o")
-    , @NamedQuery(name = "OderDetails.findByQuantity", query = "SELECT o FROM OderDetails o WHERE o.quantity = :quantity")
-    , @NamedQuery(name = "OderDetails.findByPrice", query = "SELECT o FROM OderDetails o WHERE o.price = :price")
-    , @NamedQuery(name = "OderDetails.findById", query = "SELECT o FROM OderDetails o WHERE o.id = :id")})
+    @NamedQuery(name = "OderDetails.findAll", query = "SELECT o FROM OderDetails o")})
 public class OderDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected OderDetailsPK oderDetailsPK;
     @Column(name = "Quantity")
     private Integer quantity;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Price")
     private BigDecimal price;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Integer id;
-    @JoinColumn(name = "OderID", referencedColumnName = "OderID")
-    @ManyToOne
-    private Oders oderID;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
-    @ManyToOne
-    private Products productID;
+    @JoinColumn(name = "OderID", referencedColumnName = "OderID", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Oders oders;
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Products products;
 
     public OderDetails() {
     }
 
-    public OderDetails(Integer id) {
-        this.id = id;
+    public OderDetails(OderDetailsPK oderDetailsPK) {
+        this.oderDetailsPK = oderDetailsPK;
+    }
+
+    public OderDetails(String oderID, String productID) {
+        this.oderDetailsPK = new OderDetailsPK(oderID, productID);
+    }
+
+    public OderDetailsPK getOderDetailsPK() {
+        return oderDetailsPK;
+    }
+
+    public void setOderDetailsPK(OderDetailsPK oderDetailsPK) {
+        this.oderDetailsPK = oderDetailsPK;
     }
 
     public Integer getQuantity() {
@@ -72,34 +76,26 @@ public class OderDetails implements Serializable {
         this.price = price;
     }
 
-    public Integer getId() {
-        return id;
+    public Oders getOders() {
+        return oders;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOders(Oders oders) {
+        this.oders = oders;
     }
 
-    public Oders getOderID() {
-        return oderID;
+    public Products getProducts() {
+        return products;
     }
 
-    public void setOderID(Oders oderID) {
-        this.oderID = oderID;
-    }
-
-    public Products getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Products productID) {
-        this.productID = productID;
+    public void setProducts(Products products) {
+        this.products = products;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (oderDetailsPK != null ? oderDetailsPK.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +106,7 @@ public class OderDetails implements Serializable {
             return false;
         }
         OderDetails other = (OderDetails) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.oderDetailsPK == null && other.oderDetailsPK != null) || (this.oderDetailsPK != null && !this.oderDetailsPK.equals(other.oderDetailsPK))) {
             return false;
         }
         return true;
@@ -118,7 +114,7 @@ public class OderDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.OderDetails[ id=" + id + " ]";
+        return "model.OderDetails[ oderDetailsPK=" + oderDetailsPK + " ]";
     }
     
 }

@@ -15,8 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,11 +22,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Produce")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Produce.findAll", query = "SELECT p FROM Produce p")
-    , @NamedQuery(name = "Produce.findByProduceID", query = "SELECT p FROM Produce p WHERE p.produceID = :produceID")
-    , @NamedQuery(name = "Produce.findByProduceName", query = "SELECT p FROM Produce p WHERE p.produceName = :produceName")})
+    @NamedQuery(name = "Produce.findAll", query = "SELECT p FROM Produce p")})
 public class Produce implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,7 +59,6 @@ public class Produce implements Serializable {
         this.produceName = produceName;
     }
 
-    @XmlTransient
     public List<Products> getProductsList() {
         return productsList;
     }
@@ -95,7 +89,7 @@ public class Produce implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.Produce[ produceID=" + produceID + " ]";
+        return "model.Produce[ produceID=" + produceID + " ]";
     }
     
 }

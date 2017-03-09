@@ -15,7 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,16 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "ProductInfo")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductInfo.findAll", query = "SELECT p FROM ProductInfo p")
-    , @NamedQuery(name = "ProductInfo.findByProductID", query = "SELECT p FROM ProductInfo p WHERE p.productID = :productID")
-    , @NamedQuery(name = "ProductInfo.findByProductType", query = "SELECT p FROM ProductInfo p WHERE p.productType = :productType")
-    , @NamedQuery(name = "ProductInfo.findByResolution", query = "SELECT p FROM ProductInfo p WHERE p.resolution = :resolution")
-    , @NamedQuery(name = "ProductInfo.findByHdmi", query = "SELECT p FROM ProductInfo p WHERE p.hdmi = :hdmi")
-    , @NamedQuery(name = "ProductInfo.findByUsb", query = "SELECT p FROM ProductInfo p WHERE p.usb = :usb")
-    , @NamedQuery(name = "ProductInfo.findByAudio", query = "SELECT p FROM ProductInfo p WHERE p.audio = :audio")
-    , @NamedQuery(name = "ProductInfo.findByVideoFormat", query = "SELECT p FROM ProductInfo p WHERE p.videoFormat = :videoFormat")})
+    @NamedQuery(name = "ProductInfo.findAll", query = "SELECT p FROM ProductInfo p")})
 public class ProductInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -149,7 +140,7 @@ public class ProductInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.ProductInfo[ productID=" + productID + " ]";
+        return "model.ProductInfo[ productID=" + productID + " ]";
     }
     
 }

@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,8 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,16 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Oders")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Oders.findAll", query = "SELECT o FROM Oders o")
-    , @NamedQuery(name = "Oders.findByOderID", query = "SELECT o FROM Oders o WHERE o.oderID = :oderID")
-    , @NamedQuery(name = "Oders.findByOderDate", query = "SELECT o FROM Oders o WHERE o.oderDate = :oderDate")
-    , @NamedQuery(name = "Oders.findByShipDate", query = "SELECT o FROM Oders o WHERE o.shipDate = :shipDate")
-    , @NamedQuery(name = "Oders.findByOderPrice", query = "SELECT o FROM Oders o WHERE o.oderPrice = :oderPrice")
-    , @NamedQuery(name = "Oders.findByPaymentMethod", query = "SELECT o FROM Oders o WHERE o.paymentMethod = :paymentMethod")
-    , @NamedQuery(name = "Oders.findByDeliveryAddress", query = "SELECT o FROM Oders o WHERE o.deliveryAddress = :deliveryAddress")
-    , @NamedQuery(name = "Oders.findByStatus", query = "SELECT o FROM Oders o WHERE o.status = :status")})
+    @NamedQuery(name = "Oders.findAll", query = "SELECT o FROM Oders o")})
 public class Oders implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,7 +59,7 @@ public class Oders implements Serializable {
     @JoinColumn(name = "EmployeeID", referencedColumnName = "EmployeeID")
     @ManyToOne
     private Employees employeeID;
-    @OneToMany(mappedBy = "oderID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oders")
     private List<OderDetails> oderDetailsList;
 
     public Oders() {
@@ -150,7 +141,6 @@ public class Oders implements Serializable {
         this.employeeID = employeeID;
     }
 
-    @XmlTransient
     public List<OderDetails> getOderDetailsList() {
         return oderDetailsList;
     }
@@ -181,7 +171,7 @@ public class Oders implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.Oders[ oderID=" + oderID + " ]";
+        return "model.Oders[ oderID=" + oderID + " ]";
     }
     
 }

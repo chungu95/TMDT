@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,11 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "ProductImages")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")
-    , @NamedQuery(name = "ProductImages.findById", query = "SELECT p FROM ProductImages p WHERE p.id = :id")
-    , @NamedQuery(name = "ProductImages.findByFilePath", query = "SELECT p FROM ProductImages p WHERE p.filePath = :filePath")})
+    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")})
 public class ProductImages implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -94,7 +90,7 @@ public class ProductImages implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.ProductImages[ id=" + id + " ]";
+        return "model.ProductImages[ id=" + id + " ]";
     }
     
 }

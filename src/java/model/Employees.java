@@ -15,8 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,14 +22,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "Employees")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Employees.findAll", query = "SELECT e FROM Employees e")
-    , @NamedQuery(name = "Employees.findByEmployeeID", query = "SELECT e FROM Employees e WHERE e.employeeID = :employeeID")
-    , @NamedQuery(name = "Employees.findByUsername", query = "SELECT e FROM Employees e WHERE e.username = :username")
-    , @NamedQuery(name = "Employees.findByPassword", query = "SELECT e FROM Employees e WHERE e.password = :password")
-    , @NamedQuery(name = "Employees.findByRole", query = "SELECT e FROM Employees e WHERE e.role = :role")
-    , @NamedQuery(name = "Employees.findByName", query = "SELECT e FROM Employees e WHERE e.name = :name")})
+    @NamedQuery(name = "Employees.findAll", query = "SELECT e FROM Employees e")})
 public class Employees implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -97,7 +89,6 @@ public class Employees implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
     public List<Oders> getOdersList() {
         return odersList;
     }
@@ -128,7 +119,7 @@ public class Employees implements Serializable {
 
     @Override
     public String toString() {
-        return "Models.Employees[ employeeID=" + employeeID + " ]";
+        return "model.Employees[ employeeID=" + employeeID + " ]";
     }
     
 }

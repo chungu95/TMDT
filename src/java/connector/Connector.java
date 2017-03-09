@@ -8,7 +8,6 @@ package connector;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.dbcp2.PoolableConnection;
 
 /**
  *
@@ -20,7 +19,7 @@ public class Connector {
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Tivi";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "DEADLINE";
-    private static final int CONN_POOL_INIT_SIZE = 0;
+    private static final int CONN_POOL_INIT_SIZE = 10;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
     private static BasicDataSource basicDataSource = new BasicDataSource();
@@ -51,7 +50,7 @@ public class Connector {
         return getInstance().basicDataSource;
     }
 
-    public static Connection getConnec() {
+    public static Connection getConnection() {
         Connection connection = null;
         try {
             connection = Connector.getBasicDataSource().getConnection();
