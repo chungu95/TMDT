@@ -7,39 +7,18 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Employees")
-@NamedQueries({
-    @NamedQuery(name = "Employees.findAll", query = "SELECT e FROM Employees e")})
+
 public class Employees implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "EmployeeID")
     private String employeeID;
-    @Column(name = "Username")
     private String username;
-    @Column(name = "Password")
     private String password;
-    @Column(name = "Role")
     private String role;
-    @Column(name = "Name")
     private String name;
-    @OneToMany(mappedBy = "employeeID")
     private List<Oders> odersList;
 
     public Employees() {

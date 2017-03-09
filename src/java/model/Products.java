@@ -8,57 +8,24 @@ package model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Products")
-@NamedQueries({
-    @NamedQuery(name = "Products.findAll", query = "SELECT p FROM Products p")})
+
 public class Products implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ProductID")
     private String productID;
-    @Column(name = "ProductName")
     private String productName;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "Price")
     private BigDecimal price;
-    @Lob
-    @Column(name = "Description")
     private String description;
-    @Column(name = "Quantity")
     private Integer quantity;
-    @Column(name = "ProductImg")
     private String productImg;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "products")
     private List<Comment> commentList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "products")
     private ProductInfo productInfo;
-    @JoinColumn(name = "ProduceID", referencedColumnName = "ProduceID")
-    @ManyToOne
     private Produce produceID;
-    @OneToMany(mappedBy = "productID")
     private List<ProductImages> productImagesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "products")
     private List<OderDetails> oderDetailsList;
 
     public Products() {

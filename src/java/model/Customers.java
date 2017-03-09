@@ -8,53 +8,23 @@ package model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Customers")
-@NamedQueries({
-    @NamedQuery(name = "Customers.findAll", query = "SELECT c FROM Customers c")})
 public class Customers implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "CustomerID")
     private String customerID;
-    @Column(name = "CustomerName")
     private String customerName;
-    @Column(name = "DoB")
-    @Temporal(TemporalType.DATE)
     private Date doB;
-    @Column(name = "Address")
     private String address;
-    @Column(name = "Email")
     private String email;
-    @Column(name = "PhoneNumber")
     private String phoneNumber;
-    @Column(name = "AccumulatedScore")
     private Integer accumulatedScore;
-    @Column(name = "Username")
     private String username;
-    @Column(name = "Password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
     private List<Comment> commentList;
-    @OneToMany(mappedBy = "customerID")
     private List<Oders> odersList;
 
     public Customers() {
@@ -70,8 +40,6 @@ public class Customers implements Serializable {
         this.accumulatedScore = accumulatedScore;
         this.username = username;
     }
-    
-    
 
     public Customers(String customerID) {
         this.customerID = customerID;
@@ -189,5 +157,5 @@ public class Customers implements Serializable {
     public String toString() {
         return "model.Customers[ customerID=" + customerID + " ]";
     }
-    
+
 }

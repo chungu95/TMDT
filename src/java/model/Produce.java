@@ -7,33 +7,17 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Produce")
-@NamedQueries({
-    @NamedQuery(name = "Produce.findAll", query = "SELECT p FROM Produce p")})
+
 public class Produce implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ProduceID")
     private String produceID;
-    @Column(name = "ProduceName")
     private String produceName;
-    @OneToMany(mappedBy = "produceID")
     private List<Products> productsList;
 
     public Produce() {

@@ -9,57 +9,23 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "Oders")
-@NamedQueries({
-    @NamedQuery(name = "Oders.findAll", query = "SELECT o FROM Oders o")})
+
 public class Oders implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "OderID")
     private String oderID;
-    @Column(name = "OderDate")
-    @Temporal(TemporalType.DATE)
     private Date oderDate;
-    @Column(name = "ShipDate")
-    @Temporal(TemporalType.DATE)
     private Date shipDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "OderPrice")
     private BigDecimal oderPrice;
-    @Column(name = "PaymentMethod")
     private String paymentMethod;
-    @Column(name = "DeliveryAddress")
     private String deliveryAddress;
-    @Column(name = "Status")
     private String status;
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
-    @ManyToOne
     private Customers customerID;
-    @JoinColumn(name = "EmployeeID", referencedColumnName = "EmployeeID")
-    @ManyToOne
     private Employees employeeID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oders")
     private List<OderDetails> oderDetailsList;
 
     public Oders() {

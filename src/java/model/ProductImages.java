@@ -6,35 +6,17 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
  * @author ADMIN
  */
-@Entity
-@Table(name = "ProductImages")
-@NamedQueries({
-    @NamedQuery(name = "ProductImages.findAll", query = "SELECT p FROM ProductImages p")})
+
 public class ProductImages implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
     private Integer id;
-    @Column(name = "FilePath")
     private String filePath;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
-    @ManyToOne
     private Products productID;
 
     public ProductImages() {
