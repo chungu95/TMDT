@@ -14,6 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -50,7 +53,7 @@ public class CustomerDAOs {
     public static boolean insertCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
-        String sql = "INSERT into Customers (CustomerID, CustomerName, DoB, Address, Email, PhoneNumber, AccumulatedScore, Username, Password) "
+        String sql = "INSERT into Customers (CustomerID, CustomerName, DoB, Address, Email, PhoneNumber, Gender, Username, Password) "
                 + "VALUES (?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerID());
@@ -59,11 +62,13 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setInt(7, customer.getAccumulatedScore());
+            pr.setString(7, customer.getGender()); 
             pr.setString(8, customer.getUsername());
             pr.setString(9, customer.getPassword());
             result = pr.executeUpdate();
         } catch (Exception ex) {
+            System.out.println(ex); 
+            System.out.println(customer.getGender()); 
         } finally {
             Connector.close(con);
         }
@@ -107,14 +112,15 @@ public class CustomerDAOs {
         return (result != 0);
     }
 
-    public static Customers getCustomer(String customerID) {
-        Customers customer = new Customers();
+    public static Customers getCustomer(String input) {
+        Customers customer = null;
         Connection conn = Connector.getConnection();
-        String sql = "SELECT * FROM Customers WHERE CustomerID = '" + customerID + "';";
+        String sql = "SELECT * FROM Customers WHERE CustomerID = '" + input + "' OR Username = '"+input+"';";  
         try (PreparedStatement pr = conn.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
-                customer.setCustomerID(customerID);
+                customer = new Customers();
+                customer.setCustomerID(rs.getString("CustomerID"));
                 customer.setCustomerName(rs.getString("CustomerName"));
                 customer.setDoB(rs.getDate("DoB"));
                 customer.setAddress(rs.getString("Address"));
@@ -122,6 +128,7 @@ public class CustomerDAOs {
                 customer.setPhoneNumber(rs.getString("PhoneNumber"));
                 customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                 customer.setUsername(rs.getString("Username"));
+                customer.setGender(rs.getString("Gender")); 
             }
         } catch (SQLException ex) {
         } finally {
@@ -144,13 +151,22 @@ public class CustomerDAOs {
                 String customerPhone = rs.getString("PhoneNumber");
                 int customerScore = rs.getInt("AccumulatedScore");
                 String customerUsername = rs.getString("Username");
-                custommers.add(new Customers(customerID, customerName, customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername));
+                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername));
             }
         } catch (Exception ex) {
         } finally {
             Connector.close(con);
         }
         return custommers;
+    }
+
+    public static void main(String[] args) throws ParseException {
+        String startDateString = "1995-02-10";
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date startDate = df.parse(startDateString);
+        Date sqlDate = new Date(startDate.getTime());
+        System.out.println(startDate);  
+        System.out.println(sqlDate);  
     }
 
 }

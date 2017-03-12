@@ -26,9 +26,24 @@ public class Customers implements Serializable {
     private String password;
     private List<Comment> commentList;
     private List<Oders> odersList;
+    private String gender;
 
     public Customers() {
     }
+
+    public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username, String password, String gender) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.doB = doB;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+        this.gender = gender;
+    }
+    
+    
 
     public Customers(String customerID, String customerName, Date doB, String address, String customerEmail, String phoneNumber, Integer accumulatedScore, String username) {
         this.customerID = customerID;
@@ -41,6 +56,16 @@ public class Customers implements Serializable {
         this.username = username;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    
+    
     public Customers(String customerID) {
         this.customerID = customerID;
     }
