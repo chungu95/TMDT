@@ -9,15 +9,20 @@ and open the template in the editor.
 */
 body{
     margin: 10px 200px;
-    padding-top: 70px; 
-    background: #67b168;
+    padding-top: 30px; 
+    
 }
-
+.header{
+    background: #67b168;
+    
+}
 h1{
     text-align: center;
     color: yellow;
     font-family: 'Arial';
     font-weight: Bold;
+    padding-bottom: 50px;
+    
 }
 ul>li>a{
     font-family: 'Arial';

@@ -23,17 +23,15 @@ header{
     background: #67b168;
     
 }
-
-.navbar navbar-default{
-    ul>li>a:hover:not(.active){
+.navbar-default.navbar-nav>li>a:hover:not(.active){
      background-color: #dca7a7;
      color:#fff;
-    }
-    ul>li> a.active{
-      color: #fff;
-      background-color: #dca7a7;
-    }
 }
+.navbar-default.navbar-nav>li>a.active{
+    color: #fff;
+    background-color: #dca7a7;
+}
+
 #wrapper{
   .content{
     .slider{
