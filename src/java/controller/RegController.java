@@ -6,10 +6,12 @@
 package controller;
 
 import dao.CustomerDAOs;
+import function.DateConverter;
+import function.MD5;
 import function.RandomKey;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +24,8 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "RegController", urlPatterns = {"/RegController"})
+public class RegController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,22 +41,38 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            checkLogin(request, response);
+            register(request, response);
         }
 
     }
 
-    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String customerID = RandomKey.randomKey();
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        Customers customer = CustomerDAOs.checkLogin(username, password);
-        if (customer == null) {
-            response.sendRedirect("./WEB/login.jsp?error="+RandomKey.randomKey(30)); 
-        } else {
+        String customerName = request.getParameter("firstname") + " " + request.getParameter("lastname");
+        String dateString = request.getParameter("Year") + "-"
+                + request.getParameter("Month") + "-"
+                + request.getParameter("Day");
+        Date DoB = DateConverter.date(dateString);
+        System.out.println(DoB + " | " + dateString);
+        String gender = request.getParameter("sex");
+        String email = request.getParameter("youremail");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("Phone");
+        String password = MD5.encryptMD5(request.getParameter("password"));
+        Customers customer = new Customers(customerID, customerName, DoB,
+                address, email, phoneNumber, username, password, gender);
+
+        if (CustomerDAOs.getCustomer(username) != null) {
+            response.sendRedirect("./WEB/reg.jsp?error=existed");
+        } else if (CustomerDAOs.insertCustomer(customer)) {
             HttpSession session = request.getSession();
             session.setAttribute("customer", customer);
-            response.sendRedirect("./WEB/index.jsp");
+            response.sendRedirect("./WEB/regsuccess.jsp");
+        } else {
+            response.sendRedirect("./WEB/reg.jsp");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
