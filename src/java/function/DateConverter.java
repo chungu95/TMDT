@@ -19,7 +19,7 @@ public class DateConverter {
     public static Date date(String dateString) {
         Date sqlDate = null;
         try {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date startDate = df.parse(dateString);
             sqlDate = new Date(startDate.getTime());
         } catch (ParseException ex) {

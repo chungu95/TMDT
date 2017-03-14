@@ -32,10 +32,10 @@
                     </legend> 
                     <%
                         if (request.getParameter("error") != null && request.getParameter("error").equals("existed")) {
-                            out.print("<b style='color:red'>Tên truy nhập đã tồn tại!</b>");
+                            out.print("<b style='color:red'><center>Tên truy nhập đã tồn tại!</center></b><br />");
                         }
                     %>
-                    <form action="../RegController" method="post" class="form" role="form">                       
+                    <form action="../RegController" method="get" class="form" role="form">                       
 
                         <div>
                             <input class="form-control" style="float: left; width: 45%; margin-right: 10%;" name="firstname" placeholder="Họ" required="" autofocus="" type="text">
@@ -47,7 +47,7 @@
                         <input class="form-control" name="username" placeholder="Tên đăng nhập" type="text"/> 
                         <input class="form-control" name="password" placeholder="Mật khẩu" type="password" id="password"/> 
                         <input class="form-control" name="retypepassword" placeholder="Nhập lại mật khẩu" type="password" id="retypepassword"/> <label for=""> Ngày tháng năm sinh </label>                          
-                        <input type="text" class="form-control" id="pickDate" placeholder="Ngày tháng năm sinh" style="width: 300px; padding-left: 20px">
+                        <input type="text" class="form-control" id="pickDate" name="DoB" placeholder="Ngày tháng năm sinh" style="width: 300px; padding-left: 20px">
                         <label for="sex"> Giới tính: </label>  <label class="radio-inline">      <input name="sex" id="inlineCheckbox1" value="male" type="radio" checked/>          Nam </label> <label class="radio-inline">          <input name="sex" id="inlineCheckbox2" value="female" type="radio"/>          Nữ </label> 
                         <br> 
                         <br> 
@@ -71,7 +71,8 @@
             
             //Add datepicker
             $('#pickDate').datepicker({
-                'format': 'dd/mm/yyyy',
+                
+                'format': 'dd-mm-yyyy',
                 'autoclose': true
             });
         </script>
