@@ -14,9 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  *
@@ -159,14 +156,5 @@ public class CustomerDAOs {
         }
         return custommers;
     }
-
-    public static void main(String[] args) throws ParseException {
-        String startDateString = "1995-02-10";
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date startDate = df.parse(startDateString);
-        Date sqlDate = new Date(startDate.getTime());
-        System.out.println(startDate);  
-        System.out.println(sqlDate);  
-    }
-
+        
 }

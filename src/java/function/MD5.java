@@ -33,7 +33,4 @@ public class MD5 {
         return outPut;
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        System.out.println(MD5.encryptMD5("chung"));
-    }
 }

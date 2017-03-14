@@ -27,9 +27,5 @@ public class DateConverter {
         }
         return sqlDate;
     }
-    
-    public static void main(String[] args){
-        System.out.println(date("2006-02-10"));
-    }
-    
+
 }
