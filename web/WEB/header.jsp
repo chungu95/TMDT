@@ -11,7 +11,7 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><a href="#" >BÁN TIVI TỐT NHẤT</a></h1></div>
+            <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><img src="image/ten.PNG"></h1></div>
             <div class="search col-md-6 col-sm-6 col-xs-12 text-right">
                 <form method="get" action="#">
                     <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px">
@@ -25,7 +25,7 @@
         </div>
         <div class="header-menu">
             <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
-            <nav class="navbar navbar-default">
+            <div id="custom-bootstrap-menu" class="navbar navbar-default">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -38,8 +38,8 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">            
-                        <li><a href="#">GIỚI THIỆU</a></li>
-                        <li><a href="#">LIÊN HỆ</a></li>
+                        <li><a href="#">CHĂM SÓC KHÁCH HÀNG</a></li>
+                        <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
                             <%
                                 Customers customer = (Customers) session.getAttribute("customer");
                                 if (customer == null) {
@@ -52,8 +52,9 @@
 
                     </ul>
                 </div>
-            </nav>
+            </div>
             <!-- End Menu Bootstrap -->
+            
         </div>
     </div>
 </header>
