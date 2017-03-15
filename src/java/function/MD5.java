@@ -15,6 +15,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
 
+    /**
+     * @param input
+     * @return 
+     */
     public static String encryptMD5(String input) {
         MessageDigest MD;
         byte[] messageDigest;
