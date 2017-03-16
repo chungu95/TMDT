@@ -40,15 +40,30 @@
                     <ul class="nav navbar-nav">            
                         <li><a href="#">CHĂM SÓC KHÁCH HÀNG</a></li>
                         <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
+                       
                             <%
                                 Customers customer = (Customers) session.getAttribute("customer");
                                 if (customer == null) {
                                     out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
                                             + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
-                                } else {
-                                    out.print("<li><a href='#'>Xin chào " + customer.getCustomerName() + "!</a></li>");
+                                } else {%>
+                                <%-- out.print("<li><a href='#'>Xin chào " + customer.getCustomerName() + "!</a></li>");
                                 }
-                            %>
+                            %>--%>
+                                
+                                   <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"> Xin chào
+                                        <% out.print(customer.getCustomerName()); }%> 
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                         <li><a href="">Đăng xuất</a></li>
+                                         <li><a href="">Thoát</a></li>
+                                    </ul>
+                                    </div>
+                                    
+                                        <% } %>     
+                               
 
                     </ul>
                 </div>
