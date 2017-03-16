@@ -15,6 +15,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
 
+    /**
+     * @param input
+     * @return 
+     */
     public static String encryptMD5(String input) {
         MessageDigest MD;
         byte[] messageDigest;
@@ -33,7 +37,4 @@ public class MD5 {
         return outPut;
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        System.out.println(MD5.encryptMD5("chung"));
-    }
 }

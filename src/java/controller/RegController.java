@@ -49,12 +49,11 @@ public class RegController extends HttpServlet {
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String customerID = RandomKey.randomKey();
         String username = request.getParameter("username");
-        String customerName = request.getParameter("firstname") + " " + request.getParameter("lastname");
-        String dateString = request.getParameter("Year") + "-"
-                + request.getParameter("Month") + "-"
-                + request.getParameter("Day");
+        String customerName = request.getParameter("firstname") 
+                + " " 
+                + request.getParameter("lastname");
+        String dateString = request.getParameter("DoB");
         Date DoB = DateConverter.date(dateString);
-        System.out.println(DoB + " | " + dateString);
         String gender = request.getParameter("sex");
         String email = request.getParameter("youremail");
         String address = request.getParameter("address");
