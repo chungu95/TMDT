@@ -38,23 +38,31 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">            
-                        <li><a href="#">CHĂM SÓC KHÁCH HÀNG</a></li>
+                        <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
                         <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
-                            <%
-                                Customers customer = (Customers) session.getAttribute("customer");
-                                if (customer == null) {
-                                    out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
-                                            + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
-                                } else {
-                                    out.print("<li><a href='#'>Xin chào " + customer.getCustomerName() + "!</a></li>");
-                                }
-                            %>
+
+                        <%
+                            Customers customer = (Customers) session.getAttribute("customer");
+                            if (customer == null) {
+                                out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
+                                        + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
+                            } else {
+
+                                out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
+                                out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
+                                out.print("<div>");
+                                out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
+                                out.print("</div>");
+                            }
+                        %>
+
+
 
                     </ul>
                 </div>
             </div>
             <!-- End Menu Bootstrap -->
-            
+
         </div>
     </div>
 </header>

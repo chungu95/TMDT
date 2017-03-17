@@ -39,6 +39,7 @@ public class CustomerDAOs {
                 customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                 customer.setUsername(rs.getString("Username"));
                 customer.setPassword(rs.getString("Password"));
+                customer.setGender(rs.getString("Gender")); 
             }
         } catch (SQLException ex) {
         } finally {
@@ -109,9 +110,10 @@ public class CustomerDAOs {
         return (result != 0);
     }
 
-    public static Customers getCustomer(String input) {
+    public  static Customers getCustomer(String input) {
         Customers customer = null;
         Connection conn = Connector.getConnection();
+        //String sql="";
         String sql = "SELECT * FROM Customers WHERE CustomerID = '" + input + "' OR Username = '"+input+"';";  
         try (PreparedStatement pr = conn.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
