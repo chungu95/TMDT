@@ -22,7 +22,7 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout"})
 public class LoginController extends HttpServlet {
 
     /**
@@ -39,12 +39,13 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            checkLogin(request, response);
+
         }
 
     }
 
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
@@ -57,7 +58,7 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("./WEB/index.jsp");
             }
         } catch (Exception ex) {
-            response.sendRedirect("./WEB/404.jsp?error=Connection timeout!"); 
+            response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");
         }
     }
 
@@ -73,7 +74,9 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        session.removeAttribute("customer");
+        response.sendRedirect("./WEB/index.jsp");
     }
 
     /**
@@ -87,7 +90,9 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        checkLogin(request, response);
     }
 
     /**

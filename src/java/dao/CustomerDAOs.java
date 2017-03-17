@@ -39,6 +39,7 @@ public class CustomerDAOs {
                 customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                 customer.setUsername(rs.getString("Username"));
                 customer.setPassword(rs.getString("Password"));
+                customer.setGender(rs.getString("Gender")); 
             }
         } catch (SQLException ex) {
         } finally {

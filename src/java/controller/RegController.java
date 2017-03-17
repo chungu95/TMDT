@@ -41,7 +41,7 @@ public class RegController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            register(request, response);
+//            register(request, response);
         }
 
     }
@@ -49,8 +49,8 @@ public class RegController extends HttpServlet {
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String customerID = RandomKey.randomKey();
         String username = request.getParameter("username");
-        String customerName = request.getParameter("firstname") 
-                + " " 
+        String customerName = request.getParameter("firstname")
+                + " "
                 + request.getParameter("lastname");
         String dateString = request.getParameter("DoB");
         Date DoB = DateConverter.date(dateString);
@@ -100,7 +100,9 @@ public class RegController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        register(request, response); 
     }
 
     /**
