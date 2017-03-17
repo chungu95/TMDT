@@ -12,7 +12,7 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 /**
  *
- * @author ADMIN
+ * @author ADMIN chay chua day/
  */
 public class Connector {
 
