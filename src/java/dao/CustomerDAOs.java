@@ -109,9 +109,10 @@ public class CustomerDAOs {
         return (result != 0);
     }
 
-    public static Customers getCustomer(String input) {
+    public  static Customers getCustomer(String input) {
         Customers customer = null;
         Connection conn = Connector.getConnection();
+        //String sql="";
         String sql = "SELECT * FROM Customers WHERE CustomerID = '" + input + "' OR Username = '"+input+"';";  
         try (PreparedStatement pr = conn.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {

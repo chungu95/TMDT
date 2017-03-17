@@ -46,23 +46,16 @@
                                 if (customer == null) {
                                     out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
                                             + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
-                                } else {%>
-                                <%-- out.print("<li><a href='#'>Xin chào " + customer.getCustomerName() + "!</a></li>");
-                                }
-                            %>--%>
-                                
-                                   <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown"> Xin chào
-                                        <% out.print(customer.getCustomerName()); }%> 
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                         <li><a href="">Đăng xuất</a></li>
-                                         <li><a href="">Thoát</a></li>
-                                    </ul>
-                                    </div>
+                                } else {
                                     
-                                        <% } %>     
+                                    out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
+                                    out.print("<li><a href='#'> ĐĂNG XUẤT </a></li>");
+                                    out.print("<div>");
+                                    out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
+                                    out.print("</div>");
+                                }
+                            %>
+                                    
                                
 
                     </ul>

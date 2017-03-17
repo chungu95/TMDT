@@ -5,9 +5,20 @@
  */
 package model;
 
+import connector.Connector;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,7 +54,17 @@ public class Customers implements Serializable {
         this.gender = gender;
     }
     
-    
+     public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username,  String gender) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.doB = doB;
+        this.gender = gender;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        
+    }
 
     public Customers(String customerID, String customerName, Date doB, String address, String customerEmail, String phoneNumber, Integer accumulatedScore, String username) {
         this.customerID = customerID;
@@ -177,7 +198,8 @@ public class Customers implements Serializable {
         }
         return true;
     }
-
+  
+    
     @Override
     public String toString() {
         return "model.Customers[ customerID=" + customerID + " ]";

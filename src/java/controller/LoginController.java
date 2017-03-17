@@ -44,16 +44,20 @@ public class LoginController extends HttpServlet {
 
     }
 
-    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        Customers customer = CustomerDAOs.checkLogin(username, password);
-        if (customer == null) {
-            response.sendRedirect("./WEB/login.jsp?error="+RandomKey.randomKey(30)); 
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("customer", customer);
-            response.sendRedirect("./WEB/index.jsp");
+        try {
+            Customers customer = CustomerDAOs.checkLogin(username, password);
+            if (customer == null) {
+                response.sendRedirect("./WEB/login.jsp?error=" + RandomKey.randomKey(30));
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("customer", customer);
+                response.sendRedirect("./WEB/index.jsp");
+            }
+        } catch (Exception ex) {
+            response.sendRedirect("./WEB/404.jsp?error=Connection timeout!"); 
         }
     }
 

@@ -39,17 +39,17 @@
                                             </ol>
 
                                             <!-- Wrapper for slides -->
-                                            <div class="carousel-inner" role="listbox">
+                                            <div class="carousel-inner" role="listbox" >
                                                 <div class="item active">
-                                                    <img src="image/28_02_2017_14_47_13_TV-Gia-Tot-800-300.png" alt="first slide" >
+                                                    <img src="image/28_02_2017_14_47_13_TV-Gia-Tot-800-300.png" alt="first slide" style="width: 100%" >
 
                                                 </div>
                                                 <div class="item">
-                                                    <img src="image/28_02_2017_14_52_50_TV-Samsung-800-300.png" alt="second slide">
+                                                    <img src="image/28_02_2017_14_52_50_TV-Samsung-800-300.png" alt="second slide" style="width: 100%">
 
                                                 </div>
                                                 <div class="item">
-                                                    <img src="image/28_02_2017_14_38_03_LG-800-300.png" alt="second slide">
+                                                    <img src="image/28_02_2017_14_38_03_LG-800-300.png" alt="second slide" style="width: 100%">
 
                                                 </div>
                                             </div>
@@ -108,20 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="sidebar col-md-3 col-sm-3 col-xs-12">
-                        <div class="sidebar-item">
-                            <h4 class="widget-title">Tiêu đề sidebar</h4>
-                            <div class="textwidget">
-                                <img src="http://placehold.it/280x280">
-                            </div>
-                        </div>
-                        <div class="sidebar-item">
-                            <h4 class="widget-title">Tiêu đề sidebar</h4>
-                            <div class="textwidget">
-                                <img src="http://placehold.it/280x280">
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

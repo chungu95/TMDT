@@ -74,7 +74,7 @@
             $('#pickDate').datepicker({
                 'format': 'dd-mm-yyyy',
                 'autoclose': true,
-                'language': "vi"
+                'language': 'vi'
             });
             $('#pickDate').datepicker('setDate', new Date(1995, 01, 10));
             $('#pickDate').datepicker('update');
