@@ -38,7 +38,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">            
-                        <li><a href="#">CHĂM SÓC KHÁCH HÀNG</a></li>
+                        <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
                         <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
                        
                             <%
