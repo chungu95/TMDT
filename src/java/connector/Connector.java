@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
-
 /**
  *
  * @author ADMIN chay chua day/
@@ -23,7 +22,8 @@ public class Connector {
     private static final int CONN_POOL_INIT_SIZE = 10;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
-    private static BasicDataSource basicDataSource = new BasicDataSource();
+    private final BasicDataSource basicDataSource = new BasicDataSource();
+    private static final Connector INSTANCE = new Connector();
 
     private Connector() {
         init();
@@ -38,16 +38,11 @@ public class Connector {
         basicDataSource.setMaxIdle(CONN_POOL_MAX_SIZE);
     }
 
-    private static class ConnectorHolder {
-
-        private static final Connector INSTANCE = new Connector();
+    private static Connector getInstance() {
+        return INSTANCE;
     }
 
-    public static Connector getInstance() {
-        return ConnectorHolder.INSTANCE;
-    }
-
-    public static BasicDataSource getBasicDataSource() {
+    private static BasicDataSource getBasicDataSource() {
         return getInstance().basicDataSource;
     }
 

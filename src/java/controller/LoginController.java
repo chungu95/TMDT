@@ -34,15 +34,6 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-        }
-
-    }
 
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -57,7 +48,7 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("./WEB/index.jsp");
             }
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");
         }
     }

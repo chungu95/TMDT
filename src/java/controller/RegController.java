@@ -33,19 +33,8 @@ public class RegController extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-//            register(request, response);
-        }
-
-    }
-
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String customerID = RandomKey.randomKey();
         String username = request.getParameter("username");
@@ -86,7 +75,6 @@ public class RegController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -102,7 +90,7 @@ public class RegController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        register(request, response); 
+        register(request, response);
     }
 
     /**
