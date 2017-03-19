@@ -34,7 +34,7 @@
                                 <h4> ĐĂNG NHẬP </h4>
                             </div>
                             <div class="panel-body">
-                                <form action="../LoginController" method="POST" role="form">                        
+                                <form action="../LoginController" method="post" role="form">                        
                                     <div class="form-group">
                                         <label for="username">Tên đăng nhập</label>
                                         <input type="text" class="form-control" name="username" placeholder="nhập tên đăng nhập">
