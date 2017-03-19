@@ -28,7 +28,7 @@
         <%
             CustomerDAOs CusD = new CustomerDAOs();
             CusD.getCustomers(request.getParameter(customer.toString()));
-                              
+                           
         %>
         <div class="jumbotron" >               
             <h1>THÔNG TIN KHÁCH HÀNG</h1>             
