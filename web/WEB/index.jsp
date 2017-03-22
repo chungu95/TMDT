@@ -43,20 +43,20 @@
 
                                             <!-- Wrapper for slides -->
                                             <center>
-                                            <div class="carousel-inner" role="listbox" >
-                                                <div class="item active">
-                                                    <img src="image/28_02_2017_14_47_13_TV-Gia-Tot-800-300.png" alt="first slide" style="width: 100%" >
+                                                <div class="carousel-inner" role="listbox" >
+                                                    <div class="item active">
+                                                        <img src="image/28_02_2017_14_47_13_TV-Gia-Tot-800-300.png" alt="first slide" style="width: 100%" >
 
-                                                </div>
-                                                <div class="item">
-                                                    <img src="image/28_02_2017_14_52_50_TV-Samsung-800-300.png" alt="second slide" style="width: 100%">
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="image/28_02_2017_14_52_50_TV-Samsung-800-300.png" alt="second slide" style="width: 100%">
 
-                                                </div>
-                                                <div class="item">
-                                                    <img src="image/28_02_2017_14_38_03_LG-800-300.png" alt="second slide" style="width: 100%">
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="image/28_02_2017_14_38_03_LG-800-300.png" alt="second slide" style="width: 100%">
 
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </center>
 
                                             <!-- Controls -->
@@ -77,14 +77,45 @@
                         <div class="box-index">
                             <h2>Thông tin </h2>
                             <div class="row">
-                                <%                                    
-                                    for (int i = 0; i < product.size(); i++) {
+                                <%                                    for (int i = 0; i < product.size(); i++) {
                                 %>
                                 <div class="item col-md-3 col-sm-3 col-xs-6">
                                     <span><a href="../Product/Images/<%=product.get(i).getProductImg()%>" target="_blank" class="thumbnail"><img src="../Product/Images/<%=product.get(i).getProductImg()%>"></a></span>
                                     <h3><a href="#"><%=product.get(i).getProductName()%></a></h3>
                                 </div>
                                 <% }%>
+                                <div class="col-lg-3" >                                
+                                    <div class="checkbox">                                
+                                        <h3 class="w3-wide"><b>Thương hiệu</b></h3>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">                                
+                                        <h3 class="w3-wide"><b>Giá bán </b></h3>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
+                                        </label>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
