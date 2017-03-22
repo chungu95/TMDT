@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../WEB/css/logincss.css">        
         <link rel="stylesheet" href="../WEB/css/bootstrap.min.css">
         <link rel="stylesheet" href="../WEB/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/mycss.css">
     </head>
     <body class="acount">
 

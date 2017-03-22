@@ -4,12 +4,7 @@
     Author     : DELL
 --%>
 
-<%@page import="dao.CustomerDAOs"%>
 <%@page import="model.Customers"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,12 +21,8 @@
     </head>
     <body>
 
-        <%   
-             
-        %> 
-
         <div class="jumbotron" >               
-            <h1>THÔNG TIN KHÁCH HÀNG</h1>             
+            <h3>THÔNG TIN KHÁCH HÀNG</h3>             
         </div>
         <div class="table-bordered " style="font-size: 15px; background: #ebccd1; border-color: black;" >          
             <table class="table">

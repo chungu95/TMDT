@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Products"%>
+<%@page import="model.Products"%>
+<%@page import="dao.ProductsDAO"%>
 <%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -8,10 +12,18 @@
 <link rel="stylesheet" href="css/mycss.css">
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<style>
+    #title{font-family: "Brush Script MT"; border: 0 ;margin-bottom: auto ;  padding: auto ; text-align: center; ;  color: darkgrey; font-weight: bold; font-size: 75pt;
+           text-shadow: 1px 1px 0 bisque , 2px 2px 0 firebrick , 3px 3px 0 firebrick, 4px 4px 0 firebrick , 5px 5px 0 firebrick , 6px 6px 0 firebrick, 0 -2px firebrick ,-2px 0 bisque, 2px 0 firebrick, 0 3px firebrick
+    }  
+    #xxx{color: #003399}
+</style>
 <header>
     <div class="container">
         <div class="row">
-            <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><img src="image/ten.PNG"></h1></div>
+            <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><span id="title">
+                        Nhóm 5
+                    </span></h1></div>
             <div class="search col-md-6 col-sm-6 col-xs-12 text-right">
                 <form method="get" action="#">
                     <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px">
@@ -42,6 +54,7 @@
                         <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
 
                         <%
+                            ArrayList<Products> product = ProductsDAO.getAllProduct();
                             Customers customer = (Customers) session.getAttribute("customer");
                             if (customer == null) {
                                 out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
