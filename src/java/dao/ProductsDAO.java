@@ -6,7 +6,6 @@
 package dao;
 
 import connector.Connector;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +33,6 @@ public class ProductsDAO {
                 int quantity = rs.getInt("Quantity");
                 String ProductImg = rs.getString("ProductImg");
                 products.add(new Products(ProductID, productName, Price, Description, quantity, ProductImg, produceID));
-                System.out.println(products.get(0).getProductName());
             }
         } catch (Exception ex) {
             System.out.println(ex);

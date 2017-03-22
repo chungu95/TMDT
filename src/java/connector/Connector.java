@@ -7,6 +7,8 @@ package connector;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 /**
@@ -51,6 +53,7 @@ public class Connector {
         try {
             connection = Connector.getBasicDataSource().getConnection();
         } catch (SQLException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;
     }
