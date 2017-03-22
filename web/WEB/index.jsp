@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row">   
                     <div class="content col-md-9 col-sm-9 col-xs-12">
-
+                       
                         <section>
                             <div class="container"> 
                                 <div class="row">
@@ -68,8 +68,8 @@
                                 </div>
                             </div>
                         </section>
-
-                        <div class="box-index">
+                        <div class="row">
+                        <div class="box-index col-lg-9">
                             <h2>Thông tin </h2>
                             <div class="row">
                                 <div class="item col-md-3 col-sm-3 col-xs-6">
@@ -104,14 +104,47 @@
                                     <span><a href="#" class="thumbnail"><img src="http://placehold.it/200x200"></a></span>
                                     <h3><a href="#">Tiêu đề bài viết</a></h3>
                                 </div>
-                            </div>
+                            </div>                        
+                        </div> 
+                            <div class="col-lg-3" >                                
+                                <div class="checkbox">                                
+                                <h3 class="w3-wide"><b>Thương hiệu</b></h3>
+                                <label class="checkbox-inline">
+                                      <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
+                                </label>
+                               <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
+                               </label>
+                               <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
+                               </label>
+                                <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
+                               </label>
+                                </div>
+                                <div class="checkbox">                                
+                                <h3 class="w3-wide"><b>Giá bán </b></h3>
+                                <label class="checkbox-inline">
+                                      <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
+                                </label>
+                               <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
+                               </label>
+                               <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
+                               </label>
+                                <label class="checkbox-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
+                               </label>
+                                </div>
+                            </div>   
                         </div>
-                    </div>
-
-                    
+                       
+                        
                 </div>
             </div>
         </div>
+      </div>
 
         <footer>
             <%@include file="footer.jsp" %>
