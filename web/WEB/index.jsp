@@ -84,43 +84,10 @@
                                     <h3><a href="#"><%=product.get(i).getProductName()%></a></h3>
                                 </div>
                                 <% }%>
-                                <div class="col-lg-3" >                                
-                                    <div class="checkbox">                                
-                                        <h3 class="w3-wide"><b>Thương hiệu</b></h3>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">                                
-                                        <h3 class="w3-wide"><b>Giá bán </b></h3>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox2" value="option2"> Samsung
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Sony
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="inlineCheckbox3" value="option3"> Panasonic
-                                        </label>
-                                    </div>
-                                </div> 
-                            </div>
+                            </div>      
+
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
