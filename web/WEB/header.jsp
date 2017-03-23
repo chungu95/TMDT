@@ -35,7 +35,7 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="header-menu">
+        <div class="header-menu"><center>
             <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
             <div id="custom-bootstrap-menu" class="navbar navbar-default">
                 <div class="navbar-header">
@@ -54,7 +54,6 @@
                         <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
 
                         <%
-                            ArrayList<Products> product = ProductsDAO.getAllProduct();
                             Customers customer = (Customers) session.getAttribute("customer");
                             if (customer == null) {
                                 out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
@@ -75,7 +74,7 @@
                 </div>
             </div>
             <!-- End Menu Bootstrap -->
-
+            </center>
         </div>
     </div>
 </header>

@@ -74,48 +74,51 @@
                             </div>
                         </section>
                         <div class="row">
-                           <div class="box-index col-lg-9">
-                            <h2>Thông tin </h2>
-                            <div class="row">
-                                <%                                    for (int i = 0; i < product.size(); i++) {
-                                %>
-                                <div class="item col-md-3 col-sm-3 col-xs-6">
-                                    <span><a href="../Product/Images/<%=product.get(i).getProductImg()%>" target="_blank" class="thumbnail"><img src="../Product/Images/<%=product.get(i).getProductImg()%>"></a></span>
-                                    <h3><a href="#"><%=product.get(i).getProductName()%></a></h3>
-                                </div>
-                                <% }%>
-                            </div>      
+                            <div class="box-index col-lg-9">
+                                <h2>Thông tin </h2>
+
+                                <div class="row">
+                                    <%                                        
+                                        ArrayList<Products> product = ProductsDAO.getAllProduct();
+                                        for (int i = 0; i < product.size(); i++) {
+                                    %>
+                                    <div class="item col-md-3 col-sm-3 col-xs-6">
+                                        <span><a href="../Product/Images/<%=product.get(i).getProductImg()%>" target="_blank" class="thumbnail"><img src="../Product/Images/<%=product.get(i).getProductImg()%>"></a></span>
+                                        <h3><a href="#">xem</a></h3>
+                                    </div>
+                                    <% }%>
+                                </div>      
                             </div>
                             <div class="col-lg-3">
                                 <div class="checkbox">
                                     <h3>Thương hiệu</h3>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> SamSung
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Sony
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Panasonic
-                                     </label>
+                                    </label>
                                 </div>
                                 <div class="checkbox">
                                     <h3>Giá bán</h3>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> từ 5-7 triệu
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu
-                                     </label>
+                                    </label>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu
-                                     </label>
+                                    </label>
                                 </div>
                             </div>    
                         </div>

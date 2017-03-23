@@ -44,7 +44,7 @@ public class ProductsDAO {
 
     public static void main(String[] args) {
         ArrayList<Products> products = ProductsDAO.getAllProduct();
-        products.forEach((item) -> {
+        products.forEach(( item) -> {
             System.out.println(item.getProductID() + " | " + item.getProductName());
         });
     }
