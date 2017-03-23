@@ -73,8 +73,8 @@
                                 </div>
                             </div>
                         </section>
-
-                        <div class="box-index">
+                        <div class="row">
+                           <div class="box-index col-lg-9">
                             <h2>Thông tin </h2>
                             <div class="row">
                                 <%                                    for (int i = 0; i < product.size(); i++) {
@@ -85,7 +85,39 @@
                                 </div>
                                 <% }%>
                             </div>      
-
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="checkbox">
+                                    <h3>Thương hiệu</h3>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> LG
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> SamSung
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Sony
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Panasonic
+                                     </label>
+                                </div>
+                                <div class="checkbox">
+                                    <h3>Giá bán</h3>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> từ 5-7 triệu
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu
+                                     </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu
+                                     </label>
+                                </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
