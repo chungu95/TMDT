@@ -36,7 +36,7 @@
                                             <!-- Wrapper for slides -->
                                             <div class="carousel-inner" role="listbox" >
                                                 <div class="item active">
-                                                    <img src="image/28_02_2017_14_47_13_TV-Gia-Tot-800-300.png" alt="first slide" style="width: 100%" >
+                                                    <img src="../Product/Images/QWERTY/t1.jpg" alt="first slide" style="width: 100%" >
 
                                                 </div>
                                                 <div class="item">
