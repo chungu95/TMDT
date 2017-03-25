@@ -73,8 +73,7 @@
             <div class="left-sidebar" style="margin-top: 50px; margin-left: 100px;padding:5px" >
                 <div class="brands_products" >
                     <h2>Thương Hiệu</h2>
-                    <% 
-                        ArrayList<Produce> produce = ProduceDAO.getProduce();
+                    <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
                         for (int i = 0; i < produce.size(); i++) {
                     %>
                     <div class="brands-name " style="align-items: center  "> 
@@ -85,6 +84,7 @@
                     <%  }%> 
                 </div>
                 <div class="brands_products">
+
                     <h2>Giá bán</h2>
                     <div class="brands-name " style="color: #003399;">                            
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu <br>                                     
@@ -92,7 +92,9 @@
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu<br>                                    
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu<br>
                     </div>
+
                 </div>
+
             </div>
         </div>
 
@@ -116,7 +118,7 @@
                                             <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">
                                             <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
                                             <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%></b></h2></p>
-                                        <a href="detail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
+                                            <a href="detail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
                                         </div> 
                                         <div class="choose" >
                                             <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">

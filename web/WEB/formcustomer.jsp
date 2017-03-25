@@ -22,9 +22,9 @@
     <body>
 
         <div class="jumbotron" >               
-            <h3>THÔNG TIN KHÁCH HÀNG</h3>             
+            <center><h3>THÔNG TIN KHÁCH HÀNG</h3> </center>            
         </div>
-        <div class="table-bordered " style="font-size: 15px; background: #ebccd1; border-color: black;" >          
+        <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
                 <thead>
                     <tr>
@@ -50,7 +50,7 @@
                         <td><%=customer.getPhoneNumber()%></td>
                         <td><%=customer.getAccumulatedScore()%></td>
                         <td><%=customer.getUsername()%></td>
-                        <td><button>Sửa</button></td>
+                        <td><button class="btn btn-danger">Sửa</button></td>
                     </tr>
                 </tbody>
             </table>

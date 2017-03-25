@@ -24,13 +24,11 @@
             <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><span id="title">
                         Nhóm 5
                     </span></h1></div>
-            <div class="search col-md-6 col-sm-6 col-xs-12 text-right">
+            <div class="search col-md-5 col-sm-6 col-xs-12 text-right" style="margin-top: 20px;">
                 <form method="get" action="#">
-                    <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px">
+                    <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px; margin-right: 5px;">
                     <input type="submit" value="Tìm Kiếm">  
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" style="color: yellow;">Giỏ hàng</a></li>        
-                    </ul>
+                    <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
                 </form>           
             </div>
             <div class="clearfix"></div>
