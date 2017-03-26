@@ -76,15 +76,14 @@
                     <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
                         for (int i = 0; i < produce.size(); i++) {
                     %>
-                    <div class="brands-name " style="align-items: center  "> 
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#"> <span class="pull-right"><%=produce.get(i).getProduceName()%></span></a></li>
+                    <div class="brands-name " style=""> 
+                        <ul class="nav nav-pills nav-stacked" >
+                            <li style="text-align: left"><a href="#"> <span class="pull-left"><%=produce.get(i).getProduceName()%></span></a></li>
                         </ul> 
                     </div>
                     <%  }%> 
                 </div>
                 <div class="brands_products">
-
                     <h2>Giá bán</h2>
                     <div class="brands-name " style="color: #003399;">                            
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu <br>                                     
@@ -92,7 +91,26 @@
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu<br>                                    
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu<br>
                     </div>
-
+                </div>
+                <div class="brands_products">
+                    <h2>Loại Tivi</h2>
+                    <div class="brands-name " style="color: #003399;">                            
+                        <input type="checkbox" id="inlineCheckbox1" value="option1">Android Tivi <br>                                     
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Internet Tivi/ Smart Tivi<br>                                    
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Tivi LED<br>                                   
+                    </div>
+                </div>
+                <div class="brands_products">
+                    <h2>Kích thước màn hình </h2>
+                    <div class="brands-name " style="color: #003399;">                            
+                        <input type="checkbox" id="inlineCheckbox1" value="32 inch"> 32 inch<br>                                     
+                        <input type="checkbox" id="inlineCheckbox1" value="40 inch"> 40 inch<br>                                    
+                        <input type="checkbox" id="inlineCheckbox1" value="43 inch"> 43 inch<br>                                    
+                        <input type="checkbox" id="inlineCheckbox1" value="48 inch"> 48 inch<br>
+                        <input type="checkbox" id="inlineCheckbox1" value="49 inch"> 49 inch<br>
+                        <input type="checkbox" id="inlineCheckbox1" value="50 inch"> 50 inch<br>
+                        <input type="checkbox" id="inlineCheckbox1" value="55 inch"> 55 inch<br>
+                    </div>
                 </div>
 
             </div>
