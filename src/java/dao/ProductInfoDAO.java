@@ -29,11 +29,12 @@ public class ProductInfoDAO {
                     productInfo = new ProductInfo();
                     productInfo.setProductID(productID);
                     productInfo.setProductType(rs.getString("ProductType"));
-                    productInfo.setAudio(rs.getString("Audio"));
+                    productInfo.setModel(rs.getString("Model"));
                     productInfo.setHdmi(rs.getString("HDMI"));
                     productInfo.setResolution(rs.getString("Resolution"));
                     productInfo.setUsb(rs.getString("USB"));
-                    productInfo.setVideoFormat(rs.getString("VideoFormat"));
+                    productInfo.setSize(rs.getString("Size"));
+                    productInfo.setWarranty(rs.getString("Warranty"));
                 }
             }
         } catch (Exception ex) {
@@ -47,7 +48,7 @@ public class ProductInfoDAO {
     public static void main(String[] args) {
         ProductInfo pr = ProductInfoDAO.getProductInfo("QWERTA");
         if (pr != null) {
-            System.out.println(pr.getProductID() + " | " + pr.getProductType() + " | " + pr.getUsb() + " | " + pr.getVideoFormat());
+            System.out.println(pr.getProductID() + " | " + pr.getProductType() + " | " + pr.getUsb() + " | " + pr.getModel());
         }else{
             System.out.println("null");
         }

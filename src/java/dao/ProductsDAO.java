@@ -40,7 +40,7 @@ public class ProductsDAO {
         } finally {
             Connector.close(conn);
         }
-        product.setProductInfo(ProductInfoDAO.getProductInfo(productID));
+        product.setProductInfo(ProductInfoDAO.getProductInfo(productID)); 
         return product;
     }
 
@@ -76,7 +76,7 @@ public class ProductsDAO {
 
         Products pro = ProductsDAO.getProductByID("QWERTA");
         if (pro != null) {
-            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getVideoFormat());
+            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
         } else {
             System.out.println("null");
         }

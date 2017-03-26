@@ -17,7 +17,8 @@ import model.Produce;
  * @author ADMIN
  */
 public class ProduceDAO {
-
+    
+   
     public static ArrayList<Produce> getProduce() {
         ArrayList<Produce> produce = new ArrayList<>();
         Connection conn = Connector.getConnection();

@@ -136,7 +136,7 @@
                                             <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">
                                             <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
                                             <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%></b></h2></p>
-                                            <a href="detail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
+                                            <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
                                         </div> 
                                         <div class="choose" >
                                             <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
@@ -154,7 +154,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                            
         <footer>
             <%@include file="footer.jsp" %>
         </footer>

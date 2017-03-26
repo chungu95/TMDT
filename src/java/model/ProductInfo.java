@@ -20,8 +20,9 @@ public class ProductInfo implements Serializable {
     private String resolution;
     private String hdmi;
     private String usb;
-    private String audio;
-    private String videoFormat;
+    private String Model;
+    private String size;
+    private String warranty;
     private Products products;
 
     public ProductInfo() {
@@ -71,22 +72,31 @@ public class ProductInfo implements Serializable {
         this.usb = usb;
     }
 
-    public String getAudio() {
-        return audio;
+    public String getModel() {
+        return Model;
     }
 
-    public void setAudio(String audio) {
-        this.audio = audio;
+    public void setModel(String Model) {
+        this.Model = Model;
     }
 
-    public String getVideoFormat() {
-        return videoFormat;
+    public String getSize() {
+        return size;
     }
 
-    public void setVideoFormat(String videoFormat) {
-        this.videoFormat = videoFormat;
+    public void setSize(String size) {
+        this.size = size;
     }
 
+    public String getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
+    }
+
+    
     public Products getProducts() {
         return products;
     }
