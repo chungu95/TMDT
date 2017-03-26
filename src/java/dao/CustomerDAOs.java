@@ -24,21 +24,24 @@ public class CustomerDAOs {
     public static Customers checkLogin(String username, String password) {
         Connection con = Connector.getConnection();
         Customers customer = null;
-        String sql = "SELECT * FROM Customers WHERE Username = '" + username
-                + "' AND Password = '" + MD5.encryptMD5(password) + "';";
-        try (PreparedStatement pr = con.prepareStatement(sql);
-                ResultSet rs = pr.executeQuery()) {
-            if (rs.next()) {
-                customer = new Customers();
-                customer.setCustomerID(rs.getString("CustomerID"));
-                customer.setCustomerName(rs.getString("CustomerName"));
-                customer.setDoB(rs.getDate("DoB"));
-                customer.setAddress(rs.getString("Address"));
-                customer.setEmail(rs.getString("Email"));
-                customer.setPhoneNumber(rs.getString("PhoneNumber"));
-                customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
-                customer.setUsername(rs.getString("Username"));
-                customer.setPassword(rs.getString("Password"));
+        String sql = "SELECT * FROM Customers WHERE Username = ? AND Password = ?;";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, username);
+            pr.setString(2, MD5.encryptMD5(password));
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    customer = new Customers();
+                    customer.setCustomerID(rs.getString("CustomerID"));
+                    customer.setCustomerName(rs.getString("CustomerName"));
+                    customer.setDoB(rs.getDate("DoB"));
+                    customer.setAddress(rs.getString("Address"));
+                    customer.setEmail(rs.getString("Email"));
+                    customer.setPhoneNumber(rs.getString("PhoneNumber"));
+                    customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
+                    customer.setUsername(rs.getString("Username"));
+                    customer.setPassword(rs.getString("Password"));
+                    customer.setGender(rs.getString("Gender"));
+                }
             }
         } catch (SQLException ex) {
         } finally {
@@ -59,13 +62,13 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setString(7, customer.getGender()); 
+            pr.setString(7, customer.getGender());
             pr.setString(8, customer.getUsername());
             pr.setString(9, customer.getPassword());
             result = pr.executeUpdate();
         } catch (Exception ex) {
-            System.out.println(ex); 
-            System.out.println(customer.getGender()); 
+            System.out.println(ex);
+            System.out.println(customer.getGender());
         } finally {
             Connector.close(con);
         }
@@ -77,7 +80,7 @@ public class CustomerDAOs {
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
                 + " Address = ?, Email = ?, PhoneNumber = ?, AccumulatedScore = ?,"
-                + " Username = ? , Password = ? WHERE CustomerID = '" + customer.getCustomerID() + "';";
+                + " Username = ? , Password = ? WHERE CustomerID = ?;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerName());
             pr.setDate(2, customer.getDoB());
@@ -87,6 +90,7 @@ public class CustomerDAOs {
             pr.setInt(6, customer.getAccumulatedScore());
             pr.setString(7, customer.getUsername());
             pr.setString(8, customer.getPassword());
+            pr.setString(9, customer.getCustomerID());
             result = pr.executeUpdate();
         } catch (Exception ex) {
         } finally {
@@ -97,9 +101,11 @@ public class CustomerDAOs {
 
     public static boolean deleteCustomer(String customerID) {
         Connection con = Connector.getConnection();
-        String sql = "DELETE FROM Customers WHERE CustomerID = '" + customerID + "';";
+        String sql = "DELETE FROM Customers WHERE CustomerID = ?;";
         int result = 0;
         try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, customerID);
+
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -112,7 +118,8 @@ public class CustomerDAOs {
     public static Customers getCustomer(String input) {
         Customers customer = null;
         Connection conn = Connector.getConnection();
-        String sql = "SELECT * FROM Customers WHERE CustomerID = '" + input + "' OR Username = '"+input+"';";  
+        //String sql="";
+        String sql = "SELECT * FROM Customers WHERE CustomerID = '" + input + "' OR Username = '" + input + "';";
         try (PreparedStatement pr = conn.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
@@ -125,7 +132,7 @@ public class CustomerDAOs {
                 customer.setPhoneNumber(rs.getString("PhoneNumber"));
                 customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                 customer.setUsername(rs.getString("Username"));
-                customer.setGender(rs.getString("Gender")); 
+                customer.setGender(rs.getString("Gender"));
             }
         } catch (SQLException ex) {
         } finally {
@@ -156,5 +163,5 @@ public class CustomerDAOs {
         }
         return custommers;
     }
-        
+
 }

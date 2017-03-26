@@ -22,7 +22,7 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout"})
 public class LoginController extends HttpServlet {
 
     /**
@@ -34,26 +34,22 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            checkLogin(request, response);
-        }
 
-    }
+    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        Customers customer = CustomerDAOs.checkLogin(username, password);
-        if (customer == null) {
-            response.sendRedirect("./WEB/login.jsp?error="+RandomKey.randomKey(30)); 
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("customer", customer);
-            response.sendRedirect("./WEB/index.jsp");
+        try {
+            Customers customer = CustomerDAOs.checkLogin(username, password);
+            if (customer == null) {
+                response.sendRedirect("./WEB/login.jsp?error=" + RandomKey.randomKey(30));
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("customer", customer);
+                response.sendRedirect("./WEB/index.jsp");
+            }
+        } catch (IOException ex) {
+            response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");
         }
     }
 
@@ -69,7 +65,9 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        session.removeAttribute("customer");
+        response.sendRedirect("./WEB/index.jsp");
     }
 
     /**
@@ -83,7 +81,9 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        checkLogin(request, response);
     }
 
     /**

@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../WEB/css/logincss.css">        
         <link rel="stylesheet" href="../WEB/css/bootstrap.min.css">
         <link rel="stylesheet" href="../WEB/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/mycss.css">
     </head>
     <body class="acount">
 
@@ -37,7 +38,7 @@
                             out.print("<b style='color:red'><center>Tên truy nhập đã tồn tại!</center></b><br />");
                         }
                     %>
-                    <form action="../RegController" method="get" class="form" role="form">                       
+                    <form action="../RegController" method="post" class="form" role="form">                       
 
                         <div>
                             <input class="form-control" style="float: left; width: 45%; margin-right: 10%;" name="firstname" placeholder="Họ" required="" autofocus="" type="text">
@@ -74,7 +75,7 @@
             $('#pickDate').datepicker({
                 'format': 'dd-mm-yyyy',
                 'autoclose': true,
-                'language': "vi"
+                'language': 'vi'
             });
             $('#pickDate').datepicker('setDate', new Date(1995, 01, 10));
             $('#pickDate').datepicker('update');

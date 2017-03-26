@@ -27,6 +27,13 @@ public class Produce implements Serializable {
         this.produceID = produceID;
     }
 
+    public Produce(String produceID, String produceName) {
+        this.produceID = produceID;
+        this.produceName = produceName;
+    }
+    
+    
+
     public String getProduceID() {
         return produceID;
     }
