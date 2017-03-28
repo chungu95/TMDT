@@ -12,13 +12,14 @@
         <title>ĐĂNG KÝ TÀI KHOẢN</title>
 
         <%@include file = "header.jsp" %> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
         <link href="./css/bootstrap-datepicker.css" rel="stylesheet" />
         <script src="./js/bootstrap-datepicker.js"></script>
         <link rel="stylesheet" href="../WEB/css/logincss.css">        
         <link rel="stylesheet" href="../WEB/css/bootstrap.min.css">
         <link rel="stylesheet" href="../WEB/css/bootstrap-theme.min.css">
+        <!--<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>-->
         <link rel="stylesheet" href="css/mycss.css">
     </head>
     <body class="acount">
@@ -51,7 +52,7 @@
                         <input class="form-control" name="password" placeholder="Mật khẩu" type="password" id="password" required=""/> 
                         <input class="form-control" name="retypepassword" placeholder="Nhập lại mật khẩu" type="password" id="retypepassword" required=""/> <label for=""> Ngày tháng năm sinh </label>                          
                         <input type="text" class="form-control" id="pickDate" name="DoB" placeholder="Ngày tháng năm sinh" style="width: 300px; padding-left: 20px" required=""/>
-                        <label for="sex"> Giới tính: </label>  <label class="radio-inline">      <input name="sex" id="inlineCheckbox1" value="male" type="radio" checked/>          Nam </label> <label class="radio-inline">          <input name="sex" id="inlineCheckbox2" value="female" type="radio"/>          Nữ </label> 
+                        <label for="sex"> Giới tính: </label>  <label class="radio-inline">      <input name="sex" id="inlineCheckbox1" value="nam" type="radio" checked/>          Nam </label> <label class="radio-inline">          <input name="sex" id="inlineCheckbox2" value="nữ" type="radio"/>          Nữ </label> 
                         <br> 
                         <br> 
                         <button class="btn btn-lg btn-primary btn-block" type="submit"/> Đăng ký</button> 

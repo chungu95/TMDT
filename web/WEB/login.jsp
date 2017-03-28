@@ -37,11 +37,11 @@
                                 <form action="../LoginController" method="post" role="form">                        
                                     <div class="form-group">
                                         <label for="username">Tên đăng nhập</label>
-                                        <input type="text" class="form-control" name="username" placeholder="nhập tên đăng nhập">
+                                        <input type="text" class="form-control" name="username" placeholder="nhập tên đăng nhập" required=""/>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Mật khẩu</label>
-                                        <input type="password" class="form-control" name="password" placeholder="nhập mật khẩu">
+                                        <input type="password" class="form-control" name="password" placeholder="nhập mật khẩu" required=""/>
                                     </div>
                                     <center><b><font color="red"><%
                                         if (request.getParameter("error") != null) {

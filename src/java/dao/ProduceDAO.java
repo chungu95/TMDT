@@ -17,8 +17,26 @@ import model.Produce;
  * @author ADMIN
  */
 public class ProduceDAO {
-    
-   
+
+    public static Produce getProduceByID(String id) {
+        Produce produce = null;
+        Connection conn = Connector.getConnection();
+        String sql = "select * from Produce WHERE ProduceID = ?;";
+        try (PreparedStatement pr = conn.prepareStatement(sql)) {
+            pr.setString(1, id);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    produce = new Produce(rs.getString("ProduceID"), rs.getString("ProduceName"));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(conn);
+        }
+        return produce;
+    }
+
     public static ArrayList<Produce> getProduce() {
         ArrayList<Produce> produce = new ArrayList<>();
         Connection conn = Connector.getConnection();
@@ -41,6 +59,7 @@ public class ProduceDAO {
         produce.forEach((item) -> {
             System.out.println(item.getProduceID() + " | " + item.getProduceName());
         });
+        System.out.println(ProduceDAO.getProduceByID("12345678").getProduceName());
     }
 
 }

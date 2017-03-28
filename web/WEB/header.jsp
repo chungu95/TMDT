@@ -28,50 +28,47 @@
                 <form method="get" action="#">
                     <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px; margin-right: 5px;">
                     <input type="submit" value="Tìm Kiếm">  
-                    <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
+                    <span style="font-size: 20pt" class="glyphicon glyphicon-shopping-cart"></span>
                 </form>           
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="header-menu"><center>
-            <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
-            <div id="custom-bootstrap-menu" class="navbar navbar-default">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">TRANG CHỦ</a>
+                <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
+                <div id="custom-bootstrap-menu" class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.jsp">TRANG CHỦ</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">            
+                            <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
+                            <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
+
+                            <%
+                                Customers customer = (Customers) session.getAttribute("customer");
+                                if (customer == null) {
+                                    out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
+                                            + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
+                                } else {
+
+                                    out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
+                                    out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
+                                    out.print("<div>");
+                                    out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
+                                    out.print("</div>");
+                                }
+                            %>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">            
-                        <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
-                        <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
-
-                        <%
-                            Customers customer = (Customers) session.getAttribute("customer");
-                            if (customer == null) {
-                                out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
-                                        + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
-                            } else {
-
-                                out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
-                                out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
-                                out.print("<div>");
-                                out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
-                                out.print("</div>");
-                            }
-                        %>
-
-
-
-                    </ul>
-                </div>
-            </div>
-            <!-- End Menu Bootstrap -->
+                <!-- End Menu Bootstrap -->
             </center>
         </div>
     </div>

@@ -22,7 +22,7 @@
     <body>
         <%            try {
                 Products product = (Products) ProductsDAO.getProductByID(request.getParameter("productID"));
-               // Produce produce = (Produce) ProduceDAO.getProduceByID(product.getProduceID());
+                Produce produce = (Produce) ProduceDAO.getProduceByID(product.getProduceID());
         %>
         <div class="container">
             <div class="card">
@@ -36,51 +36,55 @@
                                 </div>                                
                             </div>
                             <ul class="preview-thumbnail nav nav-tabs"> 
-                                 <li class="active"><a data-target="#pic-1" data-toggle="tab">
-                                         <img src="../Product/Images/<%=product.getProductImg()%>" alt=""></a>
-                                 </li> 
+                                <li class="active"><a data-target="#pic-1" data-toggle="tab">
+                                        <img src="../Product/Images/<%=product.getProductImg()%>" alt=""></a>
+                                </li> 
                                 <li><a data-target="#pic-2" data-toggle="tab">
                                         <img src="../Product/Images/<%=product.getProductImg()%>" alt=""></a>
-                                 </li>                                  
-                             </ul>
+                                </li>                                  
+                            </ul>
                         </div>
                         <div class="details col-md-6">
-                            <h3 class="product-title"><%=product.getProductName()%>     <%=product.getProductInfo().getModel()%></h3>
-                             
+                            <h3 class="product-title"><%=product.getProductName()%>     (<%=product.getProductInfo().getModel()%>)</h3>
+
                             <p class="product-description"><%=product.getProductInfo().getSize()%></p>
                             <h4 class="price" style="color: red;">GIÁ BÁN : <%=product.getPrice()%> VNĐ</h4>
-                                <table class="table table-striped" >
-                                    <thead>
+                            <table class="table table-striped" >
+                                <thead>
                                     <tr>
-                                       <th> Thông số kỹ thuật</th>
+                                        <th> Thông số kỹ thuật</th>
                                     </tr>
-                                   </thead>
-                                   <tbody>
-                                   <tr>
-                                       <td>Độ phân giải</td>
-                                       <td> <%=product.getProductInfo().getResolution()%></td>
-                                   </tr>
-                                   <tr>
-                                       <td>HDMI</td>
-                                       <td><%=product.getProductInfo().getHdmi()%></td>
-                                   </tr>
-                                   <tr>
-                                       <td>USB</td>
-                                       <td><%=product.getProductInfo().getUsb()%></td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nhà sản xuất</td>
+                                        <td> <%=produce.getProduceName()%></td> 
+                                    </tr>
+                                    <tr>
+                                        <td>Độ phân giải</td>
+                                        <td> <%=product.getProductInfo().getResolution()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HDMI</td>
+                                        <td><%=product.getProductInfo().getHdmi()%></td>
+                                    </tr>
+                                    <tr>
+                                        <td>USB</td>
+                                        <td><%=product.getProductInfo().getUsb()%></td>
                                     </tr>                                    
                                     <tr>
-                                    <td>Bảo hành</td>
-                                       <td><%=product.getProductInfo().getWarranty()%></td>
+                                        <td>Bảo hành</td>
+                                        <td><%=product.getProductInfo().getWarranty()%></td>
                                     </tr>
-                                   </tbody>
-                              </table>
-                                    <button type="button" class="btn btn-success">Mua ngay</button>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-success">Mua ngay</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         <div class="container" id="contact">
+        <div class="container" id="contact">
             <h2>Liên hệ</h2>    
             <p>Bạn có câu hỏi, thắc mắc hãy liên hệ với chúng tôi: </p>
             <form action="/action_page.php" target="_blank" style="margin-bottom: 100px;">
@@ -95,8 +99,8 @@
             <%@include file="footer.jsp" %>
         </footer>
         <%} catch (Exception ex) {
-         // out.print("<center><b style = 'color:red'>Không có sản phầm này!</b></center>"); 
-}
-            %>
+                 out.print("<center><b style = 'color:red'>Không có sản p //hầm này!</b></center>"); 
+            }
+        %>
     </body>
 </html>

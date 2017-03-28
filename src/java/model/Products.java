@@ -12,7 +12,6 @@ import java.util.List;
  *
  * @author ADMIN
  */
-
 public class Products implements Serializable {
 
     private String productID;
@@ -43,8 +42,6 @@ public class Products implements Serializable {
         this.productImg = productImg;
         this.produceID = produceID;
     }
-    
-    
 
     public String getProductID() {
         return productID;
@@ -158,5 +155,5 @@ public class Products implements Serializable {
     public String toString() {
         return "model.Products[ productID=" + productID + " ]";
     }
-    
+
 }

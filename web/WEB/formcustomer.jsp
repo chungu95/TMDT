@@ -50,7 +50,7 @@
                         <td><%=customer.getPhoneNumber()%></td>
                         <td><%=customer.getAccumulatedScore()%></td>
                         <td><%=customer.getUsername()%></td>
-                        <td><button class="btn btn-danger">Sửa</button></td>
+                        <td><button name="edit" class="btn btn-danger" value="yes">Sửa</button></td>
                     </tr>
                 </tbody>
             </table>
