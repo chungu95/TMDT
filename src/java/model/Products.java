@@ -6,25 +6,23 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-
 public class Products implements Serializable {
 
     private String productID;
     private String productName;
-    private BigDecimal price;
+    private int price;
     private String description;
     private Integer quantity;
     private String productImg;
     private List<Comment> commentList;
     private ProductInfo productInfo;
-    private Produce produceID;
+    private String produceID;
     private List<ProductImages> productImagesList;
     private List<OderDetails> oderDetailsList;
 
@@ -33,6 +31,16 @@ public class Products implements Serializable {
 
     public Products(String productID) {
         this.productID = productID;
+    }
+
+    public Products(String productID, String productName, int price, String description, Integer quantity, String productImg, String produceID) {
+        this.productID = productID;
+        this.productName = productName;
+        this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.productImg = productImg;
+        this.produceID = produceID;
     }
 
     public String getProductID() {
@@ -51,11 +59,11 @@ public class Products implements Serializable {
         this.productName = productName;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -99,11 +107,11 @@ public class Products implements Serializable {
         this.productInfo = productInfo;
     }
 
-    public Produce getProduceID() {
+    public String getProduceID() {
         return produceID;
     }
 
-    public void setProduceID(Produce produceID) {
+    public void setProduceID(String produceID) {
         this.produceID = produceID;
     }
 
@@ -147,5 +155,5 @@ public class Products implements Serializable {
     public String toString() {
         return "model.Products[ productID=" + productID + " ]";
     }
-    
+
 }

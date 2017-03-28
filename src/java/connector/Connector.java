@@ -7,6 +7,8 @@ package connector;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 /**
@@ -18,7 +20,7 @@ public class Connector {
     private static final String DRIVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Tivi";
     private static final String DB_USER = "sa";
-    private static final String DB_PASSWORD = "DEADLINE";  // Chưa đổi pass nè :((
+    private static final String DB_PASSWORD = "0903952733";  // Chưa đổi pass nè :((
     private static final int CONN_POOL_INIT_SIZE = 10;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
@@ -51,6 +53,7 @@ public class Connector {
         try {
             connection = Connector.getBasicDataSource().getConnection();
         } catch (SQLException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;
     }

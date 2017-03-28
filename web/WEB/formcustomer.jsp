@@ -4,12 +4,7 @@
     Author     : DELL
 --%>
 
-<%@page import="dao.CustomerDAOs"%>
 <%@page import="model.Customers"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,13 +20,11 @@
         <%@include file = "header.jsp"%> 
     </head>
     <body>
-        <%   
-             
-        %> 
+
         <div class="jumbotron" >               
-            <h1>THÔNG TIN KHÁCH HÀNG</h1>             
+            <center><h3>THÔNG TIN KHÁCH HÀNG</h3> </center>            
         </div>
-        <div class="table-bordered " style="font-size: 15px; background: #ebccd1; border-color: black;" >          
+        <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
                 <thead>
                     <tr>
@@ -57,7 +50,7 @@
                         <td><%=customer.getPhoneNumber()%></td>
                         <td><%=customer.getAccumulatedScore()%></td>
                         <td><%=customer.getUsername()%></td>
-                        <td><button>Sửa</button></td>
+                        <td><button name="edit" class="btn btn-danger" value="yes">Sửa</button></td>
                     </tr>
                 </tbody>
             </table>
