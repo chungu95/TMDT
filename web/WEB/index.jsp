@@ -70,10 +70,12 @@
             </div>
         </section>
         <div class="col-sm-3">
+
             <div class="left-sidebar" style="margin-top: 50px; margin-left: 250px;" >
                 <div class="brands_products" >
                     <h4>Thương Hiệu</h4>
                     <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
+
                         for (int i = 0; i < produce.size(); i++) {
                     %>
                     <div class="brands-name " style="color: #003399;"> 
@@ -103,17 +105,18 @@
                 <div class="brands_products">
                     <h4>Kích thước màn hình </h4>
                     <div class="brands-name " style="color: #003399;">                            
-                        <input type="checkbox" id="inlineCheckbox1" value="32 inch"> 32 inch<br>                                     
-                        <input type="checkbox" id="inlineCheckbox1" value="40 inch"> 40 inch<br>                                    
-                        <input type="checkbox" id="inlineCheckbox1" value="43 inch"> 43 inch<br>                                    
-                        <input type="checkbox" id="inlineCheckbox1" value="48 inch"> 48 inch<br>
-                        <input type="checkbox" id="inlineCheckbox1" value="49 inch"> 49 inch<br>
-                        <input type="checkbox" id="inlineCheckbox1" value="50 inch"> 50 inch<br>
-                        <input type="checkbox" id="inlineCheckbox1" value="55 inch"> 55 inch<br>
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="32 inch"> 32 inch<br>                                     
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="40 inch"> 40 inch<br>                                    
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="43 inch"> 43 inch<br>                                    
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="48 inch"> 48 inch<br>
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="49 inch"> 49 inch<br>
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="50 inch"> 50 inch<br>
+                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="55 inch"> 55 inch<br>
                     </div>
                 </div>
-
-            </div>
+                <center><input type="submit" value ="lọc"/></center>
+                </form>
+            </div> 
         </div>
 
                 <div id="wrapper" style="margin-left: 30px;">
@@ -125,8 +128,15 @@
 
                         <div class="row">
 
-                            <%                                    ArrayList<Products> product = ProductsDAO.getAllProduct();
-                                for (int i = 0; i < product.size(); i++) {
+                            <%
+                                String sql = "SELECT * FROM Products ORDER BY ProductName ;";
+                                
+                                ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
+                                int maxProductDisplay = 3;
+                                if (request.getParameter("max") != null) {
+                                    maxProductDisplay = Integer.parseInt(request.getParameter("max"));
+                                }
+                                for (int i = 0; i < maxProductDisplay; i++) {
                             %>
 
                             <div class="col-sm-3" style="margin-left: 60px; margin-top: 30px; margin-bottom: 30px; background-color: #e7e7e7; width: 350px; height: 550px;">      
@@ -150,11 +160,19 @@
                             <% }%>
 
                         </div>
-
+                        <%
+                            if (maxProductDisplay < product.size() && (maxProductDisplay + 3) < product.size()) {
+                                maxProductDisplay += 3;
+                                out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
+                            } else if (maxProductDisplay < product.size()) {
+                                maxProductDisplay += product.size() - maxProductDisplay;
+                                out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
+                            }
+                        %>
                     </div>
                 </div>
             </div>
-        </div>                            
+        </div>                 
         <footer>
             <%@include file="footer.jsp" %>
         </footer>

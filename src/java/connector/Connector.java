@@ -20,7 +20,9 @@ public class Connector {
     private static final String DRIVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Tivi";
     private static final String DB_USER = "sa";
-    private static final String DB_PASSWORD = "0903952733";  
+
+    private static final String DB_PASSWORD = "0903952733";
+
     private static final int CONN_POOL_INIT_SIZE = 10;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
