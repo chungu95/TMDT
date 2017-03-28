@@ -28,14 +28,14 @@
                 <form method="get" action="#">
                     <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px; margin-right: 5px;">
                     <input type="submit" value="Tìm Kiếm">  
-                    <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
                 </form>           
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="header-menu"><center>
+        <div class="header-menu" ><center>
             <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
-            <div id="custom-bootstrap-menu" class="navbar navbar-default">
+            <div id="custom-bootstrap-menu" class="navbar navbar-default" style="background-color: #c8e5bc;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.jsp">TRANG CHỦ</a>
+                    <a class="navbar-brand active" href="index.jsp">TRANG CHỦ</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

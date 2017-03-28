@@ -67,19 +67,48 @@ public class ProductsDAO {
         }
         return products;
     }
-
+    
+    public ArrayList<Products> getListProductByProduceID(long ProduceID){
+        ArrayList<Products> produce = new ArrayList<>();
+        Connection con = Connector.getConnection();
+        String sql = "SELECT * FROM Products WHERE ProduceID = ' "+ ProduceID + " ' ";
+        try (PreparedStatement pr = con.prepareStatement(sql);
+                ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                String ProductID = rs.getString("ProductID");
+                String productName = rs.getNString("ProductName");
+                String produceID = rs.getString("ProduceID");
+                int Price = (rs.getInt("Price"));
+                String Description = rs.getString("Description");
+                int quantity = rs.getInt("Quantity");
+                String ProductImg = rs.getString("ProductImg");
+                produce.add(new Products(ProductID, productName, Price, Description, quantity, ProductImg, produceID));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return produce;
+    }
+    
     public static void main(String[] args) {
 //        ArrayList<Products> products = ProductsDAO.getAllProduct();
 //        products.forEach((item) -> {
 //            System.out.println(item.getProductID() + " | " + item.getProductName());
 //        });
-
-        Products pro = ProductsDAO.getProductByID("QWERTA");
-        if (pro != null) {
-            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
-        } else {
-            System.out.println("null");
+        ProductsDAO dao=new ProductsDAO();
+        for(Products p : dao.getListProductByProduceID(003)){
+            
+            System.out.println(p.getProductID() +" - "+  p.getProductName() );
         }
+        
+       // Products pro = ProductsDAO.getProductByID("QWERTA");
+      //  if (pro != null) {
+       //     System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
+      //  } else {
+      //      System.out.println("null");
+      //  }
     }
 
 }

@@ -70,13 +70,13 @@
             </div>
         </section>
         <div class="col-sm-3">
-            <div class="left-sidebar" style="margin-top: 50px; margin-left: 100px;padding:5px" >
+            <div class="left-sidebar" style="margin-top: 50px; margin-left: 250px;" >
                 <div class="brands_products" >
-                    <h2>Thương Hiệu</h2>
+                    <h4>Thương Hiệu</h4>
                     <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
                         for (int i = 0; i < produce.size(); i++) {
                     %>
-                    <div class="brands-name " style=""> 
+                    <div class="brands-name " style="color: #003399;"> 
                         <ul class="nav nav-pills nav-stacked" >
                             <li style="text-align: left"><a href="#"> <span class="pull-left"><%=produce.get(i).getProduceName()%></span></a></li>
                         </ul> 
@@ -84,7 +84,7 @@
                     <%  }%> 
                 </div>
                 <div class="brands_products">
-                    <h2>Giá bán</h2>
+                    <h4>Giá bán</h4>
                     <div class="brands-name " style="color: #003399;">                            
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu <br>                                     
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> từ 5-7 triệu<br>                                    
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="brands_products">
-                    <h2>Loại Tivi</h2>
+                    <h4>Loại Tivi</h4>
                     <div class="brands-name " style="color: #003399;">                            
                         <input type="checkbox" id="inlineCheckbox1" value="option1">Android Tivi <br>                                     
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Internet Tivi/ Smart Tivi<br>                                    
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="brands_products">
-                    <h2>Kích thước màn hình </h2>
+                    <h4>Kích thước màn hình </h4>
                     <div class="brands-name " style="color: #003399;">                            
                         <input type="checkbox" id="inlineCheckbox1" value="32 inch"> 32 inch<br>                                     
                         <input type="checkbox" id="inlineCheckbox1" value="40 inch"> 40 inch<br>                                    
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <div id="wrapper">
+                <div id="wrapper" style="margin-left: 30px;">
             <div class="container">
                 <div class="row">   
                     <div class="content col-md-9 col-sm-9 col-xs-12">
@@ -129,11 +129,11 @@
                                 for (int i = 0; i < product.size(); i++) {
                             %>
 
-                            <div class="col-sm-3" style="margin: 30px 30px; background-color: #e7e7e7;">      
-                                <div class="product-image-wrapper">
+                            <div class="col-sm-3" style="margin-left: 60px; margin-top: 30px; margin-bottom: 30px; background-color: #e7e7e7; width: 350px; height: 550px;">      
+                                <div class="product-image-wrapper" >
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">
+                                            <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%; margin-top: 10px;">
                                             <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
                                             <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%></b></h2></p>
                                             <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
