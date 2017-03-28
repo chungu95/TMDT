@@ -49,12 +49,59 @@
                         <td><%=customer.getEmail()%></td>
                         <td><%=customer.getPhoneNumber()%></td>
                         <td><%=customer.getAccumulatedScore()%></td>
-                        <td><%=customer.getUsername()%></td>
-                        <td><button name="edit" class="btn btn-danger" value="yes">Sửa</button></td>
+                        <td><%=customer.getUsername()%></td>                        
+                        <td><a href="#edit" class="btn btn-info" data-toggle="collapse">Sửa</a></td>
+                        <td><a href="#Pass" class="btn btn-success" data-toggle="collapse" >Đổi Mật Khẩu</a></td>
                     </tr>
                 </tbody>
-            </table>
+            </table>                        
         </div>
-
+        <div id="edit" class="collapse" style="margin-top: 100px;">
+           <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
+            <table class="table">
+                <thead>
+                    <tr>                        
+                        <th>Tên KH</th>
+                        <th>Ngày sinh</th>
+                        <th>Giới tính</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>SĐT</th>                       
+                        <th>Tên đăng nhập</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>                        
+                        <td><%=customer.getCustomerName()%></td>
+                        <td><%=customer.getDoB()%></td>
+                        <td><%=customer.getGender()%></td>
+                        <td><%=customer.getAddress()%></td>
+                        <td><%=customer.getEmail()%></td>
+                        <td><%=customer.getPhoneNumber()%></td>                        
+                        <td><%=customer.getUsername()%></td>                        
+                        <td><button type="submit" class="btn btn-danger">Lưu</button></td>                       
+                    </tr>
+                </tbody>
+            </table>                        
+           </div>
+         </div>
+                        
+         <div id="Pass" class="collapse" style="margin-top: 100px;">
+             <form class="form-horizontal" style="width: 80%; padding-left: 100px;">
+                 <div class="form-group">
+                     <label >Nhập mật khẩu cũ : </label>
+                     <input class="form-control" type="password" > 
+                 </div>
+                 <div class="form-group">
+                     <label> Nhập mật khẩu mới : </label>
+                     <input class="form-control" type="password">
+                 </div>
+                 <div class="form-group">
+                     <label> Nhập lại mật khẩu mới : </label>
+                     <input class="form-control" type="password">
+                 </div>
+                 <button type="submit" class="btn btn-danger">Lưu</button>
+             </form>   
+         </div>
     </body>
 </html>

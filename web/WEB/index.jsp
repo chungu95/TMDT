@@ -145,7 +145,8 @@
                                         <div class="productinfo text-center">
                                             <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%; margin-top: 10px;">
                                             <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
-                                            <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%></b></h2></p>
+                                            <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID()); %>
+                                            <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%>    <%=pr.getProduceName()%></b></h2></p>
                                             <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
                                         </div> 
                                         <div class="choose" >
