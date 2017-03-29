@@ -123,7 +123,18 @@
             <div class="container">
                 <div class="row">   
                     <div class="content col-md-9 col-sm-9 col-xs-12">
-
+                       
+                        <section>
+                            <div class="container"> 
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                            </ol>
 
 
                         <div class="row">
@@ -152,7 +163,7 @@
                                         <div class="choose" >
                                             <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
 
-                                                <li><a href="#" style="color: black; background-color: #d0e9c6;"><i class="fa fa-shopping-cart" ></i>Thêm vào giỏ hàng</a></li>
+                                                <li><a href="../add_Cart?msp=<%=product.get(i).getProductID()%>" style="color: black; background-color: #d0e9c6;"><i class="fa fa-shopping-cart" ></i>Thêm vào giỏ hàng</a></li>
                                             </ul>
                                         </div>
                                     </div>

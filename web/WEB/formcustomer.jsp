@@ -57,7 +57,7 @@
             </table>                        
         </div>
                         
-       <form action="../" method="post" class="form" role="form">
+       <form action="#" method="post" class="form" role="form">
         <div id="edit" class="collapse" style="margin-top: 100px;">
            <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">

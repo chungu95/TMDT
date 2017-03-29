@@ -152,4 +152,8 @@ public class ProductsDAO {
       //  }
     }
 
+    public Products getProduct(Long idProduct) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
