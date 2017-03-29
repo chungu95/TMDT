@@ -17,11 +17,18 @@ public class OderDetails implements Serializable {
     private String oderID;
     private String productID;
     private Integer quantity;
-    private BigDecimal price;
+    private int price;
     private Oders oders;
     private Products products;
 
     public OderDetails() {
+    }
+
+    public OderDetails(String oderID, String productID, Integer quantity, int price) {
+        this.oderID = oderID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public String getOderID() {
@@ -48,11 +55,11 @@ public class OderDetails implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

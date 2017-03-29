@@ -46,7 +46,7 @@ public class RegController extends HttpServlet {
         String email = request.getParameter("youremail");
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("Phone");
-        String password = MD5.encryptMD5(request.getParameter("password"));
+        String password = request.getParameter("password");
         Customers customer = new Customers(customerID, customerName, DoB,
                 address, email, phoneNumber, username, password, gender);
 
