@@ -72,7 +72,6 @@
                     <div class="nut">
                         <span><b><%=ssp%></b></span>
                         <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
-
                     </div>
 
 

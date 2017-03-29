@@ -45,7 +45,7 @@ public class add_Cart extends HttpServlet {
         Products sp = ProductsDAO.getProductByID(msp);
         boolean check = CartDAO.InsertCart(sp.getProductID(), sp.getProductName(), sp.getPrice(), 1, sa.getCustomerID());
         
-       response.sendRedirect("./WEB/reg.jsp");
+       response.sendRedirect("./WEB/index.jsp");
 
     }
 
