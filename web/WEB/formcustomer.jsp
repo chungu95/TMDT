@@ -10,11 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WEB BÁN HÀNG</title>
+        <title>WEB BÁN HÀNG</title>        
         <link rel="stylesheet" href="../WEB/css/bootstrap.min.css">
         <link rel="stylesheet" href="../WEB/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../WEB/css/logincss.css">
-        <script type="text/javascript" src="./WEB/js/jquery-3.1.1.min.js"></script>
+        <!--<script type="text/javascript" src="./WEB/js/jquery-3.1.1.min.js"></script>-->
         <script type="text/javascript" src="./WEB/js/bootstrap.min.js"></script>
 
         <%@include file = "header.jsp"%> 
@@ -56,6 +56,8 @@
                 </tbody>
             </table>                        
         </div>
+                        
+       <form action="../" method="post" class="form" role="form">
         <div id="edit" class="collapse" style="margin-top: 100px;">
            <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
@@ -72,19 +74,19 @@
                 </thead>
                 <tbody>
                     <tr>                        
-                        <td><%=customer.getCustomerName()%></td>
-                        <td><%=customer.getDoB()%></td>
-                        <td><%=customer.getGender()%></td>
-                        <td><%=customer.getAddress()%></td>
-                        <td><%=customer.getEmail()%></td>
-                        <td><%=customer.getPhoneNumber()%></td>                        
-                        <td><%=customer.getUsername()%></td>                        
+                        <td><input type="text" class="form-control"  name="Name" value=" <%=customer.getCustomerName()%>" style="width: 50%;"></td>
+                        <td> <input type="text" class="form-control input-datepicke datepicker" id="custom_datepicker" id="pickDate" name="DoB" value="<%=customer.getDoB()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control"  name="sex" value="<%=customer.getGender()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control"  name="address" value=" <%=customer.getAddress()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" style="width: 50%;"></td>                                        
                         <td><button type="submit" class="btn btn-danger">Lưu</button></td>                       
-                    </tr>
+                    </tr>                     
                 </tbody>
             </table>                        
            </div>
          </div>
+       </form>            
                         
          <div id="Pass" class="collapse" style="margin-top: 100px;">
              <form class="form-horizontal" style="width: 80%; padding-left: 100px;">
