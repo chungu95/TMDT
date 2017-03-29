@@ -1,3 +1,5 @@
+
+<%@page import="dao.CartDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Products"%>
 <%@page import="model.Products"%>
@@ -17,6 +19,31 @@
            text-shadow: 1px 1px 0 bisque , 2px 2px 0 firebrick , 3px 3px 0 firebrick, 4px 4px 0 firebrick , 5px 5px 0 firebrick , 6px 6px 0 firebrick, 0 -2px firebrick ,-2px 0 bisque, 2px 0 firebrick, 0 3px firebrick
     }  
     #xxx{color: #003399}
+    .nut{
+        width: 50px;
+        height: 50px;
+        float: right;
+        margin-top: 50px;
+        position: relative;
+
+    }
+    .nut img{
+        width: 100%;
+        height: 100%;
+
+
+
+    }
+    .nut span {
+        color: red;
+        position: absolute;
+        top: -7px;
+        left: 30px;
+        font-size: 25px;
+        font-family: time new roman;
+
+
+    }
 </style>
 <header>
     <div class="container">
@@ -29,7 +56,25 @@
                     <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px; margin-right: 5px;">
                     <input type="submit" value="Tìm Kiếm">  
 
-                    <span style="font-size: 20pt" class="glyphicon glyphicon-shopping-cart"></span>
+
+                    <%
+                        int ssp = 0;
+                        try {
+                            HttpSession ss = request.getSession();
+                            Customers sa = (Customers) ss.getAttribute("customer");
+                             ssp =CartDAO.getListCart(sa.getCustomerID()).size();
+       
+                        } catch (Exception ex) {
+
+                        }
+
+                    %>
+                    <div class="nut">
+                        <span><b><%=ssp%></b></span>
+                        <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
+
+                    </div>
+
 
                 </form>           
             </div>
@@ -49,14 +94,12 @@
                         <a class="navbar-brand" href="index.jsp">TRANG CHỦ</a>
                     </div>
 
-
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">            
                             <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
                             <li><a href="#">KIỂM TRA ĐƠN HÀNG</a></li>
 
-                            <%
-                                Customers customer = (Customers) session.getAttribute("customer");
+                            <%                            Customers customer = (Customers) session.getAttribute("customer");
                                 if (customer == null) {
                                     out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
                                             + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
@@ -69,6 +112,7 @@
                                     out.print("</div>");
                                 }
                             %>
+
                         </ul>
                     </div>
                 </div>

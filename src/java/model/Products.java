@@ -25,6 +25,7 @@ public class Products implements Serializable {
     private String produceID;
     private List<ProductImages> productImagesList;
     private List<OderDetails> oderDetailsList;
+    private String productImage;
 
     public Products() {
     }
@@ -118,6 +119,10 @@ public class Products implements Serializable {
     public List<ProductImages> getProductImagesList() {
         return productImagesList;
     }
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
 
     public void setProductImagesList(List<ProductImages> productImagesList) {
         this.productImagesList = productImagesList;
