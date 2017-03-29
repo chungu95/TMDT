@@ -62,9 +62,9 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setString(7, customer.getGender());
+            pr.setString(7, customer.getGender()); 
             pr.setString(8, customer.getUsername());
-            pr.setString(9, customer.getPassword());
+            pr.setString(9, MD5.encryptMD5(customer.getPassword()));
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
