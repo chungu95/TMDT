@@ -70,6 +70,7 @@ public class ProductsDAO {
         return products;
     }
 
+
     public static ArrayList<Products> getProducts(int start) {
         ArrayList<Products> products = new ArrayList<>();
         Connection con = Connector.getConnection();
@@ -110,8 +111,10 @@ public class ProductsDAO {
         } finally {
             Connector.close(con);
         }
+
         return quantity;
     }
+
 
     public static void main(String[] args) {
 
@@ -125,14 +128,32 @@ public class ProductsDAO {
 //            System.out.println(item.getProductID() + " | " + item.getProductName());
 //        });
 
-        System.out.println(ProductsDAO.getQuantityOfProduct());
+//        ProductsDAO dao=new ProductsDAO();
+//        for(Products p : dao.getListProductByProduceID(003)){
+//            
+//            System.out.println(p.getProductID() +" - "+  p.getProductName() );
+//
+//
+//        System.out.println(ProductsDAO.getQuantityOfProduct());
+//
+//        Products pro = ProductsDAO.getProductByID("QWERTA");
+//        if (pro != null) {
+//            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
+//        } else {
+//            System.out.println("null");
+//
+//        }
+        
+       // Products pro = ProductsDAO.getProductByID("QWERTA");
+      //  if (pro != null) {
+       //     System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
+      //  } else {
+      //      System.out.println("null");
+      //  }
+    }
 
-        Products pro = ProductsDAO.getProductByID("QWERTA");
-        if (pro != null) {
-            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
-        } else {
-            System.out.println("null");
-        }
+    public Products getProduct(Long idProduct) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

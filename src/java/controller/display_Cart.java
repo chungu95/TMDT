@@ -5,26 +5,27 @@
  */
 package controller;
 
-import dao.CustomerDAOs;
-import function.DateConverter;
-import function.MD5;
-import function.RandomKey;
+import dao.CartDAO;
 import java.io.IOException;
-import java.sql.Date;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cart;
 import model.Customers;
 
 /**
  *
- * @author ADMIN
+ * @author seuti
  */
-@WebServlet(name = "RegController", urlPatterns = {"/RegController"})
-public class RegController extends HttpServlet {
+@WebServlet(name = "display_Cart", urlPatterns = {"/display_Cart"})
+public class display_Cart extends HttpServlet {
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,34 +33,17 @@ public class RegController extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String customerID = RandomKey.randomKey();
-        String username = request.getParameter("username");
-        String customerName = request.getParameter("firstname")
-                + " "
-                + request.getParameter("lastname");
-        String dateString = request.getParameter("DoB");
-        Date DoB = DateConverter.date(dateString);
-        String gender = request.getParameter("sex");
-        String email = request.getParameter("youremail");
-        String address = request.getParameter("address");
-        String phoneNumber = request.getParameter("Phone");
-        String password = request.getParameter("password");
-        Customers customer = new Customers(customerID, customerName, DoB,
-                address, email, phoneNumber, username, password, gender);
-
-        if (CustomerDAOs.getCustomer(username) != null) {
-            response.sendRedirect("./WEB/reg.jsp?error=existed");
-        } else if (CustomerDAOs.insertCustomer(customer)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("customer", customer);
-            response.sendRedirect("./WEB/regsuccess.jsp");
-        } else {
-            response.sendRedirect("./WEB/reg.jsp");
-        }
-
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+       
+        RequestDispatcher rd =null;
+        rd = request.getRequestDispatcher("Cart.jsp");
+        rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,6 +58,7 @@ public class RegController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -87,9 +72,7 @@ public class RegController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        register(request, response);
+        processRequest(request, response);
     }
 
     /**

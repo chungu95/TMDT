@@ -62,9 +62,9 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setString(7, customer.getGender());
+            pr.setString(7, customer.getGender()); 
             pr.setString(8, customer.getUsername());
-            pr.setString(9, customer.getPassword());
+            pr.setString(9, MD5.encryptMD5(customer.getPassword()));
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -74,23 +74,30 @@ public class CustomerDAOs {
         }
         return (result != 0);
     }
-
+    
+    
+    /*
+    - Hàm update thông tin  khách hàng
+    - Dùng hàm khởi tạo truyền vào 7 tham số: ID, tên,  DOB, địa chỉ, email, sđt, giới tính
+    - Mình không cho phép sửa tên đăng nhập / mật khẩu ở đây nên nhớ xóa cái ô chỉnh username đi.
+    - Thêm nữa, ở controller,mình sẽ lấy dữ liệu từ các parametter ng dùng truyền vào, rồi tạo đối tượng customer.
+    - Bà nhớ đem cái  ô chọn  ngày  sinh ở form đăng ký qua đấy để dùng nha. Ở controller, lúc lấy dữ
+      liệu từ parametter ra nó sẽ là string, nên phải dùng hàm DateConverter để convert sang kiểu Date rồi mới khởi tạo đc.
+    - NHỚ KÉO CÁI FORM CHỌN NGÀY SANG ĐÂY =)))))))))))
+    */
     public static boolean updateCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
-                + " Address = ?, Email = ?, PhoneNumber = ?, AccumulatedScore = ?,"
-                + " Username = ? , Password = ? WHERE CustomerID = ?;";
+                + " Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerName());
             pr.setDate(2, customer.getDoB());
             pr.setString(3, customer.getAddress());
             pr.setString(4, customer.getEmail());
             pr.setString(5, customer.getPhoneNumber());
-            pr.setInt(6, customer.getAccumulatedScore());
-            pr.setString(7, customer.getUsername());
-            pr.setString(8, customer.getPassword());
-            pr.setString(9, customer.getCustomerID());
+            pr.setString(6, customer.getGender());
+            pr.setString(7, customer.getCustomerID());
             result = pr.executeUpdate();
         } catch (Exception ex) {
         } finally {

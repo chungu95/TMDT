@@ -5,78 +5,74 @@
  */
 package model;
 
-import java.io.Serializable;
-
 /**
  *
- * @author ADMIN
+ * @author seuti
  */
-public class Cart implements Serializable {
-
-    private int NO;
-    private String productID;
-    private String productName;
-    private int price;
-    private int quantity;
-    private int totalPrice = 0;
+public class Cart {
+    private String ProductID;
+    private String ProductName;
+    private int Price;
+    private int Quantity;
+    private String CustomerID;
 
     public Cart() {
     }
 
-    public Cart(int NO, String productID, String productName, int price, int quantity) {
-        this.NO = NO;
-        this.productID = productID;
-        this.productName = productName;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public int getNO() {
-        return NO;
-    }
-
-    public void setNO(int NO) {
-        this.NO = NO;
+    public Cart(int ProductID, String ProductName, int Price, int Quantity, String CustomerID) {
+       
+        this.ProductName = ProductName;
+        this.Price = Price;
+        this.Quantity = Quantity;
+        this.CustomerID = CustomerID;
     }
 
     public String getProductID() {
-        return productID;
+        return ProductID;
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
+    public void setProductID(String ProductID) {
+        this.ProductID = ProductID;
     }
+
+    
 
     public String getProductName() {
-        return productName;
+        return ProductName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductName(String ProductName) {
+        this.ProductName = ProductName;
     }
 
     public int getPrice() {
-        return price;
+        return Price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPrice(int Price) {
+        this.Price = Price;
     }
 
     public int getQuantity() {
-        return quantity;
+        return Quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(int Quantity) {
+        this.Quantity = Quantity;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
+    public String getCustomerID() {
+        return CustomerID;
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setCustomerID(String CustomerID) {
+        this.CustomerID = CustomerID;
     }
 
+    @Override
+    public String toString() {
+        return "Cart{" + "ProductID=" + ProductID + ", ProductName=" + ProductName + ", Price=" + Price + ", Quantity=" + Quantity + ", CustomerID=" + CustomerID + '}';
+    }
+    
+    
 }
