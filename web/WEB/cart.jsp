@@ -73,12 +73,7 @@
                         <td data-th="Subtotal" class="text-center"><%=arr.get(i).getPrice()%></td> 
                         <td class="actions" data-th="">
                             <div class="row">
-<<<<<<< HEAD
-
                                 <a href="../Del_Cart?msp=<%=arr.get(i).getProductID()%>" class="btn btn-danger btn-lg"> 
-=======
-                                <a href="#" class="btn btn-danger btn-lg">
->>>>>>> 169f6c50f0e7aaea14a60bfd7c87a4085b64b4f3
                                     <span class="glyphicon glyphicon-trash"></span>
 
 

@@ -20,13 +20,11 @@ public class Connector {
     private static final String DRIVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Tivi";
     private static final String DB_USER = "sa";
-<<<<<<< HEAD
-    private static final String DB_PASSWORD = "sa";  // Chưa đổi pass nè :((
-=======
+
 
     private static final String DB_PASSWORD = "DEADLINE";
 
->>>>>>> 169f6c50f0e7aaea14a60bfd7c87a4085b64b4f3
+
     private static final int CONN_POOL_INIT_SIZE = 10;
     private static final int CONN_POOL_MAX_SIZE = 50;
 
