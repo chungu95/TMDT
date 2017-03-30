@@ -5,11 +5,14 @@
  */
 package dao;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import connector.Connector;
+import function.RandomKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import model.ProductInfo;
 import model.Products;
 
 /**
@@ -28,7 +31,7 @@ public class ProductsDAO {
             try (ResultSet rs = pr.executeQuery()) {
                 if (rs.next()) {
                     product = new Products(productID);
-                    product.setProduceID(rs.getString("ProduceID")); 
+                    product.setProduceID(rs.getString("ProduceID"));
                     product.setProductName(rs.getString("ProductName"));
                     product.setProductImg(rs.getString("ProductImg"));
                     product.setPrice(rs.getInt("Price"));
@@ -69,7 +72,6 @@ public class ProductsDAO {
         }
         return products;
     }
-
 
     public static ArrayList<Products> getProducts(int start) {
         ArrayList<Products> products = new ArrayList<>();
@@ -115,9 +117,85 @@ public class ProductsDAO {
         return quantity;
     }
 
+    public static boolean insertProduct(Products product) {
+        int result1 = 0;
+        boolean result = false;
+        Connection con = Connector.getConnection();
+        String sql = "INSERT into Products (ProductID, ProductName, ProduceID, Price, Description, Quantity, ProductImg) "
+                + "VALUES (?,?,?,?,?,?,?)";
+        product.setProductID(RandomKey.randomKey());
+        product.getProductInfo().setProductID(product.getProductID());
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, product.getProductID());
+            pr.setString(2, product.getProductName());
+            pr.setString(3, product.getProduceID());
+            pr.setInt(4, product.getPrice());
+            pr.setString(5, product.getDescription());
+            pr.setInt(6, product.getQuantity());
+            pr.setString(7, product.getProductImg());
+            result1 = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        if (result1 != 0) {
+            if (ProductInfoDAO.insertProductInfo(product.getProductInfo())) {
+                result = true;
+            } else {
+                deleteProduct(product.getProductID());
+            }
+        }
+        return result;
+    }
+
+    public static boolean updateProduct(Products product) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Products SET ProductName = ?, ProduceID = ?, Price = ?, Description = ?, Quantity = ?, ProductImg = ? WHERE ProductID = ?";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, product.getProductName());
+            pr.setString(2, product.getProduceID());
+            pr.setInt(3, product.getPrice());
+            pr.setString(4, product.getDescription());
+            pr.setInt(5, product.getQuantity());
+            pr.setString(6, product.getProductImg());
+            pr.setString(7, product.getProductID());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+            ex.printStackTrace();
+        } finally {
+            Connector.close(con);
+        }
+        if (product.getProductInfo() != null) {
+            ProductInfoDAO.updateProductInfo(product.getProductInfo());
+        }
+        return (result != 0);
+    }
+
+    public static boolean deleteProduct(String productID) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "DELETE FROM Products WHERE ProductID = ?";
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, productID);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
 
     public static void main(String[] args) {
-
+        ProductInfo prinfo = new ProductInfo("QWERTA","Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng");
+        Products product = new Products("QWERTA","Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456");
+        if (ProductsDAO.updateProduct(product)) { 
+            System.out.println("thêm thành công");
+        } else {
+            System.out.println("thêm thất bại");
+        }
 ////        ArrayList<Products> productss = ProductsDAO.getAllProduct();
 //        productss.forEach((item) -> {
 //            System.out.println(item.getProductID() + " | " + item.getProductName());
@@ -127,7 +205,6 @@ public class ProductsDAO {
 //        products.forEach((item) -> {
 //            System.out.println(item.getProductID() + " | " + item.getProductName());
 //        });
-
 //        ProductsDAO dao=new ProductsDAO();
 //        for(Products p : dao.getListProductByProduceID(003)){
 //            
@@ -143,17 +220,12 @@ public class ProductsDAO {
 //            System.out.println("null");
 //
 //        }
-        
-       // Products pro = ProductsDAO.getProductByID("QWERTA");
-      //  if (pro != null) {
-       //     System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
-      //  } else {
-      //      System.out.println("null");
-      //  }
-    }
-
-    public Products getProduct(Long idProduct) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Products pro = ProductsDAO.getProductByID("QWERTA");
+        //  if (pro != null) {
+        //     System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
+        //  } else {
+        //      System.out.println("null");
+        //  }
     }
 
 }
