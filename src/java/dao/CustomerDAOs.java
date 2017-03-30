@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -56,7 +54,9 @@ public class CustomerDAOs {
     public static boolean insertCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
-        String sql = "INSERT into Customers (CustomerID, CustomerName, DoB, Address, Email, PhoneNumber, Gender, Username, Password) "
+        String sql = "INSERT into Customers "
+                + "(CustomerID, CustomerName, DoB, Address, Email, "
+                + "PhoneNumber, Gender, Username, Password) "
                 + "VALUES (?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerID());
@@ -78,30 +78,27 @@ public class CustomerDAOs {
         return (result != 0);
     }
 
-    
-    public static boolean updatePassword(String customerID, String password){
-        int result =0;
+    public static boolean updatePassword(String customerID, String password) {
+        int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
-        try(PreparedStatement pr = con.prepareCall(sql)){
-            pr.setString(1, MD5.encryptMD5(password)); 
-            pr.setString(2, customerID); 
-            result = pr.executeUpdate(); 
-        }catch(Exception ex){
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, MD5.encryptMD5(password));
+            pr.setString(2, customerID);
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
             System.out.println(ex);
-        }finally{
-            Connector.close(con); 
+        } finally {
+            Connector.close(con);
         }
-        return (result!=0); 
+        return (result != 0);
     }
-
-   
 
     public static boolean updateCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
-                 +" Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
+                + " Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerName());
             pr.setDate(2, customer.getDoB());
@@ -111,7 +108,7 @@ public class CustomerDAOs {
             pr.setString(6, customer.getGender());
             pr.setString(7, customer.getCustomerID());
             result = pr.executeUpdate();
-            if(result!=0){
+            if (result != 0) {
                 System.out.println("thànhcoong");
             }
         } catch (Exception ex) {
@@ -194,11 +191,12 @@ public class CustomerDAOs {
         customers.setAddress("hcmc");
         customers.setDoB(DateConverter.date("10-02-1994"));
         customers.setEmail("aaa@gmail.com");
-        customers.setGender("nữ"); 
-        if(CustomerDAOs.updateCustomer(customers)){
+        customers.setGender("nữ");
+        if (CustomerDAOs.updateCustomer(customers)) {
             System.out.println("thànhcoong");
-        }else
+        } else {
             System.out.println("thất bại");
+        }
     }
 
 }
