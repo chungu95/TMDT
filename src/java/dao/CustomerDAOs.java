@@ -79,23 +79,22 @@ public class CustomerDAOs {
     }
 
     
-   public static boolean updatePassword(Customers customer){
+    public static boolean updatePassword(String customerID, String password){
         int result =0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
-        try(PreparedStatement pr= con.prepareStatement(sql)){
-            pr.setString(1, MD5.encryptMD5(customer.getPassword()));
-            result = pr.executeUpdate();
-            if(result!=0){
-                System.out.println("thànhcoong");
-            }
-        } catch (Exception ex) {
+        try(PreparedStatement pr = con.prepareCall(sql)){
+            pr.setString(1, MD5.encryptMD5(password)); 
+            pr.setString(2, customerID); 
+            result = pr.executeUpdate(); 
+        }catch(Exception ex){
             System.out.println(ex);
-        } finally {
-            Connector.close(con);
+        }finally{
+            Connector.close(con); 
         }
-        return (result != 0);
-   }
+        return (result!=0); 
+    }
+
    
 
     public static boolean updateCustomer(Customers customer) {
