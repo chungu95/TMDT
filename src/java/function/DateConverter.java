@@ -22,6 +22,7 @@ public class DateConverter {
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date startDate = df.parse(dateString);
             sqlDate = new Date(startDate.getTime());
+            System.out.println(sqlDate); 
         } catch (ParseException ex) {
             System.out.println(ex);
         }

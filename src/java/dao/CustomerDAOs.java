@@ -75,21 +75,18 @@ public class CustomerDAOs {
         return (result != 0);
     }
     
-    
-    /*
-    - Hàm update thông tin  khách hàng
-    - Dùng hàm khởi tạo truyền vào 7 tham số: ID, tên,  DOB, địa chỉ, email, sđt, giới tính
-    - Mình không cho phép sửa tên đăng nhập / mật khẩu ở đây nên nhớ xóa cái ô chỉnh username đi.
-    - Thêm nữa, ở controller,mình sẽ lấy dữ liệu từ các parametter ng dùng truyền vào, rồi tạo đối tượng customer.
-    - Bà nhớ đem cái  ô chọn  ngày  sinh ở form đăng ký qua đấy để dùng nha. Ở controller, lúc lấy dữ
-      liệu từ parametter ra nó sẽ là string, nên phải dùng hàm DateConverter để convert sang kiểu Date rồi mới khởi tạo đc.
-    - NHỚ KÉO CÁI FORM CHỌN NGÀY SANG ĐÂY =)))))))))))
-    */
+//    public static boolean updatePassword(Customers customer){
+//        int resutl =0;
+//        Connection con = Connector.getConnection();
+//        String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
+//        
+//    }
+   
     public static boolean updateCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
-                + " Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
+                 +" Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerName());
             pr.setDate(2, customer.getDoB());
@@ -99,7 +96,11 @@ public class CustomerDAOs {
             pr.setString(6, customer.getGender());
             pr.setString(7, customer.getCustomerID());
             result = pr.executeUpdate();
+            if(result!=0){
+                System.out.println("thànhcoong");
+            }
         } catch (Exception ex) {
+            System.out.println(ex);
         } finally {
             Connector.close(con);
         }

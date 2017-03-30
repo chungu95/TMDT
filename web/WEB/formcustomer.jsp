@@ -10,17 +10,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WEB BÁN HÀNG</title>        
+        <title>WEB BÁN HÀNG</title>      
+        <link href="./css/bootstrap-datepicker.css" rel="stylesheet" />
+        <script src="./js/bootstrap-datepicker.js"></script>
         <link rel="stylesheet" href="../WEB/css/bootstrap.min.css">
         <link rel="stylesheet" href="../WEB/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../WEB/css/logincss.css">
+                
         <!--<script type="text/javascript" src="./WEB/js/jquery-3.1.1.min.js"></script>-->
-        <script type="text/javascript" src="./WEB/js/bootstrap.min.js"></script>
+        <!--<script type="text/javascript" src="./WEB/js/bootstrap.min.js"></script>-->
 
         <%@include file = "header.jsp"%> 
     </head>
     <body>
-
+        
         <div class="jumbotron" >               
             <center><h3>THÔNG TIN KHÁCH HÀNG</h3> </center>            
         </div>
@@ -36,7 +39,7 @@
                         <th>Email</th>
                         <th>SĐT</th>
                         <th>Điểm tích lũy</th>
-                        <th>Tên đăng nhập</th>
+                        <th> Tên đăng nhập</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +60,7 @@
             </table>                        
         </div>
                         
-       <form action="#" method="post" class="form" role="form">
+       <form action="../CustomerControl" method="post" class="form" role="form">
         <div id="edit" class="collapse" style="margin-top: 100px;">
            <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
@@ -69,18 +72,19 @@
                         <th>Địa chỉ</th>
                         <th>Email</th>
                         <th>SĐT</th>                       
-                        <th>Tên đăng nhập</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>                        
+                    <tr>  
+                        <input type="hidden" value="<%=customer.getCustomerID()%>" name="customerID">
                         <td><input type="text" class="form-control"  name="Name" value=" <%=customer.getCustomerName()%>" style="width: 50%;"></td>
-                        <td> <input type="text" class="form-control input-datepicke datepicker" id="custom_datepicker" id="pickDate" name="DoB" value="<%=customer.getDoB()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control" id="pickDate" name="DoB" placeholder="Ngày tháng năm sinh" style="width: 300px; padding-left: 20px" required=""/></td>
                         <td><input type="text" class="form-control"  name="sex" value="<%=customer.getGender()%>" style="width: 50%;"></td>
                         <td><input type="text" class="form-control"  name="address" value=" <%=customer.getAddress()%>" style="width: 50%;"></td>
                         <td><input type="text" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" style="width: 50%;"></td>
                         <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" style="width: 50%;"></td>                                        
-                        <td><button type="submit" class="btn btn-danger">Lưu</button></td>                       
+                        <td><button type="submit" class="btn btn-danger"  >Lưu</button></td>                          
                     </tr>                     
                 </tbody>
             </table>                        
@@ -105,5 +109,15 @@
                  <button type="submit" class="btn btn-danger">Lưu</button>
              </form>   
          </div>
+     <script>
+            $('#pickDate').datepicker({
+                'format': 'dd-mm-yyyy',
+                'autoclose': true,
+                'language': 'vi'
+            });
+            $('#pickDate').datepicker('setDate', new Date(1995, 01, 10));
+            $('#pickDate').datepicker('update');
+            $('#pickDate').val('');   
+            </script>                  
     </body>
 </html>

@@ -54,8 +54,7 @@ public class Customers implements Serializable {
     }
 
     
-    
-    
+
     
      public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username,  String gender) {
         this.customerID = customerID;
