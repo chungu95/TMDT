@@ -6,6 +6,7 @@
 package dao;
 
 import connector.Connector;
+import function.DateConverter;
 import function.MD5;
 import model.Customers;
 import java.sql.Connection;
@@ -62,7 +63,7 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setString(7, customer.getGender()); 
+            pr.setString(7, customer.getGender());
             pr.setString(8, customer.getUsername());
             pr.setString(9, MD5.encryptMD5(customer.getPassword()));
             result = pr.executeUpdate();
@@ -74,6 +75,7 @@ public class CustomerDAOs {
         }
         return (result != 0);
     }
+
     
 //    public static boolean updatePassword(Customers customer){
 //        int resutl =0;
@@ -82,6 +84,7 @@ public class CustomerDAOs {
 //        
 //    }
    
+
     public static boolean updateCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
@@ -170,6 +173,20 @@ public class CustomerDAOs {
             Connector.close(con);
         }
         return custommers;
+    }
+
+    public static void main(String[] args) {
+        Customers customers = new Customers();
+        customers.setCustomerID("KMW001KL");
+        customers.setCustomerName("chungcoi");
+        customers.setAddress("hcmc");
+        customers.setDoB(DateConverter.date("10-02-1994"));
+        customers.setEmail("aaa@gmail.com");
+        customers.setGender("nữ"); 
+        if(CustomerDAOs.updateCustomer(customers)){
+            System.out.println("thànhcoong");
+        }else
+            System.out.println("thất bại");
     }
 
 }
