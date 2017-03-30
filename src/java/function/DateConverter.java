@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -27,6 +28,13 @@ public class DateConverter {
             System.out.println(ex);
         }
         return sqlDate;
+    }
+    
+    public static void main(String[] args) {
+        Date date = date("10-02-1995"); 
+        Calendar car = Calendar.getInstance();
+        car.setTime(date); 
+        System.out.println(car.get(Calendar.YEAR));  
     }
 
 }

@@ -52,7 +52,7 @@
                         <input class="form-control" name="password" placeholder="Mật khẩu" type="password" id="password" required=""/> 
                         <input class="form-control" name="retypepassword" placeholder="Nhập lại mật khẩu" type="password" id="retypepassword" required=""/> <label for=""> Ngày tháng năm sinh </label>                          
                         <input type="text" class="form-control" id="pickDate" name="DoB" placeholder="Ngày tháng năm sinh" style="width: 300px; padding-left: 20px" required=""/>
-                        <label for="sex"> Giới tính: </label>  <label class="radio-inline">      <input name="sex" id="inlineCheckbox1" value="nam" type="radio" checked/>          Nam </label> <label class="radio-inline">          <input name="sex" id="inlineCheckbox2" value="nữ" type="radio"/>          Nữ </label> 
+                        <label for="sex"> Giới tính: </label>  <label class="radio-inline">      <input name="sex" id="inlineCheckbox1" value="Nam" type="radio" checked/>          Nam </label> <label class="radio-inline">          <input name="sex" id="inlineCheckbox2" value="Nữ" type="radio"/>          Nữ </label> 
                         <br> 
                         <br> 
                         <button class="btn btn-lg btn-primary btn-block" type="submit"/> Đăng ký</button> 
