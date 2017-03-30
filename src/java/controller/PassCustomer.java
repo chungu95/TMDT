@@ -6,10 +6,9 @@
 package controller;
 
 import dao.CustomerDAOs;
-import function.DateConverter;
+import function.RandomKey;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +21,8 @@ import model.Customers;
  *
  * @author DELL
  */
-@WebServlet(name = "CustomerControl", urlPatterns = {"/CustomerControl"})
-public class CustomerControl extends HttpServlet {
+@WebServlet(name = "PassCustomer", urlPatterns = {"/PassCustomer"})
+public class PassCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +35,30 @@ public class CustomerControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        try{
-        String customerID= request.getParameter("customerID");
-        String customerName= request.getParameter("Name");
-        String dateString = request.getParameter("DoB");
-        Date DoB = DateConverter.date(dateString);
-        String gender = request.getParameter("sex");
-        String addr = request.getParameter("address");
-        String email = request.getParameter("youremail");
-        String phone = request.getParameter("Phone");
-        Customers customer = new Customers (customerID,customerName, DoB, addr, email, phone, gender);
-        if(CustomerDAOs.updateCustomer(customer)){
-             HttpSession session = request.getSession();
-             session.setAttribute("customer", customer);
-             response.sendRedirect("./WEB/formcustomer.jsp?customer");            
-        } else
-            response.sendRedirect("./WEB/index.jsp");
-         }catch (Exception ex){
-            response.sendRedirect("./WEB/index.jsp");
+        
+            String customerID= request.getParameter("customerID");
+            String username=request.getParameter("username");
+            String password = request.getParameter("password");
+            String oldpassword= request.getParameter("oldpassword");
+            Customers cus = new Customers (customerID,password);
+             try {
+                  Customers customer = CustomerDAOs.checkLogin(username, password);
+                  if (customer != null) {
+                       
+                             if(CustomerDAOs.updatePassword(cus)){
+                                 HttpSession session = request.getSession();
+                                session.setAttribute("customer", cus);
+                                response.sendRedirect("./WEB/formcustomer.jsp");
+                             }  else
+                                    response.sendRedirect("./WEB/index.jsp");
+            }
+        } catch (IOException ex) {
+            response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");
         }
-       
+  
+    
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

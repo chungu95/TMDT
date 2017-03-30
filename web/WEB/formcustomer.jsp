@@ -91,25 +91,40 @@
            </div>
          </div>
        </form>            
-                        
+                     
          <div id="Pass" class="collapse" style="margin-top: 100px;">
-             <form class="form-horizontal" style="width: 80%; padding-left: 100px;">
+             <form action="../PassCustomer" method="post" class="form-horizontal" style="width: 80%; padding-left: 100px;">
+                 <input type="hidden" value="<%=customer.getCustomerID()%>" name="customerID">
+                 <input type="hidden" value="<%=customer.getUsername()%>" name="username">
                  <div class="form-group">
                      <label >Nhập mật khẩu cũ : </label>
-                     <input class="form-control" type="password" > 
+                     <input class="form-control" name="oldpassword" type="password" > 
                  </div>
                  <div class="form-group">
                      <label> Nhập mật khẩu mới : </label>
-                     <input class="form-control" type="password">
+                     <input class="form-control" name="password" type="password" id="password">
                  </div>
                  <div class="form-group">
                      <label> Nhập lại mật khẩu mới : </label>
-                     <input class="form-control" type="password">
+                     <input class="form-control" name="retypepassword"  type="password" id="retypepassword" >
                  </div>
                  <button type="submit" class="btn btn-danger">Lưu</button>
              </form>   
          </div>
+         
      <script>
+             var password = document.getElementById("password")
+                    , confirm_password = document.getElementById("retypepassword");
+            function validatePassword() {
+                if (password.value !== confirm_password.value.trim()) {
+                    confirm_password.setCustomValidity("Mật khẩu nhập lại không đúng!");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+         
             $('#pickDate').datepicker({
                 'format': 'dd-mm-yyyy',
                 'autoclose': true,
