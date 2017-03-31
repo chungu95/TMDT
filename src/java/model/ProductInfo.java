@@ -7,12 +7,10 @@ package model;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author ADMIN
  */
-
 public class ProductInfo implements Serializable {
 
     private String productID;
@@ -26,6 +24,27 @@ public class ProductInfo implements Serializable {
     private Products products;
 
     public ProductInfo() {
+    }
+
+    public ProductInfo(String productID, String productType, String resolution, String hdmi, String usb, String Model, String size, String warranty) {
+        this.productID = productID;
+        this.productType = productType;
+        this.resolution = resolution;
+        this.hdmi = hdmi;
+        this.usb = usb;
+        this.Model = Model;
+        this.size = size;
+        this.warranty = warranty;
+    }
+
+    public ProductInfo(String productType, String resolution, String hdmi, String usb, String Model, String size, String warranty) {
+        this.productType = productType;
+        this.resolution = resolution;
+        this.hdmi = hdmi;
+        this.usb = usb;
+        this.Model = Model;
+        this.size = size;
+        this.warranty = warranty;
     }
 
     public ProductInfo(String productID) {
@@ -96,7 +115,6 @@ public class ProductInfo implements Serializable {
         this.warranty = warranty;
     }
 
-    
     public Products getProducts() {
         return products;
     }
@@ -129,5 +147,5 @@ public class ProductInfo implements Serializable {
     public String toString() {
         return "model.ProductInfo[ productID=" + productID + " ]";
     }
-    
+
 }

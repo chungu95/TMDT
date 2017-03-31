@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="container">
+<div class="container" >
     <div class="footer-info text-center">
         Đề tài Môn học Phát triển hệ thống thương mại điện tử.
         Nhóm 5.

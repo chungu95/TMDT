@@ -70,9 +70,6 @@
                         <td data-th="Subtotal" class="text-center">Thành tiền</td> 
                         <td class="actions" data-th="">
                             <div class="row">
-                                <a href="#" class="btn btn-info btn-lg">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </a>
                                 <a href="#" class="btn btn-danger btn-lg">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>

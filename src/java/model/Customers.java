@@ -31,6 +31,11 @@ public class Customers implements Serializable {
     public Customers() {
     }
 
+    public Customers(String customerID, String password) {
+        this.customerID = customerID;
+        this.password = password;
+    }
+    
     public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username, String password, String gender) {
         this.customerID = customerID;
         this.customerName = customerName;
@@ -54,8 +59,7 @@ public class Customers implements Serializable {
     }
 
     
-    
-    
+
     
      public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username,  String gender) {
         this.customerID = customerID;
