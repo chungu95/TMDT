@@ -21,6 +21,15 @@ import model.Cart;
  */
 public class CartDAO {
 
+    boolean check(String ProductID, int Quanity) {
+
+        if (ProductID == ProductID) {
+
+        }
+        return false;
+
+    }
+
     public static boolean InsertCart(String ProductID, String ProductName, int Price, int Quanity, String CustomerID) {
         Connection con = Connector.getConnection();
         String sql = "Insert into dbo.Cart values (?,?,?,?,?)";
@@ -28,7 +37,9 @@ public class CartDAO {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, ProductID);
+
             ps.setString(2, ProductName);
+
             ps.setInt(3, Price);
             ps.setInt(4, Quanity);
             ps.setString(5, CustomerID);
@@ -36,7 +47,7 @@ public class CartDAO {
             con.close();
             return true;
         } catch (SQLException ex) {
-          
+
             return false;
 
         }
@@ -56,7 +67,7 @@ public class CartDAO {
             con.close();
             return true;
         } catch (SQLException ex) {
-            
+
             return false;
         }
 
@@ -85,11 +96,49 @@ public class CartDAO {
             Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
-        
+
     }
-    public static boolean DelCartall(String CustomerID){
-                Connection con = Connector.getConnection();
-                String sql = "DELETE  FROM dbo.Cart where CustomerID ='" + CustomerID + "'"; 
+
+    public static int check(String ProductID, String CustomerID) {
+        Connection con = Connector.getConnection();
+        String sql = "select * from dbo.Cart where ProductID = ? and CustomerID= ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, ProductID);
+            ps.setString(2, CustomerID);
+            ResultSet rs = ps.executeQuery();
+            int soluong = 0;
+            while (rs.next()) {
+                soluong = rs.getInt("Quantity");
+                return soluong;
+            }
+
+            con.close();
+        } catch (SQLException ex) {
+
+        }
+        return -1;
+    }
+
+    public static boolean UpdateGioHangAll(int Quantity, String CustomerID, String ProductID) {
+        Connection con = Connector.getConnection();
+        String sql = " update dbo.Cart set Quantity=? where CustomerID=? and ProductID=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, Quantity);
+            ps.setString(2, CustomerID);
+            ps.setString(3, ProductID);
+            ps.execute();
+            con.close();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+
+    public static boolean DelCartall(String CustomerID) {
+        Connection con = Connector.getConnection();
+        String sql = "DELETE  FROM dbo.Cart where CustomerID ='" + CustomerID + "'";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
@@ -101,8 +150,9 @@ public class CartDAO {
         }
     }
 
-    ;
+    public static void main(String[] args) {
+        System.out.println(CartDAO.check("001", "5K1RGCAZ"));
 
-  
+    }
 
 }

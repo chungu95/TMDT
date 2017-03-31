@@ -59,18 +59,23 @@
 
                     <%
                         int ssp = 0;
+                        String a="";
                         try {
                             HttpSession ss = request.getSession();
                             Customers sa = (Customers) ss.getAttribute("customer");
-                             ssp =CartDAO.getListCart(sa.getCustomerID()).size();
+                           a= sa.getCustomerID();
        
                         } catch (Exception ex) {
 
                         }
-
+                        int sl=0;
+                   
                     %>
+                    <% for(int i=0;i<CartDAO.getListCart(a).size();i++){
+                        sl=sl+CartDAO.getListCart(a).get(i).getQuantity();
+                    }%>
                     <div class="nut">
-                        <span><b><%=ssp%></b></span>
+                        <span><b><%=sl%></b></span>
                         <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
                     </div>
 

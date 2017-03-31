@@ -47,12 +47,15 @@
                         } catch (Exception e) {
 
                         }
-
+                        long tong = 0;
+                        int sll = 0;
 
                     %>
 
                     <tr> 
                         <%                            for (int i = 0; i < arr.size(); i++) {
+                                tong += arr.get(i).getPrice();
+                                sll += arr.get(i).getQuantity();
                         %>
 
                         <td data-th="Product"> 
@@ -67,33 +70,31 @@
                         <td data-th="Price"><%=arr.get(i).getPrice()%></td> 
                         <td data-th="Quantity"><input class="form-control text-center" value="<%=arr.get(i).getQuantity()%>" type="number">
                         </td> 
-                        <td data-th="Subtotal" class="text-center">Thành tiền</td> 
+                        <td data-th="Subtotal" class="text-center"><%=arr.get(i).getPrice()%></td> 
                         <td class="actions" data-th="">
                             <div class="row">
-                                <a href="#" class="btn btn-info btn-lg">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-lg">
+
+                                <a href="../Del_Cart?msp=<%=arr.get(i).getProductID()%>" class="btn btn-danger btn-lg"> 
                                     <span class="glyphicon glyphicon-trash"></span>
+
+
                                 </a>
                             </div>
                         </td> 
                     </tr> 
                     <%}%>
 
-                </tbody><tfoot> 
-                    <tr class="visible-xs"> 
-                        <td class="text-center"><strong>Tổng 200.000 đ</strong>
-                        </td> 
-                    </tr> 
+                </tbody>
+                <tfoot> 
+
                     <tr> 
-                        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-                        </td> 
-                        <td colspan="2" class="hidden-xs"> </td> 
-                        <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
-                        </td> 
-                        <td><a href="#" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
-                        </td> 
+                        <td><a href="index.jsp" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+
+                        <td colspan="1" class="hidden-xs"> </td>   
+                        <td class="hidden-xs text-center"><strong>Tổng TiVi: <%=sl%></strong>
+                        <td class="hidden-xs text-center"><strong>Tổng tiền: <%=tong%></strong>
+
+                        <td><a href="index.jsp" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a></td> 
                     </tr> 
                 </tfoot> 
             </table>

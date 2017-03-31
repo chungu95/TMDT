@@ -20,10 +20,12 @@
         <%@include file="header.jsp" %>
     </head>
     <body>
+
         <%            try {
                 Products product = (Products) ProductsDAO.getProductByID(request.getParameter("productID"));
                 Produce produce = (Produce) ProduceDAO.getProduceByID(product.getProduceID());
         %>
+
         <div class="container">
             <div class="card">
                 <div class="container-fliud">
@@ -78,6 +80,9 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                                      <button   style="color: black; background-color: #d0e9c6;" <i type="button" class="fa fa-shopping-cart" > </i>  <a href="../add_Cart?msp=<%=product.getProductID()%>">Thêm vào giỏ hàng </a></button>  
+
                             <button type="button" class="btn btn-success">Mua ngay</button>
                         </div>
                     </div>
@@ -99,7 +104,7 @@
             <%@include file="footer.jsp" %>
         </footer>
         <%} catch (Exception ex) {
-                 out.print("<center><b style = 'color:red'>Không có sản p //hầm này!</b></center>"); 
+                out.print("<center><b style = 'color:red'>Không có sản p //hầm này!</b></center>");
             }
         %>
     </body>

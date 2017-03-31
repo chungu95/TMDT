@@ -8,15 +8,11 @@ package controller;
 import dao.CartDAO;
 import dao.ProductsDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Cart;
 import model.Customers;
 import model.Products;
 
@@ -24,8 +20,7 @@ import model.Products;
  *
  * @author seuti
  */
-@WebServlet(name = "add_Cart", urlPatterns = {"/add_Cart"})
-public class add_Cart extends HttpServlet {
+public class Del_Cart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +33,15 @@ public class add_Cart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+         response.setContentType("text/html;charset=UTF-8");
         HttpSession ss = request.getSession();
         Customers sa = (Customers) ss.getAttribute("customer");
-
         String msp = request.getParameter("msp");
-        int sl = CartDAO.check(msp, sa.getCustomerID());
-        if (sl != -1) {
-            CartDAO.UpdateGioHangAll(sl+1, sa.getCustomerID(), msp);
-        } else {
-            Products sp = ProductsDAO.getProductByID(msp);
-            boolean check = new CartDAO().InsertCart(sp.getProductID(), sp.getProductName(), sp.getPrice(), 1, sa.getCustomerID());
-
-        }
-        response.sendRedirect("./WEB/index.jsp");
-
+        CartDAO cartdao=new CartDAO();
+        boolean check = cartdao.DelCart(msp, sa.getCustomerID());
+        
+       response.sendRedirect("./WEB/cart.jsp");
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
