@@ -21,22 +21,18 @@
 
                 <div id="rightContent">
                     <h3>QUẢN LÝ SẢN PHẨM</h3>
-                    
+
                     <div class="shortcutHome">
-                        <a href=""><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
+                        <a href="allProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
                     </div>
                     <div class="shortcutHome">
                         <a href="insertProduct.jsp"><img src="admincss/img/photo.png" ><br>Thêm sản phẩm</a>
                     </div>
                     <div class="shortcutHome">
                         <a href=""><img src="admincss/img/addProduce.png" style="width: 70%;"><br>Thêm nhà sản xuất</a>
-                    </div>                                      
-                    <div class="clear"></div>                    
+                    </div>  
                 </div>
                 <div class="clear"></div>
-
-
-
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>

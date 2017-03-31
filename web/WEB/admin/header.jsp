@@ -26,7 +26,7 @@
 	<div class="inHeader">
 		<div class="mosAdmin">
 		Xin chào, quản lí<br>
-		<a href="">website</a> | <a href="ad_login.jsp">Đăng nhập</a> | <a href="">Đăng xuất</a>
+		<a href="index.jsp">trang chủ</a> | <a href="ad_login.jsp">Đăng nhập</a> | <a href="">Đăng xuất</a>
 		</div>
 	<div class="clear"></div>
 	</div>

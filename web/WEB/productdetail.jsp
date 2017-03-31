@@ -81,7 +81,7 @@
                                 </tbody>
                             </table>
 
-                                      <button   style="color: black; background-color: #d0e9c6;" <i type="button" class="fa fa-shopping-cart" > </i>  <a href="../add_Cart?msp=<%=product.getProductID()%>">Thêm vào giỏ hàng </a></button>  
+                            <button   style="color: black; background-color: #d0e9c6;" <i type="button" class="fa fa-shopping-cart" > </i>  <a href="../add_Cart?msp=<%=product.getProductID()%>">Thêm vào giỏ hàng </a></button>  
 
                             <button type="button" class="btn btn-success">Mua ngay</button>
                         </div>

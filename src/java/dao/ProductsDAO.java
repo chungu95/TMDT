@@ -116,6 +116,9 @@ public class ProductsDAO {
 
         return quantity;
     }
+    
+    // insertProduct: 
+    // Cai nay ham khoi tao ba cho no khoi tao ten sp, ma nsx, gia tien, mota, so luong,linkanh, voi 1 cai nua la Product info nha
 
     public static boolean insertProduct(Products product) {
         int result1 = 0;
@@ -123,8 +126,8 @@ public class ProductsDAO {
         Connection con = Connector.getConnection();
         String sql = "INSERT into Products (ProductID, ProductName, ProduceID, Price, Description, Quantity, ProductImg) "
                 + "VALUES (?,?,?,?,?,?,?)";
-        product.setProductID(RandomKey.randomKey());
-        product.getProductInfo().setProductID(product.getProductID());
+        product.setProductID(RandomKey.randomKey()); //day la cho gan masp
+        product.getProductInfo().setProductID(product.getProductID()); // cai  nay cho productInfo
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, product.getProductID());
             pr.setString(2, product.getProductName());
@@ -143,7 +146,7 @@ public class ProductsDAO {
             if (ProductInfoDAO.insertProductInfo(product.getProductInfo())) {
                 result = true;
             } else {
-                deleteProduct(product.getProductID());
+                deleteProduct(product.getProductID()); // Neu them sp xong ma khong them dc info thi xoa  luon cai sp vua them.
             }
         }
         return result;
@@ -189,9 +192,10 @@ public class ProductsDAO {
     }
 
     public static void main(String[] args) {
-        ProductInfo prinfo = new ProductInfo("QWERTA","Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng");
-        Products product = new Products("QWERTA","Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456");
-        if (ProductsDAO.updateProduct(product)) { 
+        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
+        ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
+        Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
+        if (ProductsDAO.insertProduct(product)) { 
             System.out.println("thêm thành công");
         } else {
             System.out.println("thêm thất bại");
