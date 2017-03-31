@@ -1,4 +1,5 @@
 
+<%@page import="model.Cart"%>
 <%@page import="dao.CartDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Products"%>
@@ -58,26 +59,15 @@
 
 
                     <%
-                        int ssp = 0;
-                        String a = "";
-                        try {
-                            HttpSession ss = request.getSession();
-                            Customers sa = (Customers) ss.getAttribute("customer");
-                            a = sa.getCustomerID();
-
-                        } catch (Exception ex) {
-
+                        Cart cart;
+                        if (session.getAttribute("cart") == null) {
+                            cart = new Cart();
+                        } else {
+                            cart = (Cart) session.getAttribute("cart");
                         }
-                        int sl = 0;
-
                     %>
-                    <%
-                        for(int i=0;i<CartDAO.getListCart(a).size();i++){
-                        sl=sl+CartDAO.getListCart(a).get(i).getQuantity();
-                    }
-%>
-                    <div class="nut">
-                        <span><b><%=sl%></b></span>
+                    <div class="nut"> 
+                        <span><b><%=cart.getTotalQuantity()%></b></span>
                         <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
                     </div>
 
