@@ -4,9 +4,17 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>controller.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Del_Cart</servlet-name>
+        <servlet-class>controller.Del_Cart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/CartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Del_Cart</servlet-name>
+        <url-pattern>/Del_Cart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
