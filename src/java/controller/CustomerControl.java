@@ -47,7 +47,7 @@ public class CustomerControl extends HttpServlet {
             String customerID = request.getParameter("customerID");
             String customerName = request.getParameter("Name");
             String dateString = request.getParameter("DoB");
-            Date DoB = DateConverter.date(dateString);//do cái na
+            Date DoB = DateConverter.date(dateString);
             String gender = request.getParameter("sex");
             String addr = request.getParameter("address");
             String email = request.getParameter("youremail");
@@ -74,7 +74,7 @@ public class CustomerControl extends HttpServlet {
     private void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("text/html;charset=UTF-8"); 
         request.setCharacterEncoding("UTF-8"); 
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();//ghi xuống client
         String oldPassword = request.getParameter("oldPassword");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();

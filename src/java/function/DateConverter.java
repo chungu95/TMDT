@@ -16,7 +16,6 @@ import java.util.Calendar;
  * @author ADMIN
  */
 public class DateConverter {
-
     public static Date date(String dateString) {
         Date sqlDate = null;
         try {
@@ -28,8 +27,7 @@ public class DateConverter {
             System.out.println(ex);
         }
         return sqlDate;
-    }
-    
+    }    
     public static void main(String[] args) {
         Date date = date("10-02-1995"); 
         Calendar car = Calendar.getInstance();
