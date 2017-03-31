@@ -19,7 +19,8 @@
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css">
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%--<jsp:include page="header.jsp"></jsp:include>--%>
+        <%@include file="header.jsp" %>
 
             <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>

@@ -22,7 +22,7 @@ public class Connector {
     private static final String DB_USER = "sa";
 
 
-    private static final String DB_PASSWORD = "DEADLINE";
+    private static final String DB_PASSWORD = "1234";
 
 
     private static final int CONN_POOL_INIT_SIZE = 10;
