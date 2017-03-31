@@ -63,7 +63,7 @@
             Calendar car = Calendar.getInstance();
             car.setTime(customer.getDoB());
             int day = car.get(Calendar.DAY_OF_MONTH);
-            int month = car.get(Calendar.MONTH);
+            int month = car.get(Calendar.MONTH)+1; 
             int year = car.get(Calendar.YEAR);
             String date = day + "-" + month + "-" + year;
         %>
@@ -89,7 +89,7 @@
                         <td><input type="text" class="form-control"  name="Name" value=" <%=customer.getCustomerName()%>" style="width: 50%;"></td>
                         <td><input type="text" class="form-control" id="pickDate" name="DoB" value="alo" style="width: 300px; padding-left: 20px" required=""/></td>
                         <td>
-                            <select name="sex"> 
+                            <select name="sex"  class="form-control">  
                                 <%
                                     if (customer.getGender().equals("Nam")) {
                                         out.print("<option value='Nam' selected>Nam</option>"
