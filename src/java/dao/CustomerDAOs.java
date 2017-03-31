@@ -6,6 +6,7 @@
 package dao;
 
 import connector.Connector;
+import function.DateConverter;
 import function.MD5;
 import model.Customers;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -62,7 +65,7 @@ public class CustomerDAOs {
             pr.setString(4, customer.getAddress());
             pr.setString(5, customer.getEmail());
             pr.setString(6, customer.getPhoneNumber());
-            pr.setString(7, customer.getGender()); 
+            pr.setString(7, customer.getGender());
             pr.setString(8, customer.getUsername());
             pr.setString(9, MD5.encryptMD5(customer.getPassword()));
             result = pr.executeUpdate();
@@ -74,22 +77,31 @@ public class CustomerDAOs {
         }
         return (result != 0);
     }
+
     
-    
-    /*
-    - Hàm update thông tin  khách hàng
-    - Dùng hàm khởi tạo truyền vào 7 tham số: ID, tên,  DOB, địa chỉ, email, sđt, giới tính
-    - Mình không cho phép sửa tên đăng nhập / mật khẩu ở đây nên nhớ xóa cái ô chỉnh username đi.
-    - Thêm nữa, ở controller,mình sẽ lấy dữ liệu từ các parametter ng dùng truyền vào, rồi tạo đối tượng customer.
-    - Bà nhớ đem cái  ô chọn  ngày  sinh ở form đăng ký qua đấy để dùng nha. Ở controller, lúc lấy dữ
-      liệu từ parametter ra nó sẽ là string, nên phải dùng hàm DateConverter để convert sang kiểu Date rồi mới khởi tạo đc.
-    - NHỚ KÉO CÁI FORM CHỌN NGÀY SANG ĐÂY =)))))))))))
-    */
+    public static boolean updatePassword(String customerID, String password){
+        int result =0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
+        try(PreparedStatement pr = con.prepareCall(sql)){
+            pr.setString(1, MD5.encryptMD5(password)); 
+            pr.setString(2, customerID); 
+            result = pr.executeUpdate(); 
+        }catch(Exception ex){
+            System.out.println(ex);
+        }finally{
+            Connector.close(con); 
+        }
+        return (result!=0); 
+    }
+
+   
+
     public static boolean updateCustomer(Customers customer) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Customers SET CustomerName = ?, DoB = ?,"
-                + " Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
+                 +" Address = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE CustomerID = ?;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, customer.getCustomerName());
             pr.setDate(2, customer.getDoB());
@@ -99,7 +111,11 @@ public class CustomerDAOs {
             pr.setString(6, customer.getGender());
             pr.setString(7, customer.getCustomerID());
             result = pr.executeUpdate();
+            if(result!=0){
+                System.out.println("thànhcoong");
+            }
         } catch (Exception ex) {
+            System.out.println(ex);
         } finally {
             Connector.close(con);
         }
@@ -169,6 +185,20 @@ public class CustomerDAOs {
             Connector.close(con);
         }
         return custommers;
+    }
+
+    public static void main(String[] args) {
+        Customers customers = new Customers();
+        customers.setCustomerID("KMW001KL");
+        customers.setCustomerName("chungcoi");
+        customers.setAddress("hcmc");
+        customers.setDoB(DateConverter.date("10-02-1994"));
+        customers.setEmail("aaa@gmail.com");
+        customers.setGender("nữ"); 
+        if(CustomerDAOs.updateCustomer(customers)){
+            System.out.println("thànhcoong");
+        }else
+            System.out.println("thất bại");
     }
 
 }

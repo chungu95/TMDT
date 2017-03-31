@@ -119,7 +119,7 @@
             </div> 
         </div>
 
-                <div id="wrapper" style="margin-left: 30px;">
+        <div id="wrapper" style="margin-left: 30px;">
             <div class="container">
                 <div class="row">   
                     <div class="content col-md-9 col-sm-9 col-xs-12">
@@ -130,7 +130,7 @@
 
                             <%
                                 String sql = "SELECT * FROM Products ORDER BY ProductName ;";
-                                
+
                                 ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
                                 int maxProductDisplay = 3;
                                 if (request.getParameter("max") != null) {
@@ -145,7 +145,7 @@
                                         <div class="productinfo text-center">
                                             <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%; margin-top: 10px;">
                                             <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
-                                            <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID()); %>
+                                            <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID());%>
                                             <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%>    <%=pr.getProduceName()%></b></h2></p>
                                             <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
                                         </div> 
