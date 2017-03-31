@@ -48,6 +48,30 @@ public class ProductsDAO {
         return product;
     }
 
+    @SuppressWarnings("null")
+    public static Products getProductByID_Cart(String productID) {
+        Products product = null;
+        Connection conn = Connector.getConnection();
+        String sql = "SELECT ProductID, ProductName, Price FROM Products WHERE ProductID = ?";
+        try (PreparedStatement pr = conn.prepareStatement(sql)) {
+            pr.setString(1, productID);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    product = new Products(productID);
+                    product.setProductID(rs.getString("ProductID"));
+                    product.setProductName(rs.getString("ProductName"));
+                    product.setPrice(rs.getInt("Price")); 
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(conn);
+        }
+        product.setProductInfo(ProductInfoDAO.getProductInfo(productID));
+        return product;
+    }
+
     public static ArrayList<Products> getAllProduct(String sql) {
         ArrayList<Products> products = new ArrayList<>();
         Connection con = Connector.getConnection();
@@ -192,6 +216,7 @@ public class ProductsDAO {
     }
 
     public static void main(String[] args) {
+
         // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
         ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
         Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
@@ -200,6 +225,7 @@ public class ProductsDAO {
         } else {
             System.out.println("thêm thất bại");
         }
+
 ////        ArrayList<Products> productss = ProductsDAO.getAllProduct();
 //        productss.forEach((item) -> {
 //            System.out.println(item.getProductID() + " | " + item.getProductName());

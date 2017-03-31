@@ -65,30 +65,30 @@ public class CartDAO {
 
     }
 
-    public static ArrayList<Cart> getListCart(String CustomerID) {
-        Connection con = Connector.getConnection();
-        String sql = "SELECT* FROM dbo.Cart where CustomerID='" + CustomerID + "' ";
-
-        ArrayList<Cart> arr = new ArrayList<>();
-        try (PreparedStatement ps = con.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Cart sp = new Cart();
-                sp.setPrice(rs.getInt("Price"));
-                sp.setProductID(rs.getString("ProductID"));
-                sp.setQuantity(rs.getInt("Quantity"));
-                sp.setCustomerID(rs.getString("CustomerID"));
-                sp.setProductName(rs.getString("ProductName"));
-                arr.add(sp);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            Connector.close(con);
-        }
-        return arr;
-
-    }
+//    public static ArrayList<Cart> getListCart(String CustomerID) {
+//        Connection con = Connector.getConnection();
+//        String sql = "SELECT* FROM dbo.Cart where CustomerID='" + CustomerID + "' ";
+//
+//        ArrayList<Cart> arr = new ArrayList<>();
+//        try (PreparedStatement ps = con.prepareStatement(sql);
+//                ResultSet rs = ps.executeQuery()) {
+//            while (rs.next()) {
+//                Cart sp = new Cart();
+//                sp.setPrice(rs.getInt("Price"));
+//                sp.setProductID(rs.getString("ProductID"));
+//                sp.setQuantity(rs.getInt("Quantity"));
+//                sp.setCustomerID(rs.getString("CustomerID"));
+//                sp.setProductName(rs.getString("ProductName"));
+//                arr.add(sp);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            Connector.close(con);
+//        }
+//        return arr;
+//
+//    }
 
     public static int check(String ProductID, String CustomerID) {
         Connection con = Connector.getConnection();

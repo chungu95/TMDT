@@ -5,74 +5,58 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author seuti
+ * @author ADMIN
  */
 public class Cart {
-    private String ProductID;
-    private String ProductName;
-    private int Price;
-    private int Quantity;
-    private String CustomerID;
+
+    private ArrayList<Products> listProduct;
+    private int totalPrice = 0;
+    private int totalQuantity = 0;
 
     public Cart() {
+        listProduct = new ArrayList<>();
     }
 
-    public Cart(int ProductID, String ProductName, int Price, int Quantity, String CustomerID) {
-       
-        this.ProductName = ProductName;
-        this.Price = Price;
-        this.Quantity = Quantity;
-        this.CustomerID = CustomerID;
+    public ArrayList<Products> getListProduct() {
+        return listProduct;
     }
 
-    public String getProductID() {
-        return ProductID;
+    public void setListProduct(ArrayList<Products> listProduct) {
+        this.listProduct = listProduct;
     }
 
-    public void setProductID(String ProductID) {
-        this.ProductID = ProductID;
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
-    
-
-    public String getProductName() {
-        return ProductName;
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
+    public int getTotalQuantity() {
+        return totalQuantity;
     }
 
-    public int getPrice() {
-        return Price;
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
-    public void setPrice(int Price) {
-        this.Price = Price;
+    public void updateTotalPrice() {
+        this.totalPrice = 0;
+        this.listProduct.forEach((product) -> {
+            totalPrice += (product.getQuantity() * product.getPrice());
+        });
     }
 
-    public int getQuantity() {
-        return Quantity;
+    public void updateTotalQuantity() {
+        this.totalQuantity = 0;
+        this.listProduct.forEach((product) -> {
+            totalQuantity += product.getQuantity(); 
+        }); 
     }
 
-    public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
-    }
-
-    public String getCustomerID() {
-        return CustomerID;
-    }
-
-    public void setCustomerID(String CustomerID) {
-        this.CustomerID = CustomerID;
-    }
-
-    @Override
-    public String toString() {
-        return "Cart{" + "ProductID=" + ProductID + ", ProductName=" + ProductName + ", Price=" + Price + ", Quantity=" + Quantity + ", CustomerID=" + CustomerID + '}';
-    }
-    
-    
 }
