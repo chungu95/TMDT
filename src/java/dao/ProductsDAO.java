@@ -5,7 +5,6 @@
  */
 package dao;
 
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import connector.Connector;
 import function.RandomKey;
 import java.sql.Connection;
@@ -191,7 +190,6 @@ public class ProductsDAO {
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
-            ex.printStackTrace();
         } finally {
             Connector.close(con);
         }
