@@ -30,10 +30,10 @@
                         </div>
 
                         <table width="95%">
-                            <tr><td width="125px"><b>Nhập tên sản phẩm</b></td><td><input type="text" class="pendek" name="productName"></td></tr>
+                            <tr><td width="125px"><b>Nhập tên sản phẩm</b></td><td><input type="text" class="pendek" name="productName" required=""></td></tr>
 
                             <tr><td><b>Chọn nhà sản xuất</b></td><td>                               
-                                    <select name="produceID">
+                                    <select name="produceID" required="">
                                     <%            ArrayList<Produce> produce = ProduceDAO.getProduce();
 
                                         for (int i = 0; i < produce.size(); i++) {
@@ -44,22 +44,22 @@
                                     <%  }%>
                                 </select>
                             </td></tr>
-                        <tr><td><b>Giá sản phẩm</b></td><td><input type="number" class="sedang" name="price"></td></tr>   
-                        <tr><td><b>Miêu tả</b></td><td><textarea name="description"></textarea></td></tr>
-                        <tr><td><b>Số lượng thêm vào</b></td><td><input type="number" class="sedang" name="quantity"></td></tr> 
-                        <tr><td><b>Hình ảnh</b></td><td><input type="text" name="productImg" class="sedang"></td></tr> 
+                            <tr><td><b>Giá sản phẩm</b></td><td><input type="number" class="sedang" name="price" required=""></td></tr>   
+                            <tr><td><b>Miêu tả</b></td><td><textarea name="description" required=""></textarea></td></tr>
+                            <tr><td><b>Số lượng thêm vào</b></td><td><input type="number" class="sedang" name="quantity" required=""></td></tr> 
+                        <tr><td><b>Hình ảnh</b></td><td><input type="text" name="productImg" class="sedang" required=""></td></tr> 
                     </table>
                     <div class="informasi">
                         THÔNG TIN CHI TIẾT SẢN PHẨM
                     </div>
                     <table width="95%">
-                        <tr><td width="125px"><b>Nhập loại tivi</b></td><td><input type="text" name="productType" class="pendek"></td></tr>
-                        <tr><td width="125px"><b>Độ phân giải</b></td><td><input type="text" name="resolution"  class="pendek"></td></tr>                        
-                        <tr><td width="125px"><b>HDMI</b></td><td><input type="text" name="hdmi" class="pendek"></td></tr>
-                        <tr><td width="125px"><b>USB</b></td><td><input type="text"  name="usb" class="pendek"></td></tr>
-                        <tr><td width="125px"><b>Model</b></td><td><input type="text" name="Model" class="pendek"></td></tr>
+                        <tr><td width="125px"><b>Nhập loại tivi</b></td><td><input type="text" name="productType" class="pendek" required=""></td></tr>
+                        <tr><td width="125px"><b>Độ phân giải</b></td><td><input type="text" name="resolution"  class="pendek" required=""></td></tr>                        
+                        <tr><td width="125px"><b>HDMI</b></td><td><input type="text" name="hdmi" class="pendek" required=""></td></tr>
+                        <tr><td width="125px"><b>USB</b></td><td><input type="text"  name="usb" class="pendek" required=""></td></tr>
+                        <tr><td width="125px"><b>Model</b></td><td><input type="text" name="Model" class="pendek" required=""></td></tr>
                         <tr><td><b>Kích thước màn hình Tivi</b></td><td>
-                                <input type="radio" name="size" id="radio" value="32 inch">32 inch
+                                <input type="radio" name="size" id="radio" value="32 inch" checked="" >32 inch
                                 <input type="radio" name="size" id="radio" value="40 inch">40 inch
                                 <input type="radio" name="size" id="radio" value="43 inch">43 inch
                                 <input type="radio" name="size" id="radio" value="48 inch">48 inch
@@ -71,8 +71,9 @@
                                 <input type="radio" name="size" id="radio" value="70 inch">70 inch
                             </td></tr>
                         <tr><td><b>Thời gian bảo hành</b></td><td>
-                                <select name="warranty">
-                                    <option selected value="24 tháng">24 tháng</option>
+                                <select name="warranty" required="">
+                                    <option selected value="12 tháng">12 tháng</option>
+                                    <option value="24 tháng">24 tháng</option>
                                     <option value="48 tháng">48 tháng</option>
                                 </select>
 
