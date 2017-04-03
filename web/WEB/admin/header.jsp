@@ -4,6 +4,7 @@
     Author     : DELL
 --%>
 
+<%@page import="model.Employees"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,15 +23,22 @@
         </style>
     </head>
     <body>
+        <%
+            Employees employee = (Employees) session.getAttribute("Employee");
+            if(employee==null){
+                response.sendRedirect("ad_login.jsp");
+                return;
+            }else{
+        %>
        <div id="header">
 	<div class="inHeader">
 		<div class="mosAdmin">
-		Xin chào, quản lí<br>
-		<a href="index.jsp">trang chủ</a> | <a href="ad_login.jsp">Đăng nhập</a> | <a href="">Đăng xuất</a>
+		Xin chào, <%=employee.getName()%> (<%=employee.getRole()%>)<br> 
+		<a href="index.jsp">trang chủ</a> | <a href="ad_login.jsp">Đăng nhập</a> | <a href="<%=request.getContextPath()%>/EmployeeLogout">Đăng xuất</a>
 		</div>
-	<div class="clear"></div>
+	<div class="clear"></div> 
 	</div>
         </div>
-        
+        <%}%>
     </body>
 </html>

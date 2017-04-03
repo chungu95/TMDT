@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/mycss.css">
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<%@include file="header.jsp" %>  
     </head>
     <body>
         
