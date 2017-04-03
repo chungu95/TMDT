@@ -16,6 +16,7 @@
     <head>
         <title>WEB BÁN HÀNG</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -23,10 +24,53 @@
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>        
         <%@include file="header.jsp" %>
+        <style>
+            #custom-bootstrap-menu.navbar-default .navbar-brand {
+                color: rgba(130, 125, 125, 1);
+            }
+            #custom-bootstrap-menu.navbar-default {
+                font-size: 17px;
+                background-color: rgba(248, 248, 248, 1);
+                border-width: 1px;
+                border-radius: 4px;
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+                color: rgba(15, 1, 1, 1);
+                background-color: rgba(248, 248, 248, 0);
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+            #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+                color: rgba(51, 51, 51, 1);
+                background-color: rgba(219, 151, 151, 1);
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+            #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+            #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+                color: rgba(85, 85, 85, 1);
+                background-color: rgba(231, 231, 231, 1);
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-toggle {
+                border-color: #ddd;
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+            #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+                background-color: #ddd;
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+                background-color: #888;
+            }
+            #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+            #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+                background-color: #888;
+            }
+        </style>
     </head>
     <body>
-        <section>
-            <div class="container"> 
+
+
+        <div class="container">
+            <!--<div class="jumbotron">-->
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -68,112 +112,88 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <div class="col-sm-3">
+            <!--</div>-->
 
-            <div class="left-sidebar" style="margin-top: 50px; margin-left: 250px;" >
-                <div class="brands_products" >
-                    <h4>Thương Hiệu</h4>
-                    <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
-
-                        for (int i = 0; i < produce.size(); i++) {
-                    %>
-                    <div class="brands-name " style="color: #003399;"> 
-                        <ul class="nav nav-pills nav-stacked" >
-                            <li style="text-align: left"><a href="#"> <span class="pull-left"><%=produce.get(i).getProduceName()%></span></a></li>
-                        </ul> 
+            <!--bar-->
+            <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="margin-top: 15px;">
+                <div class="container-fluid">
+                    <div class="navbar-header"><a class="navbar-brand" href="#">Lọc sản phẩm</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
                     </div>
-                    <%  }%> 
-                </div>
-                <div class="brands_products">
-                    <h4>Giá bán</h4>
-                    <div class="brands-name " style="color: #003399;">                            
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu <br>                                     
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> từ 5-7 triệu<br>                                    
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu<br>                                    
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu<br>
-                    </div>
-                </div>
-                <div class="brands_products">
-                    <h4>Loại Tivi</h4>
-                    <div class="brands-name " style="color: #003399;">                            
-                        <input type="checkbox" id="inlineCheckbox1" value="option1">Android Tivi <br>                                     
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Internet Tivi/ Smart Tivi<br>                                    
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Tivi LED<br>                                   
-                    </div>
-                </div>
-                <div class="brands_products">
-                    <h4>Kích thước màn hình </h4>
-                    <div class="brands-name " style="color: #003399;">                            
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="32 inch"> 32 inch<br>                                     
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="40 inch"> 40 inch<br>                                    
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="43 inch"> 43 inch<br>                                    
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="48 inch"> 48 inch<br>
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="49 inch"> 49 inch<br>
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="50 inch"> 50 inch<br>
-                        <input type="checkbox" name="ktmh" id="inlineCheckbox1" value="55 inch"> 55 inch<br>
-                    </div>
-                </div>
-                <center><input type="submit" value ="lọc"/></center>
-                </form>
-            </div> 
-        </div>
-
-        <div id="wrapper" style="margin-left: 30px;">
-            <div class="container">
-                <div class="row">   
-                    <div class="content col-md-9 col-sm-9 col-xs-12">
-
-
-
-                        <div class="row">
-
-                            <%
-                                String sql = "SELECT * FROM Products ORDER BY ProductName ;";
-
-                                ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
-                                int maxProductDisplay = 3;
-                                if (request.getParameter("max") != null) {
-                                    maxProductDisplay = Integer.parseInt(request.getParameter("max"));
-                                }
-                                for (int i = 0; i < maxProductDisplay; i++) {
-                            %>
-
-                            <div class="col-sm-3" style="margin-left: 60px; margin-top: 30px; margin-bottom: 30px; background-color: #e7e7e7; width: 350px; height: 550px;">      
-                                <div class="product-image-wrapper" >
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%; margin-top: 10px;">
-                                            <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
-                                            <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID());%>
-                                            <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%>    <%=pr.getProduceName()%></b></h2></p>
-                                            <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
-                                        </div> 
-                                        <div class="choose" >
-                                            <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
-
-                                                <li><a href="../CartController?productID=<%=product.get(i).getProductID()%>&cmd=add" style="color: black; background-color: #d0e9c6;"><i class="fa fa-shopping-cart" ></i>Thêm vào giỏ hàng</a></li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <% }%>
-
-                        </div>
-                        <%
-                            if (maxProductDisplay < product.size() && (maxProductDisplay + 3) < product.size()) {
-                                maxProductDisplay += 3;
-                                out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
-                            } else if (maxProductDisplay < product.size()) {
-                                maxProductDisplay += product.size() - maxProductDisplay;
-                                out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
-                            }
-                        %>
+                    <div class="collapse navbar-collapse navbar-menubuilder">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Thương hiệu                           
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">lg</a></li>    
+                                    <li><a href="#">lg</a></li>
+                                </ul> 
+                            </li>
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Giá                            
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">dưới 5 triệu</a></li>    
+                                    <li><a href="#">từ 5 - 7 triệu</a></li>
+                                    <li><a href="#">Từ 7-10 triệu</a></li>
+                                    <li><a href="#">Trên 10 triệu</a></li>
+                                </ul> 
+                            </li>
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Kích thước Tivi                           
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">32 inch</a></li>    
+                                    <li><a href="#">42 inch</a></li>
+                                    <li><a href="#">Từ 7-10 triệu</a></li>
+                                    <li><a href="#">Trên 10 triệu</a></li>
+                                </ul> 
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>                 
+            <!--bar-->
+            <!--content-->
+            <div class="row">
+                <%                    String sql = "SELECT * FROM Products ORDER BY ProductName ;";
+
+                    ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
+                    int maxProductDisplay = 4;
+                    if (request.getParameter("max") != null) {
+                        maxProductDisplay = Integer.parseInt(request.getParameter("max"));
+                    }
+                    for (int i = 0; i < maxProductDisplay; i++) {
+                %>
+                <div class="col-md-3" style="width: 350px; height: 550px;">                   
+                    <img class="img-responsive" src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">                   
+                    <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
+                    <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID());%>
+                    <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%>    <%=pr.getProduceName()%></b></h2></p>
+                    <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
+                    <div class="choose" >
+                        <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
+
+                            <li><a href="../CartController?productID=<%=product.get(i).getProductID()%>&cmd=add" style="color: black; background-color: #d0e9c6;"><i class="fa fa-shopping-cart" ></i>Thêm vào giỏ hàng</a></li>
+                        </ul> 
+                    </div>
+                </div> 
+                <% }%>  
+            </div>
+
+            <%
+                if (maxProductDisplay < product.size() && (maxProductDisplay + 4) < product.size()) {
+                    maxProductDisplay += 4;
+                    out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
+                } else if (maxProductDisplay < product.size()) {
+                    maxProductDisplay += product.size() - maxProductDisplay;
+                    out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
+                }
+            %>
+            <!--content-->
+        </div>                
         <footer>
             <%@include file="footer.jsp" %>
         </footer>

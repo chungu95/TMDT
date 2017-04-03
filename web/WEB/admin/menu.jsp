@@ -21,7 +21,7 @@
         <div id="leftBar">
              <ul>
 	<li><a href="index.jsp">Trang chủ</a></li>
-	<li><a href="#">Người dùng</a></li><!--hệ thông-->
+	<li><a href="user.jsp">Người dùng</a></li><!--hệ thông-->
 	<li><a href="product.jsp">Sản phẩm</a></li> <!--bán hàng-->
                  <li><a href="">Đơn hàng</a></li>   <!--bán hàng-->
                  <li><a href="">Thống kê</a></li>   <!--hệ thống-->

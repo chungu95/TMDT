@@ -18,7 +18,7 @@
     </head>
     <body>
     <div id="footer">
-	Đề tài nhóm 5 PHÁT TRIỂN HỆ THỐNG THƯƠNG MẠI ĐIỆN TỬ
+	ĐỀ TÀI NHÓM 5 PHÁT TRIỂN HỆ THỐNG THƯƠNG MẠI ĐIỆN TỬ
      </div>
     </body>
 </html>

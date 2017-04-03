@@ -86,7 +86,7 @@
                         <tbody>
                             <tr>  
                         <input type="hidden" value="<%=customer.getCustomerID()%>" name="customerID">
-                        <td><input type="text" class="form-control"  name="Name" value=" <%=customer.getCustomerName()%>" style="width: 50%;"></td>
+                        <td><input type="text" class="form-control"  name="Name" value="<%=customer.getCustomerName()%>" style="width: 50%;"></td>
                         <td><input type="text" class="form-control" id="pickDate" name="DoB" value="alo" style="width: 300px; padding-left: 20px" required=""/></td>
                         <td>
                             <select name="sex"  class="form-control">  
@@ -102,7 +102,7 @@
                                 %>
                             </select>
                         </td>
-                        <td><input type="text" class="form-control"  name="address" value=" <%=customer.getAddress()%>" style="width: 100%;"></td>
+                        <td><input type="text" class="form-control"  name="address" value="<%=customer.getAddress()%>" style="width: 100%;"></td>
                         <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" style="width: 50%;"></td>
                         <td><input type="number" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" style="width: 50%;"></td>                                        
                         <td><button type="submit" class="btn btn-danger" name="cmd" value="updateInfo">Lưu</button></td>                           
