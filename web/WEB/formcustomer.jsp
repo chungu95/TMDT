@@ -130,7 +130,7 @@
                 <button type="submit" class="btn btn-danger" name="cmd" value="changePassword">Lưu</button>
             </form>   
         </div>
-        <script>
+        <script language="javascript" type="text/javascript"> 
             var password = document.getElementById("password")
                     , confirm_password = document.getElementById("retypepassword");
             function validatePassword() {
