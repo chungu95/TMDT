@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.lang.Exception"%>
-<%@page import="dao.CartDAO"%>
 <%@page import="model.Cart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

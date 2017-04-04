@@ -20,12 +20,10 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>css/bootstrap.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="admincss/detailcss.css">
-
+        <%@include file="header.jsp" %>  
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
-
-            <div id="wrapper">
+        <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
 
             <%            try {
@@ -47,7 +45,7 @@
                         <th class="data">Miêu tả</th>
                         <th class="data">Số lượng</th>
                         <th class="data">Hình ảnh</th>
-                         <th  class="data"></th>
+                        <th  class="data"></th>
                     </tr>
                     <tr class="data">
                         <td class="data"><%=product.getProductName()%></td>

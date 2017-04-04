@@ -1,6 +1,5 @@
 
 <%@page import="model.Cart"%>
-<%@page import="dao.CartDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Products"%>
 <%@page import="model.Products"%>

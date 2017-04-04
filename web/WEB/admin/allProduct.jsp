@@ -19,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css">
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%@include file="header.jsp" %>  
         <div class="rightbar" style="margin: 30px 30px;">
                 <input type="text" placeholder="Nhập Model sản phẩm" id="" name="" value="" style="padding: 10px; margin-right: 5px;">
                 <input type="submit" value="Tìm Kiếm"> 

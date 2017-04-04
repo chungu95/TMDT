@@ -6,17 +6,17 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Người dùng</title>
         <link rel="shortcut icon" href="stylesheet/img/devil-icon.png"> 
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css"> 
+        <%@include file="header.jsp" %>  
     </head>
     <body>
-         <jsp:include page="header.jsp"></jsp:include>
 
-            <div id="wrapper">
+        <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
 
                 <div id="rightContent">

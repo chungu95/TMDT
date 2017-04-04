@@ -12,13 +12,14 @@
         <title>index</title>        
         <link rel="shortcut icon" href="stylesheet/img/devil-icon.png"> 
        <link rel="stylesheet" type="text/css" href="admincss/mos-style.css"> 
+       
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%@include file="header.jsp" %>  
+        <%--<jsp:include page="header.jsp"></jsp:include>--%>
         
         <div id="wrapper">
-        <jsp:include page="menu.jsp"></jsp:include>
-        
+        <jsp:include page="menu.jsp"></jsp:include>       
         <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>
