@@ -88,23 +88,30 @@
                     </li>
                     <li><a href="checkorders.jsp">KIỂM TRA ĐƠN HÀNG</a>
                     </li>
-                    <%                            Customers customer = (Customers) session.getAttribute("customer");
+                    <%
+                        Customers customer = (Customers) session.getAttribute("customer");
                         if (customer == null) {
                             out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
                                     + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
                         } else {
-
                             out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
                             out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
-                            out.print("<div>");
+                            out.print("<div><center>");
                             out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
-                            out.print("</div>");
+                            out.print("</center></div>");
                         }
                     %>
 
                 </ul>
 
             </div>
+            <%
+//                if (customer != null) {
+//                    if (customer.getStatus().equals("NotActive")) {
+//                        out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../Active'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
+//                    }
+//                }
+%>
         </div>
     </div>
     <!-- /Navigation -->
