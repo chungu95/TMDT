@@ -27,6 +27,7 @@ public class Customers implements Serializable {
     private List<Comment> commentList;
     private List<Oders> odersList;
     private String gender;
+    private String status;
 
     public Customers() {
     }
@@ -185,6 +186,16 @@ public class Customers implements Serializable {
     public void setOdersList(List<Oders> odersList) {
         this.odersList = odersList;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public int hashCode() {

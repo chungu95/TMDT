@@ -12,12 +12,17 @@
         <title>Nhân viên</title>
         <link rel="shortcut icon" href="stylesheet/img/devil-icon.png"> 
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css">
-         <%@include file="header.jsp" %>  
+        <%@include file="header.jsp" %>  
     </head>
     <body>
-        
+        <%
+            if (!employee.getRole().equals("Admin")) {
+                response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
+                return;
+            }
+        %>
 
-            <div id="wrapper">
+        <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
 
                 <div id="rightContent">

@@ -42,6 +42,7 @@ public class CustomerDAOs {
                     customer.setUsername(rs.getString("Username"));
                     customer.setPassword(rs.getString("Password"));
                     customer.setGender(rs.getString("Gender"));
+                    customer.setStatus(rs.getString("Status")); 
                 }
             }
         } catch (SQLException ex) {
@@ -84,6 +85,22 @@ public class CustomerDAOs {
         String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
         try (PreparedStatement pr = con.prepareCall(sql)) {
             pr.setString(1, MD5.encryptMD5(password));
+            pr.setString(2, customerID);
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+    
+    public static boolean activeAccount(String customerID){
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Customers SET Status = ? WHERE CustomerID= ?; ";
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, "Activated");  
             pr.setString(2, customerID);
             result = pr.executeUpdate();
         } catch (Exception ex) {
