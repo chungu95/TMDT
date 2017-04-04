@@ -47,17 +47,4 @@ and open the template in the editor.
     background-color: #f8f8f8;
 }
 
-header{
-  .logo{
-    h1{
-      font-size: 35px;
-      }
-  }
-  .search{
-    padding: 20px;
-    
-  }  
-}
-header{
-    background: url(images/clouds.jpg) repeat 100%;
-}
+

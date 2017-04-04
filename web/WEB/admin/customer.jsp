@@ -4,6 +4,9 @@
     Author     : DELL
 --%>
 
+<%@page import="dao.CustomerDAOs"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,9 +25,7 @@
                 <div id="rightContent">
                     <h3>DANH SÁCH KHÁCH HÀNG</h3>
 
-                    <div class="informasi">
 
-                    </div>
                     <table class="data">
                         <tr class="data">
                             <th class="data">STT</th>
@@ -36,27 +37,40 @@
                             <th class="data">Email</th>
                             <th  class="data">Điện thoại</th>
                             <th  class="data">Tên Đăng nhập</th>
+                            <th  class="data">Điểm</th>
                             <th  class="data"></th>
                         </tr>
                         <tr class="data">
-                            <td class="data">stt</td>
-                            <td class="data" >Mã KH</td>
-                            <td class="data">Họ tên</td>
-                            <td class="data">Ngày sinh</td>
-                            <td class="data">Giới tính</td>
-                            <td class="data">Địa chỉ</td>
-                            <td class="data">Email</td>
-                            <td  class="data">Điện thoại</td>
-                            <td  class="data">Tên Đăng nhập</td> 
-                            <td> 
-                                <a href="#edit" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Sửa</a>
-                                <a href="#del" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Xóa</a>
-                            </td>
-                        </tr>
-                    </table>
-                   
-                </div>
-                <div class="clear"></div>
+                        <%
+                            String sql = "SELECT * FROM Customers ORDER BY CustomerName ;";
+                            ArrayList<Customers> customer = CustomerDAOs.getCustomers(sql);
+                            int max = 10;
+                            if (request.getParameter("max") != null) {
+                                max = Integer.parseInt(request.getParameter("max"));
+                            }
+                            for (int i = 0; i < customer.size(); i++) {
+
+                        %>
+                        <td class="data">i</td>
+                        <td class="data" ><%=customer.get(i).getCustomerID()%> </td>
+                        <td class="data"><%=customer.get(i).getCustomerName()%></td>
+                        <td class="data"><%=customer.get(i).getDoB()%></td>
+                        <td class="data"><%=customer.get(i).getDoB()%></td>
+                        <td class="data"><%=customer.get(i).getAddress()%>Địa chỉ</td>
+                        <td class="data"><%=customer.get(i).getEmail()%></td>
+                        <td  class="data"><%=customer.get(i).getPhoneNumber()%></td>
+                        <td  class="data"><%=customer.get(i).getUsername()%></td> 
+                        <td  class="data"><%=customer.get(i).getAccumulatedScore()%></td> 
+                        <td> 
+                            <a href="#edit" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Sửa</a>                                
+                        </td>
+                    </tr>
+                    <%}%>
+
+                </table>
+                
+            </div>
+            <div class="clear"></div>
 
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
