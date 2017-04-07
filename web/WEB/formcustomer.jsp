@@ -22,9 +22,22 @@
         <script src="./js/bootstrap-datepicker.js"></script>
     </head>
     <body>
-
+            <%
+                if(customer==null){
+                    return;
+                }
+            %>
         <div class="jumbotron" >               
-            <center><h3>THÔNG TIN KHÁCH HÀNG</h3> </center>            
+            <center>
+                <h3>THÔNG TIN KHÁCH HÀNG</h3> 
+                <%
+                    if (customer != null) {
+                    if (customer.getStatus().equals("NotActive")) {
+                        out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../SendVerify'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
+                    }
+                }
+                %>
+            </center>            
         </div>
         <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
@@ -130,7 +143,7 @@
                 <button type="submit" class="btn btn-danger" name="cmd" value="changePassword">Lưu</button>
             </form>   
         </div>
-        <script language="javascript" type="text/javascript"> 
+        <script language="javascript" type="text/javascript">
             var password = document.getElementById("password")
                     , confirm_password = document.getElementById("retypepassword");
             function validatePassword() {

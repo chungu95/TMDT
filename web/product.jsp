@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <form>
+        <input name="somedate" type="date" min="2013-12-25">
+        </form>
         <h1>Hello World!</h1>
     </body>
 </html>

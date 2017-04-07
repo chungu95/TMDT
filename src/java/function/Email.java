@@ -31,9 +31,11 @@ public class Email {
             email.setSSLOnConnect(true);
             email.setFrom(MY_EMAIL);
             email.addTo(customer.getEmail());
-            email.setSubject("xác nhận tài khoản TiviStore");
-            email.setHtmlMsg("<html><h2>Chào mừng bạn đến với web bán tivi!</h2>"
-                    + "<div><b>Vui lòng click vào <a href='http://localhost:8084/ThuongMaiDienTu/RegController?u="+customer.getCustomerID()+"&hash=" + hash + "'>đây</a> để xác nhận tài khoản...</b></div><br />"
+            email.setSubject("Xác nhận tài khoản TiviStore");
+            email.setHtmlMsg("<html><h2>Chào " + customer.getCustomerName() + ",</h2>"
+                    + "<div><b>Vui lòng click vào <a href='http://localhost:8084/ThuongMaiDienTu/Verify?u="
+                    + customer.getCustomerID() + "&hash="
+                    + hash + "'>đây</a> để xác nhận tài khoản...</b></div><br />"
                     + "<b>Cảm ơn bạn đã ủng hộ!!!</b></div>"
                     + "</html>");
             email.setCharset("UTF-8");
@@ -46,7 +48,7 @@ public class Email {
     }
 
     public static void main(String[] args) throws EmailException, MalformedURLException {
-      
+
     }
 
 }
