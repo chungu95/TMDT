@@ -22,7 +22,7 @@
 
             <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
-                <form method="post" action="<%=request.getContextPath()%>/insertProduct" >
+                <form method="post" action="<%=request.getContextPath()%>/insertProduct" enctype="multipart/form-data" acceptcharset="UTF-8">
                     <div id="rightContent">
                         <h3>THÊM SẢN PHẨM</h3>
 
@@ -48,7 +48,7 @@
                             <tr><td><b>Giá sản phẩm</b></td><td><input type="number" class="sedang" name="price" required=""></td></tr>   
                             <tr><td><b>Miêu tả</b></td><td><textarea name="description" required=""></textarea></td></tr>
                             <tr><td><b>Số lượng thêm vào</b></td><td><input type="number" class="sedang" name="quantity" required=""></td></tr> 
-                        <tr><td><b>Hình ảnh</b></td><td><input type="text" name="productImg" class="sedang" required=""></td></tr> 
+                            <tr><td><b>Hình ảnh</b></td><td><input type="file" name="productImage" accept="image/*" required=""/></td></tr>  
                     </table>
                     <div class="informasi">
                         THÔNG TIN CHI TIẾT SẢN PHẨM

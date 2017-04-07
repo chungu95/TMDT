@@ -105,13 +105,6 @@
                 </ul>
 
             </div>
-            <%
-//                if (customer != null) {
-//                    if (customer.getStatus().equals("NotActive")) {
-//                        out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../Active'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
-//                    }
-//                }
-%>
         </div>
     </div>
     <!-- /Navigation -->
