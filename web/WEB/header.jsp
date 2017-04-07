@@ -48,7 +48,7 @@
 <header>  
     <div class="row">
         <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><span id="title">
-                    nhóm 5 
+                 Tivi-Shop 
                 </span></h1></div>
         <div class="search col-md-5 col-sm-6 col-xs-12 text-right" style="margin-top: 20px;">
             <form method="get" action="#">

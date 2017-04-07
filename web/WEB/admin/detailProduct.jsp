@@ -17,8 +17,6 @@
         <title>Chi tiết sản phẩm</title>
         <link rel="shortcut icon" href="stylesheet/img/devil-icon.png"> 
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>css/bootstrap.min.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="admincss/detailcss.css">
         <%@include file="header.jsp" %>  
     </head>

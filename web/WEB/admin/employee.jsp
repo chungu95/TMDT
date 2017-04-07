@@ -4,6 +4,8 @@
     Author     : DELL
 --%>
 
+<%@page import="dao.EmployeeDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,36 +24,59 @@
             }
         %>
 
-        <div id="wrapper">
+        <div id="">
             <jsp:include page="menu.jsp"></jsp:include>
 
-                <div id="rightContent">
-                    <h3>DANH SÁCH KHÁCH HÀNG</h3>
+                <div id="">
+                    <h1 style="position: center; margin-top: 50px;">DANH SÁCH NHÂN VIÊN</h3>
 
-                    <table class="data">
-                        <tr class="data">
-                            <th class="data">STT</th>
-                            <th class="data" >Mã Nhân viên</th>
-                            <th class="data">Họ tên</th>
-                            <th class="data">Nhóm quyền</th>                            
-                            <th  class="data">Tên Đăng nhập</th>
-                            <th  class="data"></th>
-                        </tr>
-                        <tr class="data">
-                            <td class="data">STT</td>
-                            <td class="data" >Mã Nhân viên</td>
-                            <td class="data">Họ tên</td>
-                            <td class="data">Nhóm quyền</td>                            
-                            <td  class="data">Tên Đăng nhập</td>
+                        <table class="data">
+                            <tr class="data">
+                                <th class="data">STT</th>
+                                <th class="data" >Mã Nhân viên</th>
+                                <th class="data">Họ tên</th>
+                                <th class="data">Nhóm quyền</th>                            
+                                <th  class="data">Tên Đăng nhập</th>
+                                <th  class="data">Mật khẩu</th>
+                                <th class="data"></th>
+                            </tr>
+                            <tr class="data">
+                            <%
+                                ArrayList<Employees> emp = EmployeeDAO.getAllEmployees();
+
+                                for (int i = 0; i < emp.size(); i++) {
+                            %>
+                        <form method="post" action="<%=request.getContextPath()%>/employeeControl">
+                            <input type="hidden" name="employeeID" value="<%=emp.get(i).getEmployeeID()%>" />
+                            <td class="data"><%=i + 1%></td>
+                            <td class="data" ><%=emp.get(i).getEmployeeID()%></td>
+                            <td class="data"><input type="text" class="form-control"  name="employeeName" value="<%=emp.get(i).getName()%>"></td>
+                            <td class="data">
+                                <select class="form-control"  name="role" value="<%=emp.get(i).getRole()%>">
+                                    <%
+                                        if (emp.get(i).getRole().equals("admin")) {
+                                            out.print("<option value='admin' selected>admin</option>"
+                                                    + "<option value='sale'>sale</option>");
+                                        } else{
+                                            out.print("<option value='admin' >admin</option>"
+                                                    + "<option value='sale' selected>sale</option>");
+                                        }
+                                    %>
+
+                                </select>
+                            </td>                            
+                            <td  class="data"><input type="text" class="form-control"  name="username" value="<%=emp.get(i).getUsername()%>"></td>
+                            <td  class="data"><input type="text" class="form-control"  name="pass"  placeholder="Mật khẩu"></td>
                             <td> 
-                                <a href="#edit" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Sửa</a>
-                                <a href="#del" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Xóa</a>
-                            </td>
+                                <button type="submit" class="button" name="sub" value="updateInfo">Sửa</button>
+                                <button type="submit" class="button" name="sub" value="pass">Đổi mật khẩu</button>                                
+                            </td>    </form>                        
                         </tr>
+                        <%}%>
                     </table>
 
-                </div>
-                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
 
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

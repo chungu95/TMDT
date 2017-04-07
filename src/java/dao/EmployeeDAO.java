@@ -20,21 +20,21 @@ import model.Employees;
  * @author ADMIN
  */
 public class EmployeeDAO {
-    
+
     @SuppressWarnings("null")
-    public static Employees getEmployeeByID(String employeeID){
+    public static Employees getEmployeeByID(String employeeID) {
         Employees employee = null;
-          Connection conn = Connector.getConnection();
+        Connection conn = Connector.getConnection();
         String sql = "SELECT * FROM Employees WHERE EmployeeID = ?";
         try (PreparedStatement pr = conn.prepareStatement(sql)) {
-            pr.setString(1, employeeID); 
+            pr.setString(1, employeeID);
             try (ResultSet rs = pr.executeQuery()) {
                 if (rs.next()) {
-                   employee.setEmployeeID(employeeID); 
-                   employee.setUsername(rs.getString("Username"));
-                   employee.setPassword(rs.getString("Password"));
-                   employee.setRole(rs.getString("Role"));
-                   employee.setName(rs.getString("Name")); 
+                    employee.setEmployeeID(employeeID);
+                    employee.setUsername(rs.getString("Username"));
+                    employee.setPassword(rs.getString("Password"));
+                    employee.setRole(rs.getString("Role"));
+                    employee.setName(rs.getString("Name"));
                 }
             }
         } catch (Exception ex) {
@@ -58,7 +58,7 @@ public class EmployeeDAO {
                 String Role = rs.getString("Role");
                 String Name = rs.getString("Name");
                 employees.add(new Employees(employeeID, Username, Password, Role, Name));
-            } 
+            }
         } catch (Exception ex) {
         } finally {
             Connector.close(con);
@@ -66,17 +66,13 @@ public class EmployeeDAO {
         return employees;
     }
 
-    public static boolean updateEmployee(Employees employee) {
+    public static boolean updatePass(String employeeID, String password) {
         int result = 0;
         Connection con = Connector.getConnection();
-        String sql = "UPDATE Employees SET Role = ?, Name = ?, Username = ?, Password = ? WHERE EmployeeID = ?;";
-        employee.setPassword(MD5.encryptMD5(employee.getPassword()));
-        try (PreparedStatement pr = con.prepareStatement(sql)) {
-            pr.setString(1, employee.getRole());
-            pr.setString(2, employee.getName());
-            pr.setString(3, employee.getUsername());
-            pr.setString(4, employee.getPassword());
-            pr.setString(5, employee.getEmployeeID());
+        String sql = "UPDATE Employees SET Password = ? WHERE EmployeeID= ?; ";
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, MD5.encryptMD5(password));
+            pr.setString(2, employeeID);
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -84,6 +80,46 @@ public class EmployeeDAO {
             Connector.close(con);
         }
         return (result != 0);
+    }
+
+    public static boolean updateEmployee(Employees employee) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Employees SET Role = ?, Name = ?, Username = ? WHERE EmployeeID = ?;";
+        employee.setPassword(MD5.encryptMD5(employee.getPassword()));
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, employee.getRole());
+            pr.setString(2, employee.getName());
+            pr.setString(3, employee.getUsername());
+//            pr.setString(4, employee.getPassword());
+            pr.setString(4, employee.getEmployeeID());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+
+    public static Employees getEmployees(String input) {
+        Employees emp = null;
+        Connection conn = Connector.getConnection();
+        String sql = "SELECT * FROM Employees WHERE EmployeeID= '" + input + "' OR Username = '" + input + "';";
+        try (PreparedStatement pr = conn.prepareStatement(sql);
+                ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                emp = new Employees();
+                emp.setEmployeeID(rs.getString("EmployeeID"));
+                emp.setUsername(rs.getString("Username"));
+                emp.setRole(rs.getString("Role"));
+                emp.setName(rs.getString("Name"));
+            }
+        } catch (SQLException ex) {
+        } finally {
+            Connector.close(conn);
+        }
+        return emp;
     }
 
     public static boolean insertEmployee(Employees employee) {
@@ -138,7 +174,7 @@ public class EmployeeDAO {
     }
 
     public static void main(String[] args) {
-        if (insertEmployee(new Employees("Đình Chung", "123", "Admin", "ChunGu"))) {
+        if (updateEmployee(new Employees("Trinh", "trinh", "Admin", "Trinh"))) {
             System.out.println("thành công!");
         } else {
             System.out.println("Thất bại!");

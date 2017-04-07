@@ -27,12 +27,9 @@
                     </div>
                     <div class="shortcutHome">
                         <a href="employee.jsp"><img src="admincss/img/list.png" style="width: 70%;"><br>Xem danh sách nhân viên</a>
-                    </div>
+                    </div>                     
                     <div class="shortcutHome">
-                        <a href=""><img src="admincss/img/AddUser.png" style="width: 70%;"><br>Thêm tài khoản khách hàng</a>
-                    </div>  
-                    <div class="shortcutHome">
-                        <a href=""><img src="admincss/img/addemployee.png" style="width: 70%;"><br>Thêm tài khoản nhân viên</a>
+                        <a href="insertEmployee.jsp"><img src="admincss/img/addemployee.png" style="width: 70%;"><br>Thêm tài khoản nhân viên</a>
                     </div>
                 </div>
                 <div class="clear"></div>

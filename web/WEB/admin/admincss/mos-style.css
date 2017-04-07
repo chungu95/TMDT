@@ -84,11 +84,11 @@ tr.data:hover small {color: #5b5b5b;}
 }
 .gagal {
 	border: 1px solid #e78686;
-	background: #ffe1e1 url(img/gagal.png) no-repeat left center;
+	background: #ffe1e1 ;
 	float: left;
 	width: 640px;
 	padding: 15px 10px 15px 50px;
-	font-size: 16px;
+	font-size: 20px;
 	letter-spacing: 1px;
 	margin: 10px 0 10px 0;
 	color: #e78686;
@@ -265,3 +265,5 @@ tr.data:hover small {color: #5b5b5b;}
 	border-top: 1px solid #dcdcdc;
 	background: #fff;
 }
+
+

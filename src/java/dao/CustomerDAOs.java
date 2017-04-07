@@ -186,13 +186,14 @@ public class CustomerDAOs {
             while (rs.next()) {
                 String customerID = rs.getString("CustomerID");
                 String customerName = rs.getString("CustomerName");
-                Date customerDoB = rs.getDate("DoB");
+                Date customerDoB = rs.getDate("DoB");             
                 String customerAdd = rs.getString("Address");
                 String customerEmail = rs.getString("Email");
                 String customerPhone = rs.getString("PhoneNumber");
                 int customerScore = rs.getInt("AccumulatedScore");
                 String customerUsername = rs.getString("Username");
-                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername));
+                String gender=rs.getString("gender");
+                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername,gender));
             }
         } catch (Exception ex) {
         } finally {

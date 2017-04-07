@@ -59,6 +59,18 @@ public class Customers implements Serializable {
         this.gender = gender;
     }
 
+    public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, Integer accumulatedScore, String username, String gender) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.doB = doB;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.accumulatedScore = accumulatedScore;
+        this.username = username;
+        this.gender = gender;
+    }
+
     
 
     

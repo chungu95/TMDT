@@ -68,7 +68,7 @@
             String date = day + "-" + month + "-" + year;
         %>
 
-        <form action="../CustomerControl" method="post" class="form" role="form">
+        <form action="<%=request.getContextPath()%>/CustomerControl" method="post" class="form" role="form">
             <div id="edit" class="collapse" style="margin-top: 100px;">
                 <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
                     <table class="table">
@@ -86,8 +86,8 @@
                         <tbody>
                             <tr>  
                         <input type="hidden" value="<%=customer.getCustomerID()%>" name="customerID">
-                        <td><input type="text" class="form-control"  name="Name" value="<%=customer.getCustomerName()%>" style="width: 50%;"></td>
-                        <td><input type="text" class="form-control" id="pickDate" name="DoB" value="alo" style="width: 300px; padding-left: 20px" required=""/></td>
+                        <td><input type="text" class="form-control"  name="Name" value="<%=customer.getCustomerName()%>" ></td>
+                        <td><input type="text" class="form-control" id="pickDate" name="DoB" value="<%=customer.getDoB()%>" required=""/></td>
                         <td>
                             <select name="sex"  class="form-control">  
                                 <%
@@ -102,9 +102,9 @@
                                 %>
                             </select>
                         </td>
-                        <td><input type="text" class="form-control"  name="address" value="<%=customer.getAddress()%>" style="width: 100%;"></td>
-                        <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" style="width: 50%;"></td>
-                        <td><input type="number" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" style="width: 50%;"></td>                                        
+                        <td><input type="text" class="form-control"  name="address" value="<%=customer.getAddress()%>" ></td>
+                        <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" ></td>
+                        <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" ></td>                                        
                         <td><button type="submit" class="btn btn-danger" name="cmd" value="updateInfo">Lưu</button></td>                           
                         </tr>                     
                         </tbody> 

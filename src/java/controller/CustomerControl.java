@@ -70,7 +70,7 @@ public class CustomerControl extends HttpServlet {
             response.sendRedirect("./WEB/index.jsp");
         }
     }
-    
+   
     private void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("text/html;charset=UTF-8"); 
         request.setCharacterEncoding("UTF-8"); 
