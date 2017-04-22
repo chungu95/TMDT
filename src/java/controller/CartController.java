@@ -59,7 +59,6 @@ public class CartController extends HttpServlet {
             }
         }
         if (productLocation == -1) {
-            System.out.println("yyy");
             product.setQuantity(1);
             cart.getListProduct().add(product);
             System.out.println(cart.getListProduct().size());

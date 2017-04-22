@@ -135,7 +135,7 @@
                                 <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Giá                            
                                     <span class="caret"></span></a>                            
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">dưới 5 triệu</a></li>    
+                                    <li><a href="#">dưới 5 triệuzz</a></li>    
                                     <li><a href="#">từ 5 - 7 triệu</a></li>
                                     <li><a href="#">Từ 7-10 triệu</a></li>
                                     <li><a href="#">Trên 10 triệu</a></li>
@@ -158,7 +158,7 @@
             <!--bar-->
             <!--content-->
             <div class="row">
-                <%                    String sql = "SELECT * FROM Products ORDER BY ProductName ;";
+                <%                    String sql = "SELECT * FROM Products WHERE ProductID LIKE '%%'";
 
                     ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
                     int maxProductDisplay = 4;

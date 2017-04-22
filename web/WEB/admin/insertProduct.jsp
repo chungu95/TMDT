@@ -18,14 +18,11 @@
         <%@include file="header.jsp" %>  
     </head>
     <body>
-     
-
             <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
                 <form method="post" action="<%=request.getContextPath()%>/insertProduct" enctype="multipart/form-data" acceptcharset="UTF-8">
                     <div id="rightContent">
                         <h3>THÊM SẢN PHẨM</h3>
-
                         <div class="informasi">
                             SẢN PHẨM
                         </div>
