@@ -154,13 +154,12 @@
                             <!--</div>-->
                         </td>
                     </table>     
-
                 </div>
             </div>
             <!--bar-->
             <!--content-->
             <div class="row">
-                <%                    String sql = "SELECT * FROM Products ORDER BY ProductName ;";
+                <%                    String sql = "SELECT * FROM Products WHERE ProductID LIKE '%%'";
 
                     ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
                     int maxProductDisplay = 4;
