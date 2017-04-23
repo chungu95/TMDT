@@ -35,7 +35,7 @@ public class insertProduct extends HttpServlet {
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 5;
 
-    private static final String uploadPath = "D:\\Hoc Tap\\TMDT\\TMDT\\web\\";
+    private static final String uploadPath = "E:\\Documents\\thuongmaidientu\\CODE\\TMDT\\web";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
