@@ -31,6 +31,9 @@
                     <div class="shortcutHome">
                         <a href="insertEmployee.jsp"><img src="admincss/img/addemployee.png" style="width: 70%;"><br>Thêm tài khoản nhân viên</a>
                     </div>
+                    <div class="shortcutHome">
+                        <a href="insertCustomer.jsp"><img src="admincss/img/AddUser.png" style="width: 70%;"><br>Thêm tài khoản Khách hàng</a>
+                    </div>
                 </div>
                 <div class="clear"></div>
             <jsp:include page="footer.jsp"></jsp:include>

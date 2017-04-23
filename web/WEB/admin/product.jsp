@@ -29,7 +29,7 @@
                         <a href="insertProduct.jsp"><img src="admincss/img/photo.png" ><br>Thêm sản phẩm</a>
                     </div>
                     <div class="shortcutHome">
-                        <a href=""><img src="admincss/img/addProduce.png" style="width: 70%;"><br>Thêm nhà sản xuất</a>
+                        <a href="insertProduce.jsp"><img src="admincss/img/addProduce.png" style="width: 70%;"><br>Thêm nhà sản xuất</a>
                     </div>  
                 </div>
                 <div class="clear"></div>

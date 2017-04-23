@@ -84,12 +84,12 @@
                                     <form method ="get" action ="../CartController">
                                         <input type="hidden" name ="productID" value="<%=product.getProductID()%>"/>
                                         <input type="hidden" name ="cmd" value="add"/>
-                                        <center><input type ="submit" style="color: red; background-color: #d0e9c6; padding: 4px ; font-weight: bold" value ="Thêm vào giỏ hàng"/></center>
+                                        <center><input type ="submit"  class="btn btn-success" style="color: #e4b9b9; background-color: #d0e9c6; padding: 4px ; font-weight: bold" value ="Thêm vào giỏ hàng"/></center>
                                     </form>
                                       
 
 
-                            <button type="button" class="btn btn-success">Mua ngay</button>
+                            <!--<button type="button" class="btn btn-success">Mua ngay</button>-->
                         </div>
                     </div>
                 </div>

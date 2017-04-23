@@ -204,13 +204,13 @@ public class CustomerDAOs {
 
     public static void main(String[] args) {
         Customers customers = new Customers();
-        customers.setCustomerID("KMW001KL");
+        customers.setCustomerID("KMW009KL");
         customers.setCustomerName("chungcoi");
         customers.setAddress("hcmc");
         customers.setDoB(DateConverter.date("10-02-1994"));
         customers.setEmail("aaa@gmail.com");
         customers.setGender("nữ");
-        if (CustomerDAOs.updateCustomer(customers)) {
+        if (CustomerDAOs.insertCustomer(customers)) {
             System.out.println("thànhcoong");
         } else {
             System.out.println("thất bại");

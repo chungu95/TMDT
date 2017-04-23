@@ -53,9 +53,9 @@
         <div class="search col-md-5 col-sm-6 col-xs-12 text-right" style="margin-top: 20px;">
             <form method="get" action="#">
 
-                <input type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm">
+<!--                <input type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm">
 
-                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                <button type="submit" class="btn btn-default">Tìm kiếm</button>-->
 
 
                 <%

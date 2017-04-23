@@ -253,3 +253,43 @@
         </div>
     </body>
 </html>
+ <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="margin-top: 15px;">
+                <div class="container-fluid">
+                    <div class="navbar-header"><a class="navbar-brand" href="#">Lọc sản phẩm</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-menubuilder">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle"  href="#">Thương hiệu                           
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">lg</a></li>    
+                                    <li><a href="#">lg</a></li>
+                                </ul> 
+                            </li>
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle" href="#">Giá                            
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">dưới 5 triệu</a></li>    
+                                    <li><a href="#">từ 5 - 7 triệu</a></li>
+                                    <li><a href="#">Từ 7-10 triệu</a></li>
+                                    <li><a href="#">Trên 10 triệu</a></li>
+                                </ul> 
+                            </li>
+                            <li class="dropdown">                            
+                                <a  class="dropdown-toggle" href="#">Kích thước Tivi                           
+                                    <span class="caret"></span></a>                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">32 inch</a></li>    
+                                    <li><a href="#">42 inch</a></li>
+                                    <li><a href="#">Từ 7-10 triệu</a></li>
+                                    <li><a href="#">Trên 10 triệu</a></li>
+                                </ul> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>

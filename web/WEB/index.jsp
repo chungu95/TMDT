@@ -115,44 +115,46 @@
             <!--</div>-->
 
             <!--bar-->
-            <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="margin-top: 15px;">
-                <div class="container-fluid">
-                    <div class="navbar-header"><a class="navbar-brand" href="#">Lọc sản phẩm</a>
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-menubuilder">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li class="dropdown">                            
-                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Thương hiệu                           
-                                    <span class="caret"></span></a>                            
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">lg</a></li>    
-                                    <li><a href="#">lg</a></li>
-                                </ul> 
-                            </li>
-                            <li class="dropdown">                            
-                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Giá                            
-                                    <span class="caret"></span></a>                            
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">dưới 5 triệu</a></li>    
-                                    <li><a href="#">từ 5 - 7 triệu</a></li>
-                                    <li><a href="#">Từ 7-10 triệu</a></li>
-                                    <li><a href="#">Trên 10 triệu</a></li>
-                                </ul> 
-                            </li>
-                            <li class="dropdown">                            
-                                <a  class="dropdown-toggle" data-toggle="dropdown"  href="#">Kích thước Tivi                           
-                                    <span class="caret"></span></a>                            
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">32 inch</a></li>    
-                                    <li><a href="#">42 inch</a></li>
-                                    <li><a href="#">Từ 7-10 triệu</a></li>
-                                    <li><a href="#">Trên 10 triệu</a></li>
-                                </ul> 
-                            </li>
-                        </ul>
-                    </div>
+            <div class="panel panel-danger" style="margin-top: 20px;">
+                <div class="panel-heading">Lọc sản phẩm</div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm"> <br>
+                    <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                    <table>
+                        <tr>
+
+                        <h4>Thương Hiệu</h4>
+                        <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
+
+                            for (int i = 0; i < produce.size(); i++) {
+                        %>
+                        <td ><a href="#"> <%=produce.get(i).getProduceName()%></a></td>
+
+                        <%  }%> 
+
+                        </tr> 
+                        <tr>
+
+                            <td><h4>Giá bán</h4></td>                            
+                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu    </td>  <td></td>                                
+                            <td ><input type="checkbox" id="inlineCheckbox1" value="option1" > từ 5-7 triệu  </td>   <td></td>                             
+                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu </td>   <td></td>                                  
+                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu</td>
+
+                        </tr>                         
+                        <td >
+                            <!--<div class="brands_products" style="margin-right: 100px;">-->
+                            <h4>Kích thước Tivi</h4>
+                            <div class="brands-name " style="color: #003399;">                            
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 32 inch <br>                                     
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 40 inch<br>                                    
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 43 inch<br>                                    
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 50 inch<br>
+                            </div>
+                            <!--</div>-->
+                        </td>
+                    </table>     
+
                 </div>
             </div>
             <!--bar-->

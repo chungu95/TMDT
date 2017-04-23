@@ -71,10 +71,84 @@
                         <td class="hidden-xs text-center"><strong>Tổng TiVi: <%=cart.getTotalQuantity()%></strong>
                         <td class="hidden-xs text-center"><strong>Tổng tiền: <%=cart.getTotalPrice()%></strong>
 
-                        <td><a href="index.jsp" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a></td> 
+                        <td><button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Thanh toán</button></td> 
                     </tr> 
                 </tfoot> 
             </table>
         </div>
+
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">THÔNG TIN ĐƠN HÀNG </h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <table id="cart" class="table table-hover table-condensed"> 
+                            <thead> 
+                                <tr> 
+                                    <th style="width:50%">Tên sản phẩm</th>                                      
+                                    <th style="width:8%">Số lượng</th> 
+                                    <th style="width:22%" class="text-center">Thành tiền</th> 
+                                    <th style="width:10%"> </th> 
+                                </tr> 
+                            </thead> 
+                            <tbody>
+
+                                <%                        for (int i = 0; i < cart.getListProduct().size(); i++) {
+                                %>
+                                <tr> 
+
+                                    <td data-th="Product"> 
+                                        <div class="row"> 
+
+                                            <div class="col-sm-10"> 
+                                                <h4 class="nomargin"><%=cart.getListProduct().get(i).getProductName()%></h4> 
+
+                                            </div>
+                                        </div> 
+                                    </td>                                     
+                                    <td data-th="Quantity"><input class="form-control text-center" value="<%=cart.getListProduct().get(i).getQuantity()%>" type="number">
+                                    </td> 
+                                    <td data-th="Subtotal" class="text-center"><%=(cart.getListProduct().get(i).getPrice() * cart.getListProduct().get(i).getQuantity())%></td> 
+                                  </tr> 
+                                <%}%>
+                            </tbody>
+                            <tfoot> 
+
+                                <tr> 
+                                    
+                                    <td colspan="1" class="hidden-xs"> </td>   
+                                    <td class="hidden-xs text-center"><strong></strong>
+                                    <td class="hidden-xs text-center"><strong>Tạm tính : <%=cart.getTotalPrice()%></strong></td>
+                                </tr> 
+                                <tr>
+                                    <td colspan="1" class="hidden-xs"> </td>   
+                                    <td class="hidden-xs text-center"><strong></strong>
+                                    <td class="hidden-xs text-center"><strong>Phí vận chuyển : </strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" class="hidden-xs"> </td>   
+                                    <td class="hidden-xs text-center"><strong></strong>
+                                    <td class="hidden-xs text-center"><strong>Tổng tiền thanh toán : </strong></td>
+                                </tr>
+                            </tfoot> 
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h2> Vui lòng nhập địa chỉ email</h2>
+                        <input type="text" class="form-control" name="email" placeholder="nhập email" required=""/><br>
+                        <a href="addressDelivery.jsp" class="btn btn-warning"><i class="fa fa-angle-left" ></i> Tiếp tục </a>                        
+                    </div>
+                </div>
+
+            </div>
+        </div> 
     </body>
 </html>

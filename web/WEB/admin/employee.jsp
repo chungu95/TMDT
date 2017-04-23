@@ -54,11 +54,11 @@
                             <td class="data">
                                 <select class="form-control"  name="role" value="<%=emp.get(i).getRole()%>">
                                     <%
-                                        if (emp.get(i).getRole().equals("admin")) {
-                                            out.print("<option value='admin' selected>admin</option>"
+                                        if (emp.get(i).getRole().equals("Admin")) {
+                                            out.print("<option value='Admin' selected>Admin</option>"
                                                     + "<option value='sale'>sale</option>");
                                         } else{
-                                            out.print("<option value='admin' >admin</option>"
+                                            out.print("<option value='Admin' >Admin</option>"
                                                     + "<option value='sale' selected>sale</option>");
                                         }
                                     %>

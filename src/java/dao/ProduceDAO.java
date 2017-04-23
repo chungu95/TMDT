@@ -6,9 +6,11 @@
 package dao;
 
 import connector.Connector;
+import function.RandomKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Produce;
 
@@ -24,6 +26,25 @@ public class ProduceDAO {
         String sql = "select * from Produce WHERE ProduceID = ?;";
         try (PreparedStatement pr = conn.prepareStatement(sql)) {
             pr.setString(1, id);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    produce = new Produce(rs.getString("ProduceID"), rs.getString("ProduceName"));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(conn);
+        }
+        return produce;
+    }
+
+    public static Produce getProduce(String Name) {
+        Produce produce = null;
+        Connection conn = Connector.getConnection();
+        String sql = "select * from Produce WHERE ProduceName = ?;";
+        try (PreparedStatement pr = conn.prepareStatement(sql)) {
+            pr.setString(1, Name);
             try (ResultSet rs = pr.executeQuery()) {
                 if (rs.next()) {
                     produce = new Produce(rs.getString("ProduceID"), rs.getString("ProduceName"));
@@ -54,12 +75,37 @@ public class ProduceDAO {
         return produce;
     }
 
+    public static boolean insertProduce(Produce pro) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "INSERT into Produce "
+                + "(ProduceID, ProduceName) "
+                + "VALUES (?,?)";
+        pro.setProduceID(RandomKey.randomKey());
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, pro.getProduceID());
+            pr.setString(2, pro.getProduceName());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+
+    }
+
     public static void main(String[] args) {
-        ArrayList<Produce> produce = ProduceDAO.getProduce();
-        produce.forEach((item) -> {
-            System.out.println(item.getProduceID() + " | " + item.getProduceName());
-        });
-        System.out.println(ProduceDAO.getProduceByID("12345678").getProduceName());
+//        ArrayList<Produce> produce = ProduceDAO.getProduce();
+//        produce.forEach((item) -> {
+//            System.out.println(item.getProduceID() + " | " + item.getProduceName());
+//        });
+//        System.out.println(ProduceDAO.getProduceByID("12345678").getProduceName());
+        if (insertProduce(new Produce("018", "Trinh"))) {
+            System.out.println("thành công!");
+        } else {
+            System.out.println("Thất bại!");
+        }
     }
 
 }
