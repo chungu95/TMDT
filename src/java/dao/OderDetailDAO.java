@@ -11,12 +11,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.OderDetails;
+import model.Oders;
 
 /**
  *
  * @author ADMIN
  */
 public class OderDetailDAO {
+    
+    public static boolean insertOderDetail(OderDetails oderDetail){
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "INSERT into OderDetails "
+                + "(OderID, ProductID, Quantity, Price) "
+                + "VALUES (?,?,?,?)";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, oderDetail.getOderID());
+            pr.setString(2, oderDetail.getProductID()); 
+            pr.setInt(3, oderDetail.getQuantity());
+            pr.setInt(4, oderDetail.getPrice()); 
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result!=0);
+    }
 
     public static ArrayList<OderDetails> getOderDetailByID(String id) {
         ArrayList<OderDetails> oderDetail = new ArrayList<>(); 
