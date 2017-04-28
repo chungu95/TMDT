@@ -21,9 +21,12 @@ public class Oders implements Serializable {
     private Date oderDate;
     private Date shipDate;
     private BigDecimal oderPrice;
+    private int price;
     private String paymentMethod;
     private String deliveryAddress;
     private String status;
+    private String CusID;
+    private String EmpID;
     private Customers customerID;
     private Employees employeeID;
     private List<OderDetails> oderDetailsList;
@@ -31,10 +34,48 @@ public class Oders implements Serializable {
     public Oders() {
     }
 
+    public Oders(String oderID, Date oderDate, Date shipDate, int price, String paymentMethod, String deliveryAddress, String status, String CusID, String EmpID) {
+        this.oderID = oderID;
+        this.oderDate = oderDate;
+        this.shipDate = shipDate;
+        this.price = price;
+        this.paymentMethod = paymentMethod;
+        this.deliveryAddress = deliveryAddress;
+        this.status = status;
+        this.CusID = CusID;
+        this.EmpID = EmpID;
+    }
+
+    public String getCusID() {
+        return CusID;
+    }
+
+    public void setCusID(String CusID) {
+        this.CusID = CusID;
+    }
+
+    public String getEmpID() {
+        return EmpID;
+    }
+
+    public void setEmpID(String EmpID) {
+        this.EmpID = EmpID;
+    }
+
+   
     public Oders(String oderID) {
         this.oderID = oderID;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+  
     public String getOderID() {
         return oderID;
     }

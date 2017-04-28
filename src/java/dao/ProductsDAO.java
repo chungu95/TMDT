@@ -59,7 +59,7 @@ public class ProductsDAO {
                     product = new Products(productID);
                     product.setProductID(rs.getString("ProductID"));
                     product.setProductName(rs.getString("ProductName"));
-                    product.setPrice(rs.getInt("Price")); 
+                    product.setPrice(rs.getInt("Price"));
                 }
             }
         } catch (Exception ex) {
@@ -96,12 +96,13 @@ public class ProductsDAO {
         return products;
     }
 
-    public static ArrayList<Products> getProducts(int start) {
+    public static ArrayList<Products> getProductsByProduceID(String ProduceID) {
         ArrayList<Products> products = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "SELECT * FROM Products ORDER BY ProductName ASC OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY ";
+//        String sql = "SELECT * FROM Products WHERE ProduceID = " + ProduceID + "'";
+        String sql = "SELECT * FROM Products WHERE ProduceID = ?";
         try (PreparedStatement pr = con.prepareCall(sql)) {
-            pr.setInt(1, start);
+            pr.setString(1, ProduceID);
             try (ResultSet rs = pr.executeQuery()) {
                 while (rs.next()) {
                     String ProductID = rs.getString("ProductID");
@@ -139,10 +140,9 @@ public class ProductsDAO {
 
         return quantity;
     }
-    
+
     // insertProduct: 
     // Cai nay ham khoi tao ba cho no khoi tao ten sp, ma nsx, gia tien, mota, so luong,linkanh, voi 1 cai nua la Product info nha
-
     public static boolean insertProduct(Products product) {
         int result1 = 0;
         boolean result = false;
@@ -215,19 +215,18 @@ public class ProductsDAO {
 
     public static void main(String[] args) {
 
-        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
-        ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
-        Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
-        if (ProductsDAO.insertProduct(product)) { 
-            System.out.println("thêm thành công");
-        } else {
-            System.out.println("thêm thất bại");
-        }
-
-////        ArrayList<Products> productss = ProductsDAO.getAllProduct();
-//        productss.forEach((item) -> {
-//            System.out.println(item.getProductID() + " | " + item.getProductName());
-//        });
+//        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
+//        ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
+//        Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
+//        if (ProductsDAO.insertProduct(product)) { 
+//            System.out.println("thêm thành công");
+//        } else {
+//            System.out.println("thêm thất bại");
+//        }
+        ArrayList<Products> product = ProductsDAO.getProductsByProduceID("008");
+        product.forEach((item) -> {
+            System.out.println(item.getProductID() + " | " + item.getProductName());
+        });
 //        System.out.println("---------------------------");
 //        ArrayList<Products> products = ProductsDAO.getProducts(2);
 //        products.forEach((item) -> {
