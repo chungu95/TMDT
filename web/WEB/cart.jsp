@@ -70,8 +70,13 @@
                         <td colspan="1" class="hidden-xs"> </td>   
                         <td class="hidden-xs text-center"><strong>Tổng TiVi: <%=cart.getTotalQuantity()%></strong>
                         <td class="hidden-xs text-center"><strong>Tổng tiền: <%=cart.getTotalPrice()%></strong>
-
-                        <td><button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Thanh toán</button></td> 
+                            <%
+                                if (session.getAttribute("customer") == null) {
+                                    out.print("<td><a href='login.jsp?act=payment' class='btn btn-success btn-lg'>Đăng nhập để thanh toán</button></td>");
+                                } else {
+                                    out.print("<td><button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal'>Thanh toán</button></td>");
+                                }
+                            %> 
                     </tr> 
                 </tfoot> 
             </table>
@@ -92,15 +97,15 @@
                         <table id="cart" class="table table-hover table-condensed"> 
                             <thead> 
                                 <tr> 
-                                    <th style="width:50%">Tên sản phẩm</th>                                      
-                                    <th style="width:8%">Số lượng</th> 
+                                    <th style="width:40%">Tên sản phẩm</th>                                      
+                                    <th style="width:18%">Số lượng</th> 
                                     <th style="width:22%" class="text-center">Thành tiền</th> 
                                     <th style="width:10%"> </th> 
                                 </tr> 
                             </thead> 
                             <tbody>
-
-                                <%                        for (int i = 0; i < cart.getListProduct().size(); i++) {
+                                <%
+                                    for (int i = 0; i < cart.getListProduct().size(); i++) {
                                 %>
                                 <tr> 
 
@@ -116,13 +121,13 @@
                                     <td data-th="Quantity"><input class="form-control text-center" value="<%=cart.getListProduct().get(i).getQuantity()%>" type="number">
                                     </td> 
                                     <td data-th="Subtotal" class="text-center"><%=(cart.getListProduct().get(i).getPrice() * cart.getListProduct().get(i).getQuantity())%></td> 
-                                  </tr> 
+                                </tr> 
                                 <%}%>
                             </tbody>
                             <tfoot> 
 
                                 <tr> 
-                                    
+
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td class="hidden-xs text-center"><strong></strong>
                                     <td class="hidden-xs text-center"><strong>Tạm tính : <%=cart.getTotalPrice()%></strong></td>

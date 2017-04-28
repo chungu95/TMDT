@@ -20,12 +20,10 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout"})
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout", "/PayLogin"})
 public class LoginController extends HttpServlet {
 
-
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
@@ -35,7 +33,11 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("customer", customer);
-                response.sendRedirect("./WEB/index.jsp");
+                if (request.getServletPath().equals("/LoginController")) {
+                    response.sendRedirect("./WEB/index.jsp");
+                }else if(request.getServletPath().equals("/PayLogin")){
+                    response.sendRedirect("./WEB/cart.jsp"); 
+                }
             }
         } catch (IOException ex) {
             response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");

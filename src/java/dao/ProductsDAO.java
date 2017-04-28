@@ -216,6 +216,7 @@ public class ProductsDAO {
     public static void main(String[] args) {
 
 //        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
+
 //        ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
 //        Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
 //        if (ProductsDAO.insertProduct(product)) { 

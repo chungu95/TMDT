@@ -6,8 +6,7 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -20,59 +19,39 @@ public class Oders implements Serializable {
     private String oderID;
     private Date oderDate;
     private Date shipDate;
-    private BigDecimal oderPrice;
-    private int price;
+    private int oderPrice;
     private String paymentMethod;
     private String deliveryAddress;
     private String status;
-    private String CusID;
-    private String EmpID;
-    private Customers customerID;
-    private Employees employeeID;
+    private String customerID;
+    private String employeeID;
     private List<OderDetails> oderDetailsList;
 
     public Oders() {
     }
 
-    public Oders(String oderID, Date oderDate, Date shipDate, int price, String paymentMethod, String deliveryAddress, String status, String CusID, String EmpID) {
+    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String status, String customerID, String employeeID) {
         this.oderID = oderID;
         this.oderDate = oderDate;
         this.shipDate = shipDate;
-        this.price = price;
+        this.oderPrice = oderPrice;
         this.paymentMethod = paymentMethod;
         this.deliveryAddress = deliveryAddress;
         this.status = status;
-        this.CusID = CusID;
-        this.EmpID = EmpID;
+        this.customerID = customerID;
+        this.employeeID = employeeID;
     }
 
-    public String getCusID() {
-        return CusID;
-    }
-
-    public void setCusID(String CusID) {
-        this.CusID = CusID;
-    }
-
-    public String getEmpID() {
-        return EmpID;
-    }
-
-    public void setEmpID(String EmpID) {
-        this.EmpID = EmpID;
-    }
-
-   
     public Oders(String oderID) {
         this.oderID = oderID;
     }
 
     public int getPrice() {
-        return price;
+        return oderPrice;
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.oderPrice = price;
     }
 
   
@@ -100,11 +79,11 @@ public class Oders implements Serializable {
         this.shipDate = shipDate;
     }
 
-    public BigDecimal getOderPrice() {
+    public int getOderPrice() {
         return oderPrice;
     }
 
-    public void setOderPrice(BigDecimal oderPrice) {
+    public void setOderPrice(int oderPrice) {
         this.oderPrice = oderPrice;
     }
 
@@ -132,19 +111,19 @@ public class Oders implements Serializable {
         this.status = status;
     }
 
-    public Customers getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Customers customerID) {
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
-    public Employees getEmployeeID() {
+    public String getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(Employees employeeID) {
+    public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 

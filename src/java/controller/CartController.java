@@ -69,8 +69,7 @@ public class CartController extends HttpServlet {
             cart.updateTotalPrice();
             cart.updateTotalQuantity();
         }
-        System.out.println(product.getQuantity() + " | " + cart.getTotalQuantity() + " | " + cart.getListProduct().size());
-        response.sendRedirect("./WEB/index.jsp");
+        response.sendRedirect("./WEB/cart.jsp");
     }
 
     @SuppressWarnings("null")

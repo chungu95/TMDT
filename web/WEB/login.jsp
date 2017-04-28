@@ -24,6 +24,10 @@
             if (session.getAttribute("customer") != null) {
                 response.sendRedirect("index.jsp");
             }
+            String actionLink = "../LoginController";
+            if(request.getParameter("act")!=null&&request.getParameter("act").equals("payment")){ 
+                actionLink = "../PayLogin"; 
+            }
         %>  
         <section id="main" >
             <div class="container">
@@ -34,7 +38,7 @@
                                 <h4> ĐĂNG NHẬP </h4>
                             </div>
                             <div class="panel-body">
-                                <form action="../LoginController" method="post" role="form">                        
+                                <form action="<%=actionLink%>" method="post" role="form">                        
                                     <div class="form-group">
                                         <label for="username">Tên đăng nhập</label>
                                         <input type="text" class="form-control" name="username" placeholder="nhập tên đăng nhập" required=""/>
