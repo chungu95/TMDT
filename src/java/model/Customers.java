@@ -27,6 +27,7 @@ public class Customers implements Serializable {
     private List<Comment> commentList;
     private List<Oders> odersList;
     private String gender;
+    private String status;
 
     public Customers() {
     }
@@ -55,6 +56,18 @@ public class Customers implements Serializable {
         this.address = address;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.gender = gender;
+    }
+
+    public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, Integer accumulatedScore, String username, String gender) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.doB = doB;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.accumulatedScore = accumulatedScore;
+        this.username = username;
         this.gender = gender;
     }
 
@@ -185,6 +198,16 @@ public class Customers implements Serializable {
     public void setOdersList(List<Oders> odersList) {
         this.odersList = odersList;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public int hashCode() {

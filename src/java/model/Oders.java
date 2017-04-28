@@ -6,8 +6,7 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -20,17 +19,31 @@ public class Oders implements Serializable {
     private String oderID;
     private Date oderDate;
     private Date shipDate;
-    private BigDecimal oderPrice;
+    private int oderPrice;
     private String paymentMethod;
     private String deliveryAddress;
     private String status;
-    private Customers customerID;
-    private Employees employeeID;
+    private String customerID;
+    private String employeeID;
     private List<OderDetails> oderDetailsList;
 
     public Oders() {
     }
 
+    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String status, String customerID, String employeeID) {
+        this.oderID = oderID;
+        this.oderDate = oderDate;
+        this.shipDate = shipDate;
+        this.oderPrice = oderPrice;
+        this.paymentMethod = paymentMethod;
+        this.deliveryAddress = deliveryAddress;
+        this.status = status;
+        this.customerID = customerID;
+        this.employeeID = employeeID;
+    }
+
+    
+    
     public Oders(String oderID) {
         this.oderID = oderID;
     }
@@ -59,11 +72,11 @@ public class Oders implements Serializable {
         this.shipDate = shipDate;
     }
 
-    public BigDecimal getOderPrice() {
+    public int getOderPrice() {
         return oderPrice;
     }
 
-    public void setOderPrice(BigDecimal oderPrice) {
+    public void setOderPrice(int oderPrice) {
         this.oderPrice = oderPrice;
     }
 
@@ -91,19 +104,19 @@ public class Oders implements Serializable {
         this.status = status;
     }
 
-    public Customers getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Customers customerID) {
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
-    public Employees getEmployeeID() {
+    public String getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(Employees employeeID) {
+    public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 

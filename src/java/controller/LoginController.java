@@ -8,8 +8,6 @@ package controller;
 import dao.CustomerDAOs;
 import function.RandomKey;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,21 +20,10 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout"})
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController", "/Logout", "/PayLogin"})
 public class LoginController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
@@ -46,7 +33,11 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("customer", customer);
-                response.sendRedirect("./WEB/index.jsp");
+                if (request.getServletPath().equals("/LoginController")) {
+                    response.sendRedirect("./WEB/index.jsp");
+                }else if(request.getServletPath().equals("/PayLogin")){
+                    response.sendRedirect("./WEB/cart.jsp"); 
+                }
             }
         } catch (IOException ex) {
             response.sendRedirect("./WEB/404.jsp?error=Connection timeout!");

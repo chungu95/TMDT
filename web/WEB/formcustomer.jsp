@@ -22,9 +22,22 @@
         <script src="./js/bootstrap-datepicker.js"></script>
     </head>
     <body>
-
+            <%
+                if(customer==null){
+                    return;
+                }
+            %>
         <div class="jumbotron" >               
-            <center><h3>THÔNG TIN KHÁCH HÀNG</h3> </center>            
+            <center>
+                <h3>THÔNG TIN KHÁCH HÀNG</h3> 
+                <%
+                    if (customer != null) {
+                    if (customer.getStatus().equals("NotActive")) {
+                        out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../SendVerify'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
+                    }
+                }
+                %>
+            </center>            
         </div>
         <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
             <table class="table">
@@ -68,7 +81,7 @@
             String date = day + "-" + month + "-" + year;
         %>
 
-        <form action="../CustomerControl" method="post" class="form" role="form">
+        <form action="<%=request.getContextPath()%>/CustomerControl" method="post" class="form" role="form">
             <div id="edit" class="collapse" style="margin-top: 100px;">
                 <div class="table-bordered " style="font-size: 15px; border-color: black;" >          
                     <table class="table">
@@ -86,8 +99,8 @@
                         <tbody>
                             <tr>  
                         <input type="hidden" value="<%=customer.getCustomerID()%>" name="customerID">
-                        <td><input type="text" class="form-control"  name="Name" value=" <%=customer.getCustomerName()%>" style="width: 50%;"></td>
-                        <td><input type="text" class="form-control" id="pickDate" name="DoB" value="alo" style="width: 300px; padding-left: 20px" required=""/></td>
+                        <td><input type="text" class="form-control"  name="Name" value="<%=customer.getCustomerName()%>" ></td>
+                        <td><input type="text" class="form-control" id="pickDate" name="DoB" value="<%=customer.getDoB()%>" required=""/></td>
                         <td>
                             <select name="sex"  class="form-control">  
                                 <%
@@ -102,9 +115,9 @@
                                 %>
                             </select>
                         </td>
-                        <td><input type="text" class="form-control"  name="address" value=" <%=customer.getAddress()%>" style="width: 50%;"></td>
-                        <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" style="width: 50%;"></td>
-                        <td><input type="number" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" style="width: 50%;"></td>                                        
+                        <td><input type="text" class="form-control"  name="address" value="<%=customer.getAddress()%>" ></td>
+                        <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" ></td>
+                        <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" ></td>                                        
                         <td><button type="submit" class="btn btn-danger" name="cmd" value="updateInfo">Lưu</button></td>                           
                         </tr>                     
                         </tbody> 
@@ -130,7 +143,7 @@
                 <button type="submit" class="btn btn-danger" name="cmd" value="changePassword">Lưu</button>
             </form>   
         </div>
-        <script>
+        <script language="javascript" type="text/javascript">
             var password = document.getElementById("password")
                     , confirm_password = document.getElementById("retypepassword");
             function validatePassword() {

@@ -8,137 +8,43 @@ and open the template in the editor.
     Created on : Mar 7, 2017, 9:58:29 PM
     Author     : DELL
 */
-header{
-  .logo{
-    h1{
-      font-size: 35px;
-      }
-  }
-  .search{
-    padding: 20px;
-    
-  }  
-}
-header{
-    background: url(images/clouds.jpg) repeat 100%;
-}
-.navbar-default.navbar-nav>li>a:hover:not(.active){
-     background-color: #dca7a7;
-     color:#fff;
-}
-.navbar-default.navbar-nav>li>a.active{
-    color: #fff;
-    background-color: #dca7a7;
-}
-/*custom navbar*/
 #custom-bootstrap-menu.navbar-default .navbar-brand {
-    color: rgba(119, 119, 119, 1);
+    color: rgba(130, 125, 125, 1);
 }
 #custom-bootstrap-menu.navbar-default {
-    font-size: 18px;
+    font-size: 17px;
     background-color: rgba(248, 248, 248, 1);
-    border-width: 2px;
-    border-radius: 7px;
+    border-width: 1px;
+    border-radius: 4px;
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
-    color: rgba(119, 119, 119, 1);
+    color: rgba(15, 1, 1, 1);
     background-color: rgba(248, 248, 248, 0);
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
     color: rgba(51, 51, 51, 1);
-    background-color: rgba(209, 178, 178, 1);
+    background-color: rgba(219, 151, 151, 1);
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
 #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
 #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
     color: rgba(85, 85, 85, 1);
-    background-color: rgba(70, 112, 48, 1);
-    background: -webkit-linear-gradient(top, rgba(141, 148, 67, 1) 0%, rgba(70, 112, 48, 1) 100%);
-    background: linear-gradient(to bottom, rgba(141, 148, 67, 1) 0%, rgba(70, 112, 48, 1) 100%);
+    background-color: rgba(231, 231, 231, 1);
 }
 #custom-bootstrap-menu.navbar-default .navbar-toggle {
-    border-color: #467030;
+    border-color: #ddd;
 }
 #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
 #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
-    background-color: #467030;
+    background-color: #ddd;
 }
 #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
-    background-color: #467030;
+    background-color: #888;
 }
 #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
 #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
-    background-color: #f8f8f8;
-}
-/**/
-#wrapper{
-  .content{
-    .slider{
-      img{
-        width: 100%;
-        height: auto;
-      }
-    }
-    .box-index{
-      h2{
-        text-transform: uppercase;
-        font-size: 23px;
-        color: #444;
-        border-bottom: 3px solid #EEE;
-        position: relative;
-        margin-bottom: 20px;
-        padding: 5px 0;
-        &::before{
-          content: "";
-          display: block;
-          width: 70px;
-          background: #2673BB none repeat scroll 0% 0%;
-          height: 3px;
-          position: absolute;
-          bottom: -2px;
-          left: 0px;
-        }
-      }
-      .item{
-        margin-bottom: 20px;
-        h3{
-          font-size: 16px;
-        }
-      }
-    }
-  }
-  .sidebar{
-    .sidebar-item{
-      margin-bottom: 30px;
-      h4.widget-title{
-        text-transform: uppercase;
-        font-size: 20px;
-        color: #444;
-        border-bottom: 3px solid #EEE;
-        position: relative;
-        margin: 0;
-        margin-bottom: 20px;
-        padding: 5px 0;
-        &::before{
-          content: "";
-          display: block;
-          width: 70px;
-          background: #2673BB none repeat scroll 0% 0%;
-          height: 3px;
-          position: absolute;
-          bottom: -2px;
-          left: 0px;
-        }
-      }
-      .textwidget{
-        img{
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-  }
+    background-color: #888;
 }
 footer{
   background: #67b168;

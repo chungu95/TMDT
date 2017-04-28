@@ -7,9 +7,11 @@ package controller;
 
 import dao.CustomerDAOs;
 import function.DateConverter;
+import function.Email;
 import function.MD5;
 import function.RandomKey;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,7 @@ import model.Customers;
  *
  * @author ADMIN
  */
-@WebServlet(name = "RegController", urlPatterns = {"/RegController"})
+@WebServlet(name = "RegController", urlPatterns = {"/RegController", "/Verify", "/SendVerify"})
 public class RegController extends HttpServlet {
 
     /**
@@ -34,7 +36,7 @@ public class RegController extends HttpServlet {
      * @param response servlet response
      * @throws IOException if an I/O error occurs
      */
-    public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String customerID = RandomKey.randomKey();
         String username = request.getParameter("username");
         String customerName = request.getParameter("firstname")
@@ -49,17 +51,59 @@ public class RegController extends HttpServlet {
         String password = request.getParameter("password");
         Customers customer = new Customers(customerID, customerName, DoB,
                 address, email, phoneNumber, username, password, gender);
-
         if (CustomerDAOs.getCustomer(username) != null) {
             response.sendRedirect("./WEB/reg.jsp?error=existed");
         } else if (CustomerDAOs.insertCustomer(customer)) {
+            String hash = MD5.encryptMD5(customerID + username);
+            Email.sendVerifyEmail(customer, hash);
             HttpSession session = request.getSession();
             session.setAttribute("customer", customer);
             response.sendRedirect("./WEB/regsuccess.jsp");
         } else {
             response.sendRedirect("./WEB/reg.jsp");
         }
+    }
 
+    private void sendVerifyEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        Customers cus = (Customers) session.getAttribute("customer");
+        if (cus == null) {
+            response.sendRedirect("./WEB/index.jsp");
+        } else {
+            String hash = MD5.encryptMD5(cus.getCustomerID() + cus.getUsername());
+            Email.sendVerifyEmail(cus, hash);
+            out.print("<br /><center><b style='color:red'>Đã gửi email xác nhận </b>"
+                    + "<b><a href='./WEB/formcustomer.jsp'>Quay về</a></b></center>");
+        }
+    }
+
+    @SuppressWarnings("null")
+    private void verify(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String hash = request.getParameter("hash");
+        String customerID = request.getParameter("u");
+        Customers cus = CustomerDAOs.getCustomer(customerID);
+        if (cus != null) {
+            if (hash.equals(MD5.encryptMD5(cus.getCustomerID() + cus.getUsername()))) {
+                if (CustomerDAOs.activeAccount(cus.getCustomerID())) {
+                    HttpSession session = request.getSession();
+                    Customers customer = (Customers) session.getAttribute("customer");
+                    if (customer != null) {
+                        customer.setStatus("Activated");
+                        response.sendRedirect("./WEB/formcustomer.jsp");
+                    }
+                } else {
+                    out.print("<br /><center><b style='color:red'>Tài khoản đã được kích hoạt, mời bạn </b><b><a href='./WEB/login.jsp'>đăng nhập</a></b></center>");
+                }
+            } else {
+                response.sendRedirect("./WEB/reg.jsp");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,6 +118,17 @@ public class RegController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String servletPath = request.getServletPath();
+        switch (servletPath) {
+            case "/Verify":
+                verify(request, response);
+                break;
+            case "/SendVerify":
+                sendVerifyEmail(request, response);
+                break;
+            default:
+                response.sendRedirect("./WEB/index.jsp");
+        }
     }
 
     /**

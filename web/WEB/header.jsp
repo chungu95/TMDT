@@ -1,5 +1,5 @@
 
-<%@page import="dao.CartDAO"%>
+<%@page import="model.Cart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Products"%>
 <%@page import="model.Products"%>
@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/mycss.css">
+<link rel="stylesheet" href="css/headercss.css">
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <style>
@@ -45,83 +45,67 @@
 
     }
 </style>
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><span id="title">
-                        Nhóm 5
-                    </span></h1></div>
-            <div class="search col-md-5 col-sm-6 col-xs-12 text-right" style="margin-top: 20px;">
-                <form method="get" action="#">
-                    <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="" style="padding: 10px; margin-right: 5px;">
-                    <input type="submit" value="Tìm Kiếm">  
+<header>  
+    <div class="row">
+        <div class="logo col-md-6 col-sm-6 col-xs-12"><h1 style="color: yellow;"><span id="title">
+                 Tivi-Shop 
+                </span></h1></div>
+        <div class="search col-md-5 col-sm-6 col-xs-12 text-right" style="margin-top: 20px;">
+            <form method="get" action="#">
+
+<!--                <input type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm">
+
+                <button type="submit" class="btn btn-default">Tìm kiếm</button>-->
 
 
-                    <%
-                        int ssp = 0;
-                        String a="";
-                        try {
-                            HttpSession ss = request.getSession();
-                            Customers sa = (Customers) ss.getAttribute("customer");
-                           a= sa.getCustomerID();
-       
-                        } catch (Exception ex) {
-
-                        }
-                        int sl=0;
-                   
-                    %>
-                    <% for(int i=0;i<CartDAO.getListCart(a).size();i++){
-                        sl=sl+CartDAO.getListCart(a).get(i).getQuantity();
-                    }%>
-                    <div class="nut">
-                        <span><b><%=sl%></b></span>
-                        <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
-                    </div>
-
-
-                </form>           
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="header-menu"><center>
-                <!-- Menu do Bootstrap cung cấp có hỗ trợ menu trên di động -->
-                <div id="custom-bootstrap-menu" class="navbar navbar-default">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.jsp">TRANG CHỦ</a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">            
-                            <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a></li>
-                            <li><a href="checkorders.jsp">KIỂM TRA ĐƠN HÀNG</a></li>
-
-                            <%                            Customers customer = (Customers) session.getAttribute("customer");
-                                if (customer == null) {
-                                    out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
-                                            + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
-                                } else {
-
-                                    out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
-                                    out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
-                                    out.print("<div>");
-                                    out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
-                                    out.print("</div>");
-                                }
-                            %>
-
-                        </ul>
-                    </div>
+                <%
+                    Cart cart;
+                    if (session.getAttribute("cart") == null) {
+                        cart = new Cart();
+                    } else {
+                        cart = (Cart) session.getAttribute("cart");
+                    }
+                %>
+                <div class="nut"> 
+                    <span><b><%=cart.getTotalQuantity()%></b></span>
+                    <a href="cart.jsp"><img src="image/cave.png" alt=""/></a>
                 </div>
-                <!-- End Menu Bootstrap -->
-            </center>
+
+
+            </form>           
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- Navigation -->
+    <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+        <div class="container-fluid">
+
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="index.jsp">TRANG CHỦ</a>
+                    </li>
+                    <li><a href="Help.jsp">CHĂM SÓC KHÁCH HÀNG</a>
+                    </li>
+                    <li><a href="checkorders.jsp">KIỂM TRA ĐƠN HÀNG</a>
+                    </li>
+                    <%
+                        Customers customer = (Customers) session.getAttribute("customer");
+                        if (customer == null) {
+                            out.print("<li><a href='reg.jsp'>ĐĂNG KÝ</a></li>"
+                                    + "<li><a href='login.jsp'>ĐĂNG NHẬP</a></li>");
+                        } else {
+                            out.print("<li><a href='formcustomer.jsp'> XEM THÔNG TIN TÀI KHOẢN </a></li>");
+                            out.print("<li><a href='../Logout'> ĐĂNG XUẤT </a></li>");
+                            out.print("<div><center>");
+                            out.print("<li>Xin chào " + customer.getCustomerName() + "</li>");
+                            out.print("</center></div>");
+                        }
+                    %>
+
+                </ul>
+
+            </div>
         </div>
     </div>
+    <!-- /Navigation -->
 </header>

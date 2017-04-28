@@ -81,9 +81,15 @@
                                 </tbody>
                             </table>
 
-                                      <button   style="color: black; background-color: #d0e9c6;" <i type="button" class="fa fa-shopping-cart" > </i>  <a href="../add_Cart?msp=<%=product.getProductID()%>">Thêm vào giỏ hàng </a></button>  
+                                    <form method ="get" action ="../CartController">
+                                        <input type="hidden" name ="productID" value="<%=product.getProductID()%>"/>
+                                        <input type="hidden" name ="cmd" value="add"/>
+                                        <center><input type ="submit"  class="btn btn-success" style="color: #e4b9b9; background-color: #d0e9c6; padding: 4px ; font-weight: bold" value ="Thêm vào giỏ hàng"/></center>
+                                    </form>
+                                      
 
-                            <button type="button" class="btn btn-success">Mua ngay</button>
+
+                            <!--<button type="button" class="btn btn-success">Mua ngay</button>-->
                         </div>
                     </div>
                 </div>

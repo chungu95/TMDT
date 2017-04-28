@@ -42,6 +42,7 @@ public class CustomerDAOs {
                     customer.setUsername(rs.getString("Username"));
                     customer.setPassword(rs.getString("Password"));
                     customer.setGender(rs.getString("Gender"));
+                    customer.setStatus(rs.getString("Status")); 
                 }
             }
         } catch (SQLException ex) {
@@ -84,6 +85,22 @@ public class CustomerDAOs {
         String sql = "UPDATE Customers SET Password = ? WHERE CustomerID= ?; ";
         try (PreparedStatement pr = con.prepareCall(sql)) {
             pr.setString(1, MD5.encryptMD5(password));
+            pr.setString(2, customerID);
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
+    }
+    
+    public static boolean activeAccount(String customerID){
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Customers SET Status = ? WHERE CustomerID= ?; ";
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, "Activated");  
             pr.setString(2, customerID);
             result = pr.executeUpdate();
         } catch (Exception ex) {
@@ -169,13 +186,14 @@ public class CustomerDAOs {
             while (rs.next()) {
                 String customerID = rs.getString("CustomerID");
                 String customerName = rs.getString("CustomerName");
-                Date customerDoB = rs.getDate("DoB");
+                Date customerDoB = rs.getDate("DoB");             
                 String customerAdd = rs.getString("Address");
                 String customerEmail = rs.getString("Email");
                 String customerPhone = rs.getString("PhoneNumber");
                 int customerScore = rs.getInt("AccumulatedScore");
                 String customerUsername = rs.getString("Username");
-                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername));
+                String gender=rs.getString("gender");
+                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername,gender));
             }
         } catch (Exception ex) {
         } finally {
@@ -186,13 +204,13 @@ public class CustomerDAOs {
 
     public static void main(String[] args) {
         Customers customers = new Customers();
-        customers.setCustomerID("KMW001KL");
+        customers.setCustomerID("KMW009KL");
         customers.setCustomerName("chungcoi");
         customers.setAddress("hcmc");
         customers.setDoB(DateConverter.date("10-02-1994"));
         customers.setEmail("aaa@gmail.com");
         customers.setGender("nữ");
-        if (CustomerDAOs.updateCustomer(customers)) {
+        if (CustomerDAOs.insertCustomer(customers)) {
             System.out.println("thànhcoong");
         } else {
             System.out.println("thất bại");

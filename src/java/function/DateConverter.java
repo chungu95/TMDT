@@ -23,18 +23,18 @@ public class DateConverter {
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date startDate = df.parse(dateString);
             sqlDate = new Date(startDate.getTime());
-            System.out.println(sqlDate); 
+            System.out.println(sqlDate);
         } catch (ParseException ex) {
             System.out.println(ex);
         }
         return sqlDate;
     }
-    
+
     public static void main(String[] args) {
-        Date date = date("10-02-1995"); 
+        Date date = date("10-02-1995");
         Calendar car = Calendar.getInstance();
-        car.setTime(date); 
-        System.out.println(car.get(Calendar.YEAR));  
+        car.setTime(date);
+        System.out.println(car.get(Calendar.YEAR));
     }
 
 }

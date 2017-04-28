@@ -1,0 +1,73 @@
+<%-- 
+    Document   : content
+    Created on : Mar 31, 2017, 9:15:45 AM
+    Author     : DELL
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/mycss.css">
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<%@include file="header.jsp" %>  
+    </head>
+    <body>
+        
+        <div id="rightContent">
+	<h3>Dashboard</h3>
+	<div class="quoteOfDay">
+	<b>Quote of the day :</b><br>
+	<i style="color: #5b5b5b;">"If you think you can, you really can"</i>
+	</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/posting.png"><br>Tambah Posting</a>
+		</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/photo.png"><br>Upload Foto</a>
+		</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/halaman.png"><br>Tambah Halaman</a>
+		</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/template.png"><br>Pengaturan Template</a>
+		</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/quote.png"><br>Tambah QOD</a>
+		</div>
+		<div class="shortcutHome">
+		<a href=""><img src="admincss/img/bukutamu.png"><br>Data Buku Tamu</a>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id="smallRight"><h3>Informasi web anda</h3>
+		<table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+			<tr><td style="border: none;padding: 4px;">Jumlah posting</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Jumlah kategori</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Jumlah komentar diterbitkan</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Jumlah komentar belum diterbitkan</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Jumlah foto dalam galeri</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Jumlah data buku tamu</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+		</table>
+		</div>
+		<div id="smallRight"><h3>Statistik pengunjung web</h3>
+		
+		<table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+			<tr><td style="border: none;padding: 4px;">Pengunjung online</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Pengunjung hari ini</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Total pengunjung</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Hit hari ini</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+			<tr><td style="border: none;padding: 4px;">Total hit</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+		</table>
+		</div>
+        </div>
+         <div class="clear"></div>
+        
+    </body>
+</html>
