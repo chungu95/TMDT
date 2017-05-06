@@ -50,7 +50,7 @@ public class OderController extends HttpServlet {
         String paymentMethod = request.getParameter("paymentMethod");
         int price = cart.getTotalPrice();
         String customerID = customer.getCustomerID();
-        String employeeID = "4SY0235W";
+        String employeeID = "3T1MUGIX";
         String status = "Chưa thanh toán";
         System.out.println(OderID);
         ArrayList<OderDetails> orderDetails = new ArrayList<>();
