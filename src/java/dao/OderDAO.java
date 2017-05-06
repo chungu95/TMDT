@@ -24,9 +24,8 @@ public class OderDAO {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "INSERT into Oders "
-                + "(OderID, CustomerID, OderDate, ShipDate, OderPrice, PaymentMethod, DeliveryAddress, Status, EmployeeID) "
-                + "VALUES (?,?,?,?,?,?,?,?,?)";
-        oder.setOderID(RandomKey.randomKey());
+                + "(OderID, CustomerID, OderDate, ShipDate, OderPrice, PaymentMethod, DeliveryAddress, Status, EmployeeID, DeliveryPhone) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, oder.getOderID());
             pr.setString(2, oder.getCustomerID());
@@ -37,6 +36,7 @@ public class OderDAO {
             pr.setString(7, oder.getDeliveryAddress());
             pr.setString(8, oder.getStatus());
             pr.setString(9, oder.getEmployeeID());
+            pr.setString(10, oder.getDeliveryPhone());
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -44,11 +44,16 @@ public class OderDAO {
             Connector.close(con);
         }
         if (result != 0) {
-            oder.getOderDetailsList().forEach((item -> {
-                if (!OderDetailDAO.insertOderDetail(item)) {
-                    deleteOder(item.getOderID());
-                }
-            }));
+//            oder.getOderDetailsList().forEach((item -> {
+//                if (!OderDetailDAO.insertOderDetail(item)) {
+//                    deleteOder(item.getOderID());
+//                }
+//            }));
+      for(int i=0; i<oder.getOderDetailsList().size();i++){
+          if (!OderDetailDAO.insertOderDetail(oder.getOderDetailsList().get(i))) {
+                  deleteOder(oder.getOderDetailsList().get(i).getOderID());
+               } 
+      }
         }
         return (result != 0);
     }
@@ -81,9 +86,10 @@ public class OderDAO {
                 int oderPrice = rs.getInt("OderPrice");
                 String paymentMethod = rs.getString("PaymentMethod");
                 String deliveryAddress = rs.getString("DeliveryAddress");
+                String deliveryPhone = rs.getString("DeliveryPhone");
                 String status = rs.getString("Status");
                 String employeeID = rs.getString("EmployeeID");
-                oders.add(new Oders(oderID, oderDate, shipDate, oderPrice, paymentMethod, deliveryAddress, status, customerID, employeeID));
+                oders.add(new Oders(oderID, oderDate, shipDate, oderPrice, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID));
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -92,4 +98,9 @@ public class OderDAO {
         }
         return oders;
     }
+    
+    public static void main(String[] args) {
+        
+    }
+    
 }

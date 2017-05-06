@@ -19,24 +19,26 @@ import function.DateConverter;
  * @author DELL
  */
 public class OrderDAO {
-    public static ArrayList<Oders> getProductsByProduceID(String EmployeeID)  {
+
+    public static ArrayList<Oders> getProductsByProduceID(String EmployeeID) {
         ArrayList<Oders> oder = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "SELECT * FROM Oders WHERE EmployeeID = ?" ;
+        String sql = "SELECT * FROM Oders WHERE EmployeeID = ?";
         try (PreparedStatement pr = con.prepareCall(sql)) {
-            pr.setString(1,EmployeeID);
+            pr.setString(1, EmployeeID);
             try (ResultSet rs = pr.executeQuery()) {
                 while (rs.next()) {
                     String OderID = rs.getString("OderID");
                     String CustomerID = rs.getNString("CustomerID");
                     Date OderDate = rs.getDate("OderDate");
-                    Date ShipDate = rs.getDate("ShipDate");                   
+                    Date ShipDate = rs.getDate("ShipDate");
                     int Price = (rs.getInt("OderPrice"));
                     String PaymentMethod = rs.getString("PaymentMethod");
                     String DeliveryAddress = rs.getString("DeliveryAddress");
                     String Status = rs.getString("Status");
                     String employeeID = rs.getString("EmployeeID");
-                    oder.add(new Oders(OderID, (java.sql.Date) OderDate, (java.sql.Date) ShipDate,Price, PaymentMethod, DeliveryAddress, Status,CustomerID, employeeID));
+                    String deliveryPhone = rs.getString("DeliveryPhone");
+                    oder.add(new Oders(OderID, (java.sql.Date) OderDate, (java.sql.Date) ShipDate, Price, PaymentMethod, DeliveryAddress, deliveryPhone, Status, CustomerID, employeeID));
                 }
             }
         } catch (Exception ex) {

@@ -30,11 +30,20 @@ public class DateConverter {
         return sqlDate;
     }
 
-    public static void main(String[] args) {
-        Date date = date("10-02-1995");
+    public static Date getCurrentDate() {
+        java.util.Date date = Calendar.getInstance().getTime();
+        return new Date(date.getTime());
+    }
+    
+    public static String getShipDate(int increation){
         Calendar car = Calendar.getInstance();
-        car.setTime(date);
-        System.out.println(car.get(Calendar.YEAR));
+        car.add(Calendar.DATE, increation); 
+        return (String.format("%02d", car.get(Calendar.DAY_OF_MONTH)) + "-" + String.format("%02d", car.get(Calendar.MONTH)) + "-" + car.get(Calendar.YEAR));
+    }
+
+    public static String getFormatDate() {
+        Calendar car = Calendar.getInstance();
+        return (String.format("%02d", car.get(Calendar.DAY_OF_MONTH)) + "-" + String.format("%02d", car.get(Calendar.MONTH)) + "-" + car.get(Calendar.YEAR));
     }
 
 }
