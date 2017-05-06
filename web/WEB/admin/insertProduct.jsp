@@ -8,6 +8,7 @@
 <%@page import="dao.ProduceDAO"%>
 <%@page import="model.Produce"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,23 +16,24 @@
         <title>thêm sản phẩm</title>
         <link rel="shortcut icon" href="stylesheet/img/devil-icon.png"> 
         <link rel="stylesheet" type="text/css" href="admincss/mos-style.css"> 
+        <script src="<c:url value="/WEB/ckeditor/ckeditor.js" />"></script>
         <%@include file="header.jsp" %>  
     </head>
     <body>
-            <div id="wrapper">
+        <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
-                <form method="post" action="<%=request.getContextPath()%>/insertProduct" enctype="multipart/form-data" acceptcharset="UTF-8">
-                    <div id="rightContent">
-                        <h3>THÊM SẢN PHẨM</h3>
-                        <div class="informasi">
-                            SẢN PHẨM
-                        </div>
+            <form method="post" action="<%=request.getContextPath()%>/insertProduct" enctype="multipart/form-data" acceptcharset="UTF-8">
+                <div id="rightContent">
+                    <h3>THÊM SẢN PHẨM</h3>
+                    <div class="informasi">
+                        SẢN PHẨM
+                    </div>
 
-                        <table width="95%">
-                            <tr><td width="125px"><b>Nhập tên sản phẩm</b></td><td><input type="text" class="pendek" name="productName" required=""></td></tr>
+                    <table width="95%">
+                        <tr><td width="125px"><b>Nhập tên sản phẩm</b></td><td><input type="text" class="pendek" name="productName" required=""></td></tr>
 
-                            <tr><td><b>Chọn nhà sản xuất</b></td><td>                               
-                                    <select name="produceID" required="">
+                        <tr><td><b>Chọn nhà sản xuất</b></td><td>                               
+                                <select name="produceID" required="">
                                     <%            ArrayList<Produce> produce = ProduceDAO.getProduce();
 
                                         for (int i = 0; i < produce.size(); i++) {
@@ -42,10 +44,18 @@
                                     <%  }%>
                                 </select>
                             </td></tr>
-                            <tr><td><b>Giá sản phẩm</b></td><td><input type="number" class="sedang" name="price" required=""></td></tr>   
-                            <tr><td><b>Miêu tả</b></td><td><textarea name="description" required=""></textarea></td></tr>
-                            <tr><td><b>Số lượng thêm vào</b></td><td><input type="number" class="sedang" name="quantity" required=""></td></tr> 
-                            <tr><td><b>Hình ảnh</b></td><td><input type="file" name="productImage" accept="image/*" required=""/></td></tr>  
+                        <tr><td><b>Giá sản phẩm</b></td><td><input type="number" class="sedang" name="price" required=""></td></tr>   
+                        <tr><td><b>Miêu tả</b></td>
+                            <td>
+                               
+                                <textarea class="form-textarea" id="content" name="description" required=""></textarea>
+                                <script type="text/javascript" language="javascript">
+                                    CKEDITOR.replace('content', {width: '500px', height: '300px'});
+                                </script>
+                            </td>
+                        </tr>
+                        <tr><td><b>Số lượng thêm vào</b></td><td><input type="number" class="sedang" name="quantity" required=""></td></tr> 
+                        <tr><td><b>Hình ảnh</b></td><td><input type="file" name="productImage" accept="image/*" required=""/></td></tr>  
                     </table>
                     <div class="informasi">
                         THÔNG TIN CHI TIẾT SẢN PHẨM
