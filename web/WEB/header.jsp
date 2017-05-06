@@ -30,9 +30,6 @@
     .nut img{
         width: 100%;
         height: 100%;
-
-
-
     }
     .nut span {
         color: red;
@@ -62,9 +59,10 @@
                     Cart cart;
                     if (session.getAttribute("cart") == null) {
                         cart = new Cart();
-                    } else {
+                        session.setAttribute("cart", cart); 
+                    } else { 
                         cart = (Cart) session.getAttribute("cart");
-                    }
+                    }                    
                 %>
                 <div class="nut"> 
                     <span><b><%=cart.getTotalQuantity()%></b></span>
@@ -101,9 +99,7 @@
                             out.print("</center></div>");
                         }
                     %>
-
                 </ul>
-
             </div>
         </div>
     </div>

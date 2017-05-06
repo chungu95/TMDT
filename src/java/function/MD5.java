@@ -37,12 +37,4 @@ public class MD5 {
         return outPut;
     }
     
-    
-    
-    
-
-    public static void main(String[] args) {
-        System.out.println(MD5.encryptMD5("123")); 
-        String a = "123";
-    }
 }
