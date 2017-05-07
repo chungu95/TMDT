@@ -13,7 +13,6 @@ import java.util.List;
  *
  * @author ADMIN
  */
-
 public class Oders implements Serializable {
 
     private String oderID;
@@ -22,6 +21,7 @@ public class Oders implements Serializable {
     private int oderPrice;
     private String paymentMethod;
     private String deliveryAddress;
+    private String deliveryPhone;
     private String status;
     private String customerID;
     private String employeeID;
@@ -30,7 +30,7 @@ public class Oders implements Serializable {
     public Oders() {
     }
 
-    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String status, String customerID, String employeeID) {
+    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String deliveryPhone, String status, String customerID, String employeeID) {
         this.oderID = oderID;
         this.oderDate = oderDate;
         this.shipDate = shipDate;
@@ -40,12 +40,19 @@ public class Oders implements Serializable {
         this.status = status;
         this.customerID = customerID;
         this.employeeID = employeeID;
+        this.deliveryPhone = deliveryPhone;
     }
 
-    
-    
     public Oders(String oderID) {
         this.oderID = oderID;
+    }
+
+    public int getPrice() {
+        return oderPrice;
+    }
+
+    public void setPrice(int price) {
+        this.oderPrice = price;
     }
 
     public String getOderID() {
@@ -128,29 +135,21 @@ public class Oders implements Serializable {
         this.oderDetailsList = oderDetailsList;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (oderID != null ? oderID.hashCode() : 0);
-        return hash;
+    public String getDeliveryPhone() {
+        return deliveryPhone;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Oders)) {
-            return false;
-        }
-        Oders other = (Oders) object;
-        if ((this.oderID == null && other.oderID != null) || (this.oderID != null && !this.oderID.equals(other.oderID))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.Oders[ oderID=" + oderID + " ]";
+    public void setDeliveryPhone(String deliveryPhone) {
+        this.deliveryPhone = deliveryPhone;
     }
     
+    
+
+    public void updatePrice() {
+        this.oderPrice = 0;
+        this.oderDetailsList.forEach(item -> {
+            this.oderPrice += item.getPrice();
+        });
+    }
+
 }
