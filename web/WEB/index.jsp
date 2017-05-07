@@ -21,8 +21,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/mycss.css">
-        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+      
         <script type="text/javascript" src="js/bootstrap.min.js"></script>        
+      
         <%@include file="header.jsp" %>
         <style>
             #custom-bootstrap-menu.navbar-default .navbar-brand {
@@ -62,6 +63,21 @@
             #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
             #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
                 background-color: #888;
+            }
+            #ketqua{
+                position:absolute; 
+                top:0px;
+                left:0px;
+                width:96%;
+                margin-top:50px;
+                margin-left:2%; 
+                border:1px solid #ccc;
+                background:#ccc;
+                border-radius:0 0 5px 5px;
+                box-shadow: 5px 5px 5px #888;
+            }đ
+            #item:hover{
+                background:#888;
             }
         </style>
     </head>
@@ -116,9 +132,10 @@
 
             <!--bar-->
             <div class="panel panel-danger" style="margin-top: 20px;">
-                <div class="panel-heading">Lọc sản phẩm</div>
-                <div class="panel-body">
-                    <input type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm"> <br>
+                <div  class="panel-heading" >Lọc sản phẩm</div>
+                <div style="position: relative;" class="panel-body">
+                    <input id="tim" type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm" > <br>
+                    <span id="ketqua"></span>
                     <button type="submit" class="btn btn-default">Tìm kiếm</button>
                     <table>
                         <tr>
@@ -198,5 +215,25 @@
         <footer>
             <%@include file="footer.jsp" %>
         </footer>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var x_timer;
+                $("#tim").keyup(function (e) {
+                    clearTimeout(x_timer);
+                    var tensanpham = $(this).val();
+                    x_timer = setTimeout(function () {
+                        tim_sanpham_ajax(tensanpham);
+                    }, 2);
+                });
+
+                function tim_sanpham_ajax(tensanpham) {
+                    $.post('../Search_SanPham_Servlet', {'tensanpham': tensanpham }, function (data) {
+                        $("#ketqua").html(data);
+                        
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
