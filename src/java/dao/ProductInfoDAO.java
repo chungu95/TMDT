@@ -76,11 +76,11 @@ public class ProductInfoDAO {
                     productInfo = new ProductInfo();
                     productInfo.setProductID(productID);
                     productInfo.setProductType(rs.getString("ProductType"));
-                    productInfo.setModel(rs.getString("Model"));
-                    productInfo.setHdmi(rs.getString("HDMI"));
                     productInfo.setResolution(rs.getString("Resolution"));
-                    productInfo.setUsb(rs.getString("USB"));
-                    productInfo.setSize(rs.getString("Size"));
+                    productInfo.setHdmi(rs.getString("HDMI"));
+                    productInfo.setModel(rs.getString("USB"));
+                    productInfo.setUsb(rs.getString("Audio"));
+                    productInfo.setSize(rs.getString("VideoFormat"));
                     productInfo.setWarranty(rs.getString("Warranty"));
                 }
             }

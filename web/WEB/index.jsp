@@ -75,7 +75,7 @@
                 background:#ccc;
                 border-radius:0 0 5px 5px;
                 box-shadow: 5px 5px 5px #888;
-            }đ
+            }
             #item:hover{
                 background:#888;
             }
