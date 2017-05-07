@@ -21,9 +21,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/mycss.css">
-      
+
         <script type="text/javascript" src="js/bootstrap.min.js"></script>        
-      
+
         <%@include file="header.jsp" %>
         <style>
             #custom-bootstrap-menu.navbar-default .navbar-brand {
@@ -134,7 +134,7 @@
             <div class="panel panel-danger" style="margin-top: 20px;">
                 <div  class="panel-heading" >Lọc sản phẩm</div>
                 <div style="position: relative;" class="panel-body">
-                    <input id="tim" type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm" > <br>
+                    <input id="tim" type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm" /> <br>
                     <span id="ketqua"></span>
                     <button type="submit" class="btn btn-default">Tìm kiếm</button>
                     <table>
@@ -215,7 +215,7 @@
         <footer>
             <%@include file="footer.jsp" %>
         </footer>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
                 var x_timer;
@@ -228,12 +228,12 @@
                 });
 
                 function tim_sanpham_ajax(tensanpham) {
-                    $.post('../Search_SanPham_Servlet', {'tensanpham': tensanpham }, function (data) {
+                    $.post('../Search_SanPham_Servlet', {'tensanpham': tensanpham}, function (data) {
                         $("#ketqua").html(data);
-                        
                     });
                 }
             });
+
         </script>
     </body>
 </html>
