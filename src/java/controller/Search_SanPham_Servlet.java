@@ -38,22 +38,18 @@ public class Search_SanPham_Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        request.setCharacterEncoding("UTF-8"); 
         /* TODO output your page here. You may use following sample code. */
         String tensanpham = request.getParameter("tensanpham");
-        ArrayList<Products> list = new ArrayList<>();
+        ArrayList<Products> list = null;
         String kq = "";
         if (!tensanpham.equals("")) {
-
-            list = new ProductsDAO().search_SanPham(tensanpham);
-
+            list = ProductsDAO.search_SanPham(tensanpham);
         }
         for (int i = 0; i < list.size(); i++) {
             kq = kq + "<p id='item'  style='padding:5px; width:100%;'><a style='width:100%; ' href='productdetail.jsp?productID=" + list.get(i).getProductID() + "'>" + list.get(i).getProductName() + "</a></p>";
         }
-
         response.getWriter().write(kq);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

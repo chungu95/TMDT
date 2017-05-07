@@ -218,11 +218,10 @@ public class ProductsDAO {
 
     public static ArrayList<Products> search_SanPham(String s) {
         ArrayList<Products> list = new ArrayList<>();
-        try {
-            Connection con = Connector.getConnection();
-            String sql = "select * from Products where ProductName like '%" + s + "%'";
-            PreparedStatement ps=con.prepareCall(sql);
-            ResultSet rs = ps.executeQuery();
+        Connection con = Connector.getConnection();
+        String sql = "select * from Products where ProductName like '%" + s + "%'";
+        try (PreparedStatement ps = con.prepareCall(sql);
+                ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 Products sanpham = new Products();
                 sanpham.setProductID(rs.getString("ProductID"));
@@ -232,12 +231,14 @@ public class ProductsDAO {
                 sanpham.setQuantity(rs.getInt("Quantity"));
                 list.add(sanpham);
             }
-            ps = (PreparedStatement) con.prepareStatement(sql);
         } catch (SQLException ex) {
             System.out.println(ex.toString());
+        }finally{
+            Connector.close(con); 
         }
         return list;
     }
+
     public static void main(String[] args) {
         System.out.println(ProductsDAO.search_SanPham("s").get(0).getProductName());
 //=======
@@ -283,5 +284,4 @@ public class ProductsDAO {
 //>>>>>>> dev
     }
 
-   
 }
