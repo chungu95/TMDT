@@ -4,6 +4,8 @@
     Author     : DELL
 --%>
 
+<%@page import="dao.OderDAO"%>
+<%@page import="model.Oders"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,6 +20,16 @@
         <%@include file="header.jsp" %>
     </head>
     <body>
+        <%            Oders order = null;
+            if (request.getParameter("orderid") != null) {
+                order = OderDAO.getOrderByID(request.getParameter("orderid"));
+            }
+            if (order == null) {
+                out.print("<center><b style='color:red'>Không có hóa đơn này!</b></center>");
+                return;
+            }
+//            out.print(order.getOderDetailsList().get(0).getProductID()); 
+        %>
     <center><h1>THANH TOÁN QUA NGÂN HÀNG</h1></center>
     <marquee><h2 style="background-color: #b2dba1;">THANH TOÁN TRỰC TUYẾN AN TOÀN - NHANH CHÓNG - TIỆN LỢI </h2></marquee>
     <div class="row" style="margin-top: 50px;">
@@ -32,11 +44,11 @@
                         </tr><tr></tr>
                         <tr>
                             <td>   Mã đơn hàng      : </td>
-                            <td>mdh</td>
+                            <td><%=order.getOderID()%></td>
                         </tr><tr></tr>                        
                         <tr>
                             <td>Giá trị đơn hàng : </td>
-                            <td>gt đơn hàng</td>
+                            <td><%=order.getPrice()%></td>
                         </tr><tr></tr>
                     </table>    
                     <img src="image/bank.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
@@ -48,30 +60,33 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" >Tên ngân hàng :</label>
                 <div>
-                    tên ngân hàng
+                    Test BANK!
                 </div>
                 <br>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" >Số thẻ :</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ID" placeholder="Nhập số thẻ" name="ID"><br>
+            <form method="post" action="../PaymentController">
+                <input type="hidden" name="OrderID" value="<%=order.getOderID()%>"/>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Số thẻ :</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="ID" name="ID" placeholder="Nhập số thẻ" name="ID" required=""><br>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="pwd">Mật khẩu:</label>
-                <div class="col-sm-9">          
-                    <input type="password" class="form-control" id="pwd" placeholder="nhập mật khẩu" name="pwd">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Mật khẩu:</label>
+                    <div class="col-sm-9">          
+                        <input type="password" class="form-control" id="pwd" placeholder="nhập mã PIN" name="pwd" required="">
+                    </div>
                 </div>
-            </div>
-             <div class="form-group" >         
+                <div class="form-group" >         
                     <div class="col-sm-4" style="margin-top: 20px;">
                         <input type="submit" value="Thanh toán" class="btn btn-success btn-lg"/>
                     </div>
-                 <div class="col-sm-4" style="margin-top: 20px;">
+                    <div class="col-sm-4" style="margin-top: 20px;">
                         <input type="submit" value="Hủy" class="btn btn-warning btn-lg"/>
                     </div>
                 </div>
+            </form>
         </div>
     </div>
 

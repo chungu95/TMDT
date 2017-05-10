@@ -44,6 +44,22 @@ public class Oders implements Serializable {
         this.deliveryPhone = deliveryPhone;
     }
 
+    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String deliveryPhone, String status, String customerID, String employeeID, List<OderDetails> oderDetailsList) {
+        this.oderID = oderID;
+        this.oderDate = oderDate;
+        this.shipDate = shipDate;
+        this.oderPrice = oderPrice;
+        this.paymentMethod = paymentMethod;
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryPhone = deliveryPhone;
+        this.status = status;
+        this.customerID = customerID;
+        this.employeeID = employeeID;
+        this.oderDetailsList = oderDetailsList;
+    }
+    
+    
+
     public Oders(String oderID) {
         this.oderID = oderID;
     }

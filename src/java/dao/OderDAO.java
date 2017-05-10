@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import model.OderDetails;
 import model.Oders;
 
 /**
@@ -58,6 +59,7 @@ public class OderDAO {
         return (result != 0);
     }
 
+    @SuppressWarnings("null")
     public static Oders getOrderByID(String OrderID) {
         Oders order = null;
         Connection conn = Connector.getConnection();
@@ -84,16 +86,16 @@ public class OderDAO {
         } finally {
             Connector.close(conn);
         }
-        order.setOderDetail(OderDetailDAO.getOderDetail(OrderID));
+        order.setOderDetailsList(OderDetailDAO.getOderDetailByID(OrderID));
         return order;
     }
- 
-    public static boolean updateOrder(String orderID, String employeeID, String status){
-        int result = 0 ;
+
+    public static boolean updateOrder(String orderID, String employeeID, String status) {
+        int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Oders SET EmployeeID = ?, Status = ? WHERE OderID = ? ;";
-        try(PreparedStatement pr = con.prepareStatement(sql)){
-         pr.setString(1, employeeID);
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, employeeID);
             pr.setString(2, status);
             pr.setString(3, orderID);
             result = pr.executeUpdate();
@@ -102,10 +104,10 @@ public class OderDAO {
         } finally {
             Connector.close(con);
         }
-        return (result != 0);    
-        
+        return (result != 0);
+
     }
-    
+
     public static boolean deleteOder(String oderID) {
         int result = 0;
         Connection con = Connector.getConnection();
@@ -137,7 +139,36 @@ public class OderDAO {
                 String deliveryPhone = rs.getString("DeliveryPhone");
                 String status = rs.getString("Status");
                 String employeeID = rs.getString("EmployeeID");
-                oders.add(new Oders(oderID, oderDate, shipDate, oderPrice, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID));
+                ArrayList<OderDetails> oderDetail = OderDetailDAO.getOderDetailByID(oderID);
+                oders.add(new Oders(oderID, oderDate, shipDate, oderPrice, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID, oderDetail));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return oders;
+    }
+
+    public static ArrayList<Oders> getAllOrderByCustomerID(String id) {
+        ArrayList<Oders> oders = new ArrayList<>();
+        Connection con = Connector.getConnection();
+        String sql = "Select * from Oders WHERE CustomerID = '" + id + "';";
+        try (PreparedStatement pr = con.prepareCall(sql);
+                ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                String oderID = rs.getString("OderID");
+                String customerID = rs.getString("CustomerID");
+                Date oderDate = rs.getDate("OderDate");
+                Date shipDate = rs.getDate("ShipDate");
+                int oderPrice = rs.getInt("OderPrice");
+                String paymentMethod = rs.getString("PaymentMethod");
+                String deliveryAddress = rs.getString("DeliveryAddress");
+                String deliveryPhone = rs.getString("DeliveryPhone");
+                String status = rs.getString("Status");
+                String employeeID = rs.getString("EmployeeID");
+                ArrayList<OderDetails> oderDetail = OderDetailDAO.getOderDetailByID(oderID);
+                oders.add(new Oders(oderID, oderDate, shipDate, oderPrice, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID, oderDetail));
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -148,6 +179,8 @@ public class OderDAO {
     }
 
     public static void main(String[] args) {
+        Oders oder = getOrderByID("D165AVV2");
+        System.out.println(oder.getCustomerID() + " | "+oder.getOderDetailsList().get(0).getProductID()); 
 
     }
 

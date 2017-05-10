@@ -50,7 +50,7 @@ public class OderController extends HttpServlet {
         String paymentMethod = request.getParameter("paymentMethod");
         int price = cart.getTotalPrice();
         String customerID = customer.getCustomerID();
-        String employeeID = "12345678";
+        String employeeID = "9ZHI008U";
         String status = "Chưa thanh toán";
         System.out.println(OderID);
         ArrayList<OderDetails> orderDetails = new ArrayList<>();
@@ -69,10 +69,10 @@ public class OderController extends HttpServlet {
         if (OderDAO.insertOder(oder)) {
             if (paymentMethod.equals("cart")) {
                 session.removeAttribute("cart"); 
-                response.sendRedirect("./payment.jsp");
+                response.sendRedirect("./WEB/payment.jsp?orderid="+OderID); 
             } else if (paymentMethod.equals("delivery")) {
                 session.removeAttribute("cart"); 
-                response.sendRedirect("./checkorders.jsp");
+                response.sendRedirect("./WEB/checkorders.jsp");
             }
         }
     }
