@@ -134,56 +134,71 @@
             <div class="panel panel-danger" style="margin-top: 20px;">
                 <div  class="panel-heading" >Lọc sản phẩm</div>
                 <div style="position: relative;" class="panel-body">
-                    <input id="tim" type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm" /> <br>
-                    <span id="ketqua"></span>
-                    <button type="submit" class="btn btn-default">Tìm kiếm</button>
-                    <table>
-                        <tr>
+                    <form  method="get">
+                        <input id="tim" type="text" class="form-control" placeholder="Nhập từ muốn tìm kiếm" /> <br>
+                        <span id="ketqua"></span>
+                        <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                        <table>
 
-                        <h4>Thương Hiệu</h4>
-                        <%                        ArrayList<Produce> produce = ProduceDAO.getProduce();
+                            <tr>
+                            <h4>Thương Hiệu</h4>
+                            <%                            ArrayList<Produce> produce = ProduceDAO.getProduce();
+                                for (int i = 0; i < produce.size(); i++) {
+                            %>
 
-                            for (int i = 0; i < produce.size(); i++) {
-                        %>
-                        <td ><a href="#"> <%=produce.get(i).getProduceName()%></a></td>
+                            <td><input type="radio"  name="hang" value="<%=produce.get(i).getProduceID()%>"><%=produce.get(i).getProduceName()%>  </td> 
+                                <%  }%> 
 
-                        <%  }%> 
+                            </tr>      
 
-                        </tr> 
-                        <tr>
+                            <tr>
 
-                            <td><h4>Giá bán</h4></td>                            
-                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> dưới 5 triệu    </td>  <td></td>                                
-                            <td ><input type="checkbox" id="inlineCheckbox1" value="option1" > từ 5-7 triệu  </td>   <td></td>                             
-                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> Từ 7-10 triệu </td>   <td></td>                                  
-                            <td><input type="checkbox" id="inlineCheckbox1" value="option1"> Trên 10 triệu</td>
+                                <td><h4>Giá bán</h4></td>                            
+                                <td><input type="radio" name="gia" value="1"> dưới 5 triệu    </td>  <td></td>                                
+                                <td ><input type="radio"  name="gia"  value="2" > từ 5-7 triệu  </td>   <td></td>                             
+                                <td><input type="radio"  name="gia"  value="3"> Từ 7-10 triệu </td>   <td></td>                                  
+                                <td><input type="radio"  name="gia"  value="4"> Trên 10 triệu</td>
 
-                        </tr>                         
-                        <td >
-                            <!--<div class="brands_products" style="margin-right: 100px;">-->
-                            <h4>Kích thước Tivi</h4>
-                            <div class="brands-name " style="color: #003399;">                            
-                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 32 inch <br>                                     
-                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 40 inch<br>                                    
-                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 43 inch<br>                                    
-                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 50 inch<br>
-                            </div>
-                            <!--</div>-->
-                        </td>
-                    </table>     
+                            </tr>                         
+                            <td >
+                                <!--<div class="brands_products" style="margin-right: 100px;">-->
+                                <h4>Kích thước Tivi</h4>
+                                <div class="brands-name " style="color: #003399;">                            
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="32"> 32 inch <br>                                     
+                                    <input type="radio" id="inlineCheckbox1" name="size"  value="40"> 40 inch<br>                                    
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="43"> 43 inch<br>                                    
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="50"> 50 inch<br>
+                                </div>
+                                <!--</div>-->
+                            </td>
+                        </table>     
+                    </form>
+
                 </div>
             </div>
             <!--bar-->
             <!--content-->
             <div class="row">
-                <%                    String sql = "SELECT * FROM Products WHERE ProductID LIKE '%%'";
+                <%
+                    String hang = "";
+                    String gia = "";
+                    String size = "";
+                    if (request.getParameter("size") != null ) {
+                        size = request.getParameter("size"); 
+                    }
+                    if (request.getParameter("gia") != null ) {
+                        gia = request.getParameter("gia").trim(); 
+                    }
+                    if (request.getParameter("hang") != null ) {
+                        hang = request.getParameter("hang"); 
+                    }
 
-                    ArrayList<Products> product = ProductsDAO.getAllProduct(sql);
+                    ArrayList<Products> product = ProductsDAO.getProductsByProduceslocsp(hang, gia, size);
                     int maxProductDisplay = 4;
                     if (request.getParameter("max") != null) {
                         maxProductDisplay = Integer.parseInt(request.getParameter("max"));
                     }
-                    for (int i = 0; i < maxProductDisplay; i++) {
+                    for (int i = 0; i < maxProductDisplay && i<product.size(); i++) {
                 %>
                 <div class="col-md-3" style="width: 350px; height: 550px;">                   
                     <img class="img-responsive" src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">                   

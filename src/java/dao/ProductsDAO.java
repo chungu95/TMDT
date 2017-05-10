@@ -233,14 +233,100 @@ public class ProductsDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-        }finally{
-            Connector.close(con); 
+        } finally {
+            Connector.close(con);
         }
         return list;
     }
 
+    public static ArrayList<Products> getProductsByProduceslocsp(String ProduceID, String Price1, String Size) {
+        ArrayList<Products> products = new ArrayList<>();
+        Connection con = Connector.getConnection();
+//        String sql = "SELECT * FROM Products WHERE ProduceID = " + ProduceID + "'";
+        String sql = "";
+        if (ProduceID.equals("") && Price1.equals("") && Size.equals("")) {
+            sql = "SELECT* FROM Products ";
+        } else if (!ProduceID.equals("") && Price1.equals("") && Size.equals("")) {
+            sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "'";
+        } else if (ProduceID.equals("") && !Price1.equals("") && Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where   Price >10000000";
+            }
+
+        } else if (ProduceID.equals("") && Price1.equals("") && !Size.equals("")) {
+            sql = "SELECT *"
+                    + "FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID"
+                    + " where  Size='" + Size + "'";
+        } else if (!ProduceID.equals("") && !Price1.equals("") && Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and   Price >10000000";
+            }
+
+        } else if (!ProduceID.equals("") && Price1.equals("") && !Size.equals("")) {
+
+            sql = "SELECT *"
+                    + "FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID"
+                    + " where  Size='" + Size + "' and ProduceID='" + ProduceID + "'";
+        } else if (ProduceID.equals("") && !Price1.equals("") && !Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size ='" + Size + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and   Price >10000000";
+            }
+
+        } else if (!ProduceID.equals("") && !Price1.equals("") && !Size.equals("")) {
+
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size ='" + Size + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and   Price >10000000";
+            }
+        }
+
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+
+            try (ResultSet rs = pr.executeQuery()) {
+                while (rs.next()) {
+                    String ProductID = rs.getString("ProductID");
+                    String productName = rs.getNString("ProductName");
+                    String produceID = rs.getString("ProduceID");
+                    int Price = rs.getInt("Price");
+                    String Description = rs.getString("Description");
+                    int quantity = rs.getInt("Quantity");
+                    String ProductImg = rs.getString("ProductImg");
+                    products.add(new Products(ProductID, productName, Price, Description, quantity, ProductImg, produceID));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return products;
+    }
+
     public static void main(String[] args) {
-        System.out.println(ProductsDAO.search_SanPham("s").get(0).getProductName());
+        System.out.println(ProductsDAO.getProductsByProduceslocsp("002", "", "").toString());
 //=======
 ////        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
 //
