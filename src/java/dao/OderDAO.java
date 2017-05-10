@@ -31,7 +31,7 @@ public class OderDAO {
             pr.setString(2, oder.getCustomerID());
             pr.setDate(3, oder.getOderDate());
             pr.setDate(4, oder.getShipDate());
-            pr.setInt(5, oder.getOderPrice());
+            pr.setString(5, oder.getOderPrice() + "");
             pr.setString(6, oder.getPaymentMethod());
             pr.setString(7, oder.getDeliveryAddress());
             pr.setString(8, oder.getStatus());
