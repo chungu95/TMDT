@@ -87,7 +87,7 @@
 
                         <tr><td></td><td>                               
                                 <input type="submit" class="button" value="Thêm">
-                                <input type="reset" class="button" value="xóa dữ liệu">
+                                
                             </td></tr>
                     </table>
                 </div>

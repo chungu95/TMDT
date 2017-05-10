@@ -61,7 +61,28 @@ public class OderDetailDAO {
         }
         return oderDetail;
     }
-
+    public static OderDetails getOderDetail(String OderID){
+        OderDetails oderDetail=null;
+        Connection conn = Connector.getConnection();
+        String sql= "SELECT * FROM OderDetails WHERE OderID = ? ";
+         try (PreparedStatement pr = conn.prepareStatement(sql)) {
+            pr.setString(1, OderID);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                     oderDetail = new OderDetails();
+                     oderDetail.setOderID(OderID);
+                   oderDetail.setProductID(rs.getString("ProductID"));
+                    oderDetail.setQuantity(rs.getInt("Quantity"));
+                    oderDetail.setPrice(rs.getInt("Price"));                   
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(conn);
+        }
+        return oderDetail;
+    }
     public static void main(String[] args) {
         ArrayList<OderDetails> oder = OderDetailDAO.getOderDetailByID("12345678");
         oder.forEach((item)->{

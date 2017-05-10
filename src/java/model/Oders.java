@@ -25,6 +25,7 @@ public class Oders implements Serializable {
     private String status;
     private String customerID;
     private String employeeID;
+    private OderDetails oderDetail;
     private List<OderDetails> oderDetailsList;
 
     public Oders() {
@@ -65,6 +66,14 @@ public class Oders implements Serializable {
 
     public Date getOderDate() {
         return oderDate;
+    }
+
+    public OderDetails getOderDetail() {
+        return oderDetail;
+    }
+
+    public void setOderDetail(OderDetails oderDetail) {
+        this.oderDetail = oderDetail;
     }
 
     public void setOderDate(Date oderDate) {

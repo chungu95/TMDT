@@ -57,7 +57,7 @@
                                         if (emp.get(i).getRole().equals("Admin")) {
                                             out.print("<option value='Admin' selected>Admin</option>"
                                                     + "<option value='sale'>sale</option>");
-                                        } else{
+                                        } else {
                                             out.print("<option value='Admin' >Admin</option>"
                                                     + "<option value='sale' selected>sale</option>");
                                         }
@@ -69,7 +69,8 @@
                             <td  class="data"><input type="text" class="form-control"  name="pass"  placeholder="Mật khẩu"></td>
                             <td> 
                                 <button type="submit" class="button" name="sub" value="updateInfo">Sửa</button>
-                                <button type="submit" class="button" name="sub" value="pass">Đổi mật khẩu</button>                                
+                                <button type="submit" class="button" name="sub" value="pass">Đổi mật khẩu</button>
+                                <button type="submit" class="button" name="sub" value="delete">Xóa</button>                                
                             </td>    </form>                        
                         </tr>
                         <%}%>

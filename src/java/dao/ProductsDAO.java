@@ -178,15 +178,14 @@ public class ProductsDAO {
     public static boolean updateProduct(Products product) {
         int result = 0;
         Connection con = Connector.getConnection();
-        String sql = "UPDATE Products SET ProductName = ?, ProduceID = ?, Price = ?, Description = ?, Quantity = ?, ProductImg = ? WHERE ProductID = ?";
+        String sql = "UPDATE Products SET ProductName = ?, ProduceID = ?, Price = ?, Description = ?, Quantity = ? WHERE ProductID = ?";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, product.getProductName());
             pr.setString(2, product.getProduceID());
             pr.setInt(3, product.getPrice());
             pr.setString(4, product.getDescription());
-            pr.setInt(5, product.getQuantity());
-            pr.setString(6, product.getProductImg());
-            pr.setString(7, product.getProductID());
+            pr.setInt(5, product.getQuantity());            
+            pr.setString(6, product.getProductID());
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -217,17 +216,17 @@ public class ProductsDAO {
 
 //        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
 
-//        ProductInfo prinfo = new ProductInfo("Smart TV", "FULL HD", "CÓ", "3.0 5.0", "WTF?", "300x400", "5 tháng"); // khong them masp
-//        Products product = new Products("Led 2", 50000000, "hihi", 50, "002/t1.jpg", prinfo, "56723456"); //ko khoi tao masp.
-//        if (ProductsDAO.insertProduct(product)) { 
-//            System.out.println("thêm thành công");
-//        } else {
-//            System.out.println("thêm thất bại");
-//        }
-        ArrayList<Products> product = ProductsDAO.getProductsByProduceID("008");
-        product.forEach((item) -> {
-            System.out.println(item.getProductID() + " | " + item.getProductName());
-        });
+        ProductInfo prinfo = new ProductInfo("001","Smart Tivi", "FULL HD", "CÓ", "3.0 5.0", "UA40K5500AKXXV", "40 inch", "24 tháng"); // khong them masp
+       Products product = new Products("001","SMART TIVI", 9390000, "haha", 30, prinfo, "002"); //ko khoi tao masp.;
+       if (ProductsDAO.updateProduct(product)) { 
+            System.out.println("thêm thành công");
+        } else {
+            System.out.println("thêm thất bại");
+        }
+//        ArrayList<Products> product = ProductsDAO.getProductsByProduceID("008");
+//        product.forEach((item) -> {
+//            System.out.println(item.getProductID() + " | " + item.getProductName());
+//        });
 //        System.out.println("---------------------------");
 //        ArrayList<Products> products = ProductsDAO.getProducts(2);
 //        products.forEach((item) -> {

@@ -23,7 +23,7 @@
                     <h3>QUẢN LÝ SẢN PHẨM</h3>
 
                     <div class="shortcutHome">
-                        <a href="allProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
+                        <a href="showProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
                     </div>
                     <div class="shortcutHome">
                         <a href="insertProduct.jsp"><img src="admincss/img/photo.png" ><br>Thêm sản phẩm</a>

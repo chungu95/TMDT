@@ -49,15 +49,63 @@ public class OderDAO {
 //                    deleteOder(item.getOderID());
 //                }
 //            }));
-      for(int i=0; i<oder.getOderDetailsList().size();i++){
-          if (!OderDetailDAO.insertOderDetail(oder.getOderDetailsList().get(i))) {
-                  deleteOder(oder.getOderDetailsList().get(i).getOderID());
-               } 
-      }
+            for (int i = 0; i < oder.getOderDetailsList().size(); i++) {
+                if (!OderDetailDAO.insertOderDetail(oder.getOderDetailsList().get(i))) {
+                    deleteOder(oder.getOderDetailsList().get(i).getOderID());
+                }
+            }
         }
         return (result != 0);
     }
 
+    public static Oders getOrderByID(String OrderID) {
+        Oders order = null;
+        Connection conn = Connector.getConnection();
+        String sql = "SELECT * FROM Oders WHERE OderID =?";
+        try (PreparedStatement pr = conn.prepareStatement(sql)) {
+            pr.setString(1, OrderID);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    order = new Oders(OrderID);
+                    order.setOderID(rs.getString("OderID"));
+                    order.setCustomerID(rs.getString("CustomerID"));
+                    order.setOderDate(rs.getDate("OderDate"));
+                    order.setShipDate(rs.getDate("ShipDate"));
+                    order.setPrice(rs.getInt("OderPrice"));
+                    order.setPaymentMethod(rs.getString("PaymentMethod"));
+                    order.setDeliveryAddress(rs.getString("DeliveryAddress"));
+                    order.setStatus(rs.getString("Status"));
+                    order.setEmployeeID(rs.getString("EmployeeID"));
+                    order.setDeliveryPhone(rs.getString("DeliveryPhone"));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(conn);
+        }
+        order.setOderDetail(OderDetailDAO.getOderDetail(OrderID));
+        return order;
+    }
+ 
+    public static boolean updateOrder(String orderID, String employeeID, String status){
+        int result = 0 ;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Oders SET EmployeeID = ?, Status = ? WHERE OderID = ? ;";
+        try(PreparedStatement pr = con.prepareStatement(sql)){
+         pr.setString(1, employeeID);
+            pr.setString(2, status);
+            pr.setString(3, orderID);
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);    
+        
+    }
+    
     public static boolean deleteOder(String oderID) {
         int result = 0;
         Connection con = Connector.getConnection();
@@ -98,9 +146,9 @@ public class OderDAO {
         }
         return oders;
     }
-    
+
     public static void main(String[] args) {
-        
+
     }
-    
+
 }
