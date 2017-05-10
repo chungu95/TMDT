@@ -96,8 +96,8 @@
             </div>
         </div>
         <div class="container" id="contact">
-            <h2>Liên hệ</h2>    
-            <p>Bạn có câu hỏi, thắc mắc hãy liên hệ với chúng tôi: </p>
+            <h2>Bình luận</h2>    
+            <p>Bạn có câu hỏi, thắc mắc về sản phẩm hãy liên hệ với chúng tôi: </p>
             <form action="/action_page.php" target="_blank" style="margin-bottom: 100px;">
                 <p><input class="input border" type="text" placeholder="Tên Đăng nhập" required name="Name" style="width: 100%;"></p>
                 <p><input class="input border" type="text" placeholder="Email" required name="Email" style="width: 100%;"></p>

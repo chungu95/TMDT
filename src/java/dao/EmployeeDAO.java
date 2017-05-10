@@ -25,7 +25,7 @@ public class EmployeeDAO {
     public static Employees getEmployeeByID(String employeeID) {
         Employees employee = null;
         Connection conn = Connector.getConnection();
-        String sql = "SELECT * FROM Employees WHERE EmployeeID = ?";
+        String sql = "SELECT * FROM Employees WHERE EmployeeID = ? ";
         try (PreparedStatement pr = conn.prepareStatement(sql)) {
             pr.setString(1, employeeID);
             try (ResultSet rs = pr.executeQuery()) {
@@ -44,11 +44,32 @@ public class EmployeeDAO {
         }
         return employee;
     }
-
+    
+    public static ArrayList<Employees> getAllEmployeesSale() {
+        ArrayList<Employees> employees = new ArrayList<>();
+        Connection con = Connector.getConnection();
+        String sql = "SELECT * FROM Employees WHERE Role ='sale' AND NOT Note=N'đã xóa';";
+        try (PreparedStatement pr = con.prepareStatement(sql);
+                ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                String employeeID = rs.getString("EmployeeID");
+                String Username = rs.getString("Username");
+                String Password = rs.getString("Password");
+                String Role = rs.getString("Role");
+                String Name = rs.getString("Name");
+                employees.add(new Employees(employeeID, Username, Password, Role, Name));
+            }
+        } catch (Exception ex) {
+        } finally {
+            Connector.close(con);
+        }
+        return employees;
+    }
+    
     public static ArrayList<Employees> getAllEmployees() {
         ArrayList<Employees> employees = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "SELECT * FROM Employees ORDER BY Role;";
+        String sql = "SELECT * FROM Employees where NOT Note = N'đã xóa' ORDER BY Role;";
         try (PreparedStatement pr = con.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
@@ -145,9 +166,21 @@ public class EmployeeDAO {
         return (result != 0);
     }
 
-    public static boolean deleteEmployee() {
-        //to do
-        return false;
+    public static boolean deleteEmployee(String employeeID) {
+          int result = 0;
+        Connection con = Connector.getConnection();
+        String sql ="UPDATE Employees SET Note= ? WHERE EmployeeID = ?;";
+       
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1,"đã xóa");
+            pr.setString(2, employeeID);          
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
     }
 
     public static Employees checkLoginEmployee(String username, String password) {
@@ -174,10 +207,13 @@ public class EmployeeDAO {
     }
 
     public static void main(String[] args) {
-        if (updateEmployee(new Employees("Trinh", "trinh", "Admin", "Trinh"))) {
-            System.out.println("thành công!");
-        } else {
-            System.out.println("Thất bại!");
+//        if (deleteEmployee("3T1MUGIX")) {
+//            System.out.println("thành công!");
+//        } else {
+//            System.out.println("Thất bại!");
+//        }
+for (Employees v : new EmployeeDAO().getAllEmployees()) {
+            System.out.println(v.getEmployeeID() + "- " + v.getName());
         }
 
     }

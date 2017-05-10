@@ -181,15 +181,14 @@ public class ProductsDAO {
     public static boolean updateProduct(Products product) {
         int result = 0;
         Connection con = Connector.getConnection();
-        String sql = "UPDATE Products SET ProductName = ?, ProduceID = ?, Price = ?, Description = ?, Quantity = ?, ProductImg = ? WHERE ProductID = ?";
+        String sql = "UPDATE Products SET ProductName = ?, ProduceID = ?, Price = ?, Description = ?, Quantity = ? WHERE ProductID = ?";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, product.getProductName());
             pr.setString(2, product.getProduceID());
             pr.setInt(3, product.getPrice());
             pr.setString(4, product.getDescription());
-            pr.setInt(5, product.getQuantity());
-            pr.setString(6, product.getProductImg());
-            pr.setString(7, product.getProductID());
+            pr.setInt(5, product.getQuantity());            
+            pr.setString(6, product.getProductID());
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -325,6 +324,7 @@ public class ProductsDAO {
         return products;
     }
 
+
     public static void main(String[] args) {
         System.out.println(ProductsDAO.getProductsByProduceslocsp("002", "", "").toString());
 //=======
@@ -339,6 +339,7 @@ public class ProductsDAO {
 ////        }
 //        ArrayList<Products> product = ProductsDAO.getProductsByProduceID("008");
 //        product.forEach((item) -> {
+
 //            System.out.println(item.getProductID() + " | " + item.getProductName());
 //        });
 ////        System.out.println("---------------------------");

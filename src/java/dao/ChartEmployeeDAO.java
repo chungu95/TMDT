@@ -20,7 +20,7 @@ public class ChartEmployeeDAO {
         EmployeeDAO emp = new EmployeeDAO();
         OrderDAO pr = new OrderDAO();
         ArrayList<ChartEmployee> list = new ArrayList<>();
-        for (Employees pro : emp.getAllEmployees()) {
+        for (Employees pro : emp.getAllEmployeesSale()) {
             list.add(new ChartEmployee(pr.getProductsByProduceID(pro.getEmployeeID()).size(),
                     pro.getName()));
 

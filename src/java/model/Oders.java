@@ -25,6 +25,7 @@ public class Oders implements Serializable {
     private String status;
     private String customerID;
     private String employeeID;
+    private OderDetails oderDetail;
     private List<OderDetails> oderDetailsList;
 
     public Oders() {
@@ -42,6 +43,22 @@ public class Oders implements Serializable {
         this.employeeID = employeeID;
         this.deliveryPhone = deliveryPhone;
     }
+
+    public Oders(String oderID, Date oderDate, Date shipDate, int oderPrice, String paymentMethod, String deliveryAddress, String deliveryPhone, String status, String customerID, String employeeID, List<OderDetails> oderDetailsList) {
+        this.oderID = oderID;
+        this.oderDate = oderDate;
+        this.shipDate = shipDate;
+        this.oderPrice = oderPrice;
+        this.paymentMethod = paymentMethod;
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryPhone = deliveryPhone;
+        this.status = status;
+        this.customerID = customerID;
+        this.employeeID = employeeID;
+        this.oderDetailsList = oderDetailsList;
+    }
+    
+    
 
     public Oders(String oderID) {
         this.oderID = oderID;
@@ -65,6 +82,14 @@ public class Oders implements Serializable {
 
     public Date getOderDate() {
         return oderDate;
+    }
+
+    public OderDetails getOderDetail() {
+        return oderDetail;
+    }
+
+    public void setOderDetail(OderDetails oderDetail) {
+        this.oderDetail = oderDetail;
     }
 
     public void setOderDate(Date oderDate) {

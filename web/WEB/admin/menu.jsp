@@ -21,7 +21,7 @@
 	<li><a href="index.jsp">Trang chủ</a></li>
 	<li><a href="user.jsp">Người dùng</a></li><!--hệ thông-->
 	<li><a href="product.jsp">Sản phẩm</a></li> <!--bán hàng-->
-                 <li><a href="">Đơn hàng</a></li>   <!--bán hàng-->
+                 <li><a href="allOrder.jsp">Đơn hàng</a></li>   <!--bán hàng-->
                  <li><a href="statistical.jsp">Thống kê</a></li>   <!--hệ thống-->
              </ul>
          </div>

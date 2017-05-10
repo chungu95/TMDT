@@ -31,6 +31,10 @@
                     <div class="shortcutHome">
                         <a href="<%=request.getContextPath()%>/ChartEmployee"><img src="admincss/img/bukutamu.png"><br>Thống kê số hóa đơn của NV</a>
                     </div>
+                    
+                    <div class="shortcutHome">
+                        <a href="<%=request.getContextPath()%>/ChartOrder"><img src="admincss/img/list.png" style="width: 80%;"><br>Thống kê tình trạng đơn hàng</a>
+                    </div>
                 </div>
                 <div class="clear"></div>
             <jsp:include page="footer.jsp"></jsp:include>

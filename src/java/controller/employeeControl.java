@@ -38,8 +38,20 @@ public class employeeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        response.setContentType("text/html;charset=UTF-8");
-       // updateInfo(request, response);
+        // updateInfo(request, response);
 
+    }
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String employeeID = request.getParameter("employeeID");
+        if (EmployeeDAO.deleteEmployee(employeeID)) {
+            out.print("<center><b><font color='red'>xóa thành công! </font> <a href = './WEB/admin/employee.jsp'>quay về</a></b></center>");
+        } else {
+            out.print("<center><b><font color='red'>thất bại! </font> <a href = './WEB/admin/employee.jsp'>quay về</a></b></center>");
+        }
     }
 
     private void updateInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,12 +94,12 @@ public class employeeControl extends HttpServlet {
         String username = request.getParameter("username");
         String pass = request.getParameter("pass");
         Employees emp = new Employees(employeeID, username, pass, role, employeeName);
-        if(EmployeeDAO.getEmployees(username)!=null){
-             response.sendRedirect("./WEB/admin/insertEmployee.jsp?error=existed");
-        } else if(EmployeeDAO.insertEmployee(emp)){
+        if (EmployeeDAO.getEmployees(username) != null) {
+            response.sendRedirect("./WEB/admin/insertEmployee.jsp?error=existed");
+        } else if (EmployeeDAO.insertEmployee(emp)) {
             out.print("<center><b><font color='red'>Thêm thành công! </font> <a href = './WEB/admin/insertEmployee.jsp'>quay về</a></b></center>");
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -126,8 +138,11 @@ public class employeeControl extends HttpServlet {
             case "pass":
                 changePassword(request, response);
                 break;
-            case "insert" :
-                insertEmployee(request,response);
+            case "insert":
+                insertEmployee(request, response);
+                break;
+            case "delete":
+                deleteEmployee(request, response);
                 break;
         }
     }
