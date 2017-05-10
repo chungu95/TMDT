@@ -48,7 +48,7 @@ public class EmployeeDAO {
     public static ArrayList<Employees> getAllEmployeesSale() {
         ArrayList<Employees> employees = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "SELECT * FROM Employees WHERE Role ='sale' AND NOT Note like 'đã xóa';";
+        String sql = "SELECT * FROM Employees WHERE Role ='sale' AND NOT Note=N'đã xóa';";
         try (PreparedStatement pr = con.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
