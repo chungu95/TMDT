@@ -69,7 +69,7 @@ public class EmployeeDAO {
     public static ArrayList<Employees> getAllEmployees() {
         ArrayList<Employees> employees = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "SELECT * FROM Employees where Note != 'đã xóa' ORDER BY Role;";
+        String sql = "SELECT * FROM Employees where NOT Note = N'đã xóa' ORDER BY Role;";
         try (PreparedStatement pr = con.prepareStatement(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
