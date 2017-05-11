@@ -95,17 +95,4 @@ public class ProduceDAO {
 
     }
 
-    public static void main(String[] args) {
-//        ArrayList<Produce> produce = ProduceDAO.getProduce();
-//        produce.forEach((item) -> {
-//            System.out.println(item.getProduceID() + " | " + item.getProduceName());
-//        });
-//        System.out.println(ProduceDAO.getProduceByID("12345678").getProduceName());
-        if (insertProduce(new Produce("018", "Trinh"))) {
-            System.out.println("thành công!");
-        } else {
-            System.out.println("Thất bại!");
-        }
-    }
-
 }

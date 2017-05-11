@@ -15,6 +15,11 @@ import java.util.List;
 public class Products implements Serializable {
 
     private String productID;
+
+    @Override
+    public String toString() {
+        return "Products{" + "productID=" + productID + ", productName=" + productName + ", price=" + price + ", description=" + description + ", quantity=" + quantity + ", productImg=" + productImg + ", commentList=" + commentList + ", productInfo=" + productInfo + ", produceID=" + produceID + ", productImagesList=" + productImagesList + ", oderDetailsList=" + oderDetailsList + ", productImage=" + productImage + '}'+"\n";
+    }
     private String productName;
     private int price;
     private String description;
@@ -190,9 +195,6 @@ public class Products implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "model.Products[ productID=" + productID + " ]";
-    }
+  
 
 }

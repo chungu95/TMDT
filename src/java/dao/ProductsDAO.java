@@ -10,8 +10,8 @@ import function.RandomKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import model.ProductInfo;
 import model.Products;
 
 /**
@@ -212,47 +212,111 @@ public class ProductsDAO {
         return (result != 0);
     }
 
-    public static void main(String[] args) {
-
-//        // day la cai chay thu. Ba dua vao 2 cai ham khoi tao  nay de lay du lieu cho hop ly nha.
-
-        ProductInfo prinfo = new ProductInfo("001","Smart Tivi", "FULL HD", "CÓ", "3.0 5.0", "UA40K5500AKXXV", "40 inch", "24 tháng"); // khong them masp
-       Products product = new Products("001","SMART TIVI", 9390000, "haha", 30, prinfo, "002"); //ko khoi tao masp.;
-       if (ProductsDAO.updateProduct(product)) { 
-            System.out.println("thêm thành công");
-        } else {
-            System.out.println("thêm thất bại");
+    public static ArrayList<Products> search_SanPham(String s) {
+        ArrayList<Products> list = new ArrayList<>();
+        Connection con = Connector.getConnection();
+        String sql = "select * from Products where ProductName like '%" + s + "%'";
+        try (PreparedStatement ps = con.prepareCall(sql);
+                ResultSet rs = ps.executeQuery();) {
+            while (rs.next()) {
+                Products sanpham = new Products();
+                sanpham.setProductID(rs.getString("ProductID"));
+                sanpham.setProductName(rs.getString("ProductName"));
+                sanpham.setPrice(rs.getInt("Price"));
+                sanpham.setDescription(rs.getString("Description"));
+                sanpham.setQuantity(rs.getInt("Quantity"));
+                list.add(sanpham);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            Connector.close(con);
         }
-//        ArrayList<Products> product = ProductsDAO.getProductsByProduceID("008");
-//        product.forEach((item) -> {
-//            System.out.println(item.getProductID() + " | " + item.getProductName());
-//        });
-//        System.out.println("---------------------------");
-//        ArrayList<Products> products = ProductsDAO.getProducts(2);
-//        products.forEach((item) -> {
-//            System.out.println(item.getProductID() + " | " + item.getProductName());
-//        });
-//        ProductsDAO dao=new ProductsDAO();
-//        for(Products p : dao.getListProductByProduceID(003)){
-//            
-//            System.out.println(p.getProductID() +" - "+  p.getProductName() );
-//
-//
-//        System.out.println(ProductsDAO.getQuantityOfProduct());
-//
-//        Products pro = ProductsDAO.getProductByID("QWERTA");
-//        if (pro != null) {
-//            System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
-//        } else {
-//            System.out.println("null");
-//
-//        }
-        // Products pro = ProductsDAO.getProductByID("QWERTA");
-        //  if (pro != null) {
-        //     System.out.println(pro.getProductID() + " | " + pro.getProductName() + " | " + pro.getProductInfo().getModel());
-        //  } else {
-        //      System.out.println("null");
-        //  }
+        return list;
+    }
+
+    public static ArrayList<Products> getProductsByProduceslocsp(String ProduceID, String Price1, String Size) {
+        ArrayList<Products> products = new ArrayList<>();
+        Connection con = Connector.getConnection();
+//        String sql = "SELECT * FROM Products WHERE ProduceID = " + ProduceID + "'";
+        String sql = "";
+        if (ProduceID.equals("") && Price1.equals("") && Size.equals("")) {
+            sql = "SELECT* FROM Products ";
+        } else if (!ProduceID.equals("") && Price1.equals("") && Size.equals("")) {
+            sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "'";
+        } else if (ProduceID.equals("") && !Price1.equals("") && Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where   Price >10000000";
+            }
+
+        } else if (ProduceID.equals("") && Price1.equals("") && !Size.equals("")) {
+            sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size='" + Size + "'";
+        } else if (!ProduceID.equals("") && !Price1.equals("") && Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and   Price >10000000";
+            }
+
+        } else if (!ProduceID.equals("") && Price1.equals("") && !Size.equals("")) {
+
+            sql = "SELECT *"
+                    + "FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID"
+                    + " where  Size='" + Size + "' and ProduceID='" + ProduceID + "'";
+        } else if (ProduceID.equals("") && !Price1.equals("") && !Size.equals("")) {
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size ='" + Size + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size  ='" + Size + "' and   Price >10000000";
+            }
+
+        } else if (!ProduceID.equals("") && !Price1.equals("") && !Size.equals("")) {
+
+            if (Integer.parseInt(Price1) == 1) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size ='" + Size + "' and Price <5000000";
+            } else if (Integer.parseInt(Price1) == 2) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and  Price >= 5000000 and Price <= 7000000";
+            } else if (Integer.parseInt(Price1) == 3) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and  Price >7000000 and Price <= 10000000";
+            } else if (Integer.parseInt(Price1) == 4) {
+                sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where ProduceID ='" + ProduceID + "' and Size  ='" + Size + "' and   Price >10000000";
+            }
+        }
+
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+
+            try (ResultSet rs = pr.executeQuery()) {
+                while (rs.next()) {
+                    String ProductID = rs.getString("ProductID");
+                    String productName = rs.getNString("ProductName");
+                    String produceID = rs.getString("ProduceID");
+                    int Price = rs.getInt("Price");
+                    String Description = rs.getString("Description");
+                    int quantity = rs.getInt("Quantity");
+                    String ProductImg = rs.getString("ProductImg");
+                    products.add(new Products(ProductID, productName, Price, Description, quantity, ProductImg, produceID));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return products;
     }
 
 }

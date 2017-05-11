@@ -126,10 +126,4 @@ public class OrderDAO {
         return oder;
     }
 
-    public static void main(String[] args) {
-        ArrayList<Oders> produce = OrderDAO.getOrderByDate("01-02-2017","01-05-2017");
-        produce.forEach((item) -> {
-            System.out.println(item.getOderID());
-        });
-    }
 }

@@ -206,16 +206,4 @@ public class EmployeeDAO {
         return employee;
     }
 
-    public static void main(String[] args) {
-//        if (deleteEmployee("3T1MUGIX")) {
-//            System.out.println("thành công!");
-//        } else {
-//            System.out.println("Thất bại!");
-//        }
-for (Employees v : new EmployeeDAO().getAllEmployees()) {
-            System.out.println(v.getEmployeeID() + "- " + v.getName());
-        }
-
-    }
-
 }
