@@ -259,9 +259,7 @@ public class ProductsDAO {
             }
 
         } else if (ProduceID.equals("") && Price1.equals("") && !Size.equals("")) {
-            sql = "SELECT *"
-                    + "FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID"
-                    + " where  Size='" + Size + "'";
+            sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  Size='" + Size + "'";
         } else if (!ProduceID.equals("") && !Price1.equals("") && Size.equals("")) {
             if (Integer.parseInt(Price1) == 1) {
                 sql = "SELECT * FROM Products as sp INNER JOIN ProductInfo as inf on sp.ProductID=inf.ProductID where  ProduceID ='" + ProduceID + "' and Price <5000000";

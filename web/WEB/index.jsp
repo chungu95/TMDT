@@ -164,10 +164,11 @@
                                 <!--<div class="brands_products" style="margin-right: 100px;">-->
                                 <h4>Kích thước Tivi</h4>
                                 <div class="brands-name " style="color: #003399;">                            
-                                    <input type="radio" id="inlineCheckbox1" name="size" value="32"> 32 inch <br>                                     
-                                    <input type="radio" id="inlineCheckbox1" name="size"  value="40"> 40 inch<br>                                    
-                                    <input type="radio" id="inlineCheckbox1" name="size" value="43"> 43 inch<br>                                    
-                                    <input type="radio" id="inlineCheckbox1" name="size" value="50"> 50 inch<br>
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="32 inch"> 32 inch <br>                                     
+                                    <input type="radio" id="inlineCheckbox1" name="size"  value="40 inch"> 40 inch<br>                                    
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="43 inch"> 43 inch<br>                                    
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="50 inch"> 50 inch<br>
+                                    <input type="radio" id="inlineCheckbox1" name="size" value="55 inch"> 55 inch<br>
                                 </div>
                                 <!--</div>-->
                             </td>
