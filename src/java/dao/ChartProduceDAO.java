@@ -28,11 +28,4 @@ public class ChartProduceDAO {
         return list;
     }
 
-    public static void main(String[] args) {
-//  System.out.println(new ChartProduceDAO().getALL());
-       for (ChartProduce v : new ChartProduceDAO().getALL()) {
-            System.out.println(v.getProductName() + " - " + v.getValue());
-        }
-    }
-
 }

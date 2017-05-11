@@ -25,9 +25,4 @@ public class ChartOrderDAO {
         return list;
     }
 
-    public static void main(String[] args) {
-        for (ChartOrder v : new ChartOrderDAO().getAll()) {
-            System.out.println(v.getOrderStatus() + "- " + v.getValue());
-        }
-    }
 }

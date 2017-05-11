@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +22,21 @@ import model.Cart;
 import model.Customers;
 import model.OderDetails;
 import model.Oders;
-import model.Products;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "OderController", urlPatterns = {"/OderController"})
+@WebServlet(name = "OderController", urlPatterns = {"/OderController", "/CancelOrder"})
 public class OderController extends HttpServlet {
+
+    private void cancelOrder(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String orderID = request.getParameter("orderID");
+        OderDAO.updateOrder(orderID, "Đã hủy");
+        response.sendRedirect("./WEB/checkorders.jsp");
+    }
 
     private void saveCart(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,34 +50,39 @@ public class OderController extends HttpServlet {
         request.getParameter("name");
         System.out.println(request.getParameter("shipDate"));
         Date shipDate = DateConverter.date(request.getParameter("shipDate"));
-        System.out.println(shipDate+ " | "+ request.getParameter("shipDate"));
-        String deliveryPhone = request.getParameter("phone"); 
+        System.out.println(shipDate + " | " + request.getParameter("shipDate"));
+        String deliveryPhone = request.getParameter("phone");
         String deliveryAddress = request.getParameter("address");
         String paymentMethod = request.getParameter("paymentMethod");
         int price = cart.getTotalPrice();
         String customerID = customer.getCustomerID();
         String employeeID = "9ZHI008U";
-        String status = "Chưa thanh toán";
+        String status;
+        if (paymentMethod.equals("cart")) {
+            status = "Chưa thanh toán";
+        } else {
+            status = "Đang xác nhận";
+        }
         System.out.println(OderID);
         ArrayList<OderDetails> orderDetails = new ArrayList<>();
 //        cart.getListProduct().forEach((item) -> {  
 //            orderDetails.add(new OderDetails(OderID, item.getProductID(), item.getQuantity(), item.getQuantity() * item.getPrice()));
 //            System.out.println(item.getOderDetailsList().get(0).getOderID());
 //        }); 
-        for(int i=0;i<cart.getListProduct().size();i++){
+        for (int i = 0; i < cart.getListProduct().size(); i++) {
             orderDetails.add(new OderDetails(OderID, cart.getListProduct().get(i).getProductID(), cart.getListProduct().get(i).getQuantity(), cart.getListProduct().get(i).getQuantity() * cart.getListProduct().get(i).getPrice()));
             System.out.println(orderDetails.get(0).getOderID());
         }
-        
+
         Oders oder = new Oders(OderID, oderDate, shipDate, price, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID);
         oder.setOderDetailsList(orderDetails);
         System.out.println(oder.getOderID());
         if (OderDAO.insertOder(oder)) {
             if (paymentMethod.equals("cart")) {
-                session.removeAttribute("cart"); 
-                response.sendRedirect("./WEB/payment.jsp?orderid="+OderID); 
+                session.removeAttribute("cart");
+                response.sendRedirect("./WEB/payment.jsp?orderid=" + OderID);
             } else if (paymentMethod.equals("delivery")) {
-                session.removeAttribute("cart"); 
+                session.removeAttribute("cart");
                 response.sendRedirect("./WEB/checkorders.jsp");
             }
         }
@@ -91,7 +102,7 @@ public class OderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        saveCart(request, response);
+        cancelOrder(request, response); 
     }
 
     /**

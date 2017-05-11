@@ -168,7 +168,6 @@ public class Oders implements Serializable {
         this.deliveryPhone = deliveryPhone;
     }
     
-    
 
     public void updatePrice() {
         this.oderPrice = 0;

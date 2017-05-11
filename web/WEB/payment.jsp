@@ -22,14 +22,20 @@
     <body>
         <%            Oders order = null;
             if (request.getParameter("orderid") != null) {
+                try{
                 order = OderDAO.getOrderByID(request.getParameter("orderid"));
+                }catch(Exception ex){
+                }
             }
             if (order == null) {
                 out.print("<center><b style='color:red'>Không có hóa đơn này!</b></center>");
                 return;
+            } else if (order.getPaymentMethod().equals("delivery") || order.getStatus().equals("Đang giao hàng")) {
+                out.print("<center><b style='color:red'>Hóa đơn này đã được thanh toán hoặc sẽ được thanh toán khi nhận hàng</b></center>");
+                return;
             }
 //            out.print(order.getOderDetailsList().get(0).getProductID()); 
-        %>
+%>
     <center><h1>THANH TOÁN QUA NGÂN HÀNG</h1></center>
     <marquee><h2 style="background-color: #b2dba1;">THANH TOÁN TRỰC TUYẾN AN TOÀN - NHANH CHÓNG - TIỆN LỢI </h2></marquee>
     <div class="row" style="margin-top: 50px;">
@@ -89,7 +95,5 @@
             </form>
         </div>
     </div>
-
-
 </body>
 </html>

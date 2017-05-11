@@ -27,11 +27,5 @@ public class ChartEmployeeDAO {
         }
         return list;
     }
-    
-    public static void main(String[] args) {
-//  System.out.println(new ChartProduceDAO().getALL());
-       for (ChartEmployee v : new ChartEmployeeDAO().getALL()) {
-            System.out.println(v. getEmployeeName() + " - " + v.getValue());
-        }
-    }
+ 
 }
