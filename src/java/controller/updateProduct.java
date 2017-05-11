@@ -73,9 +73,9 @@ public class updateProduct extends HttpServlet {
         Products product = new Products(productID, productName, pri, description, quant, prinfo, produceID);
 
         if (ProductsDAO.updateProduct(product)) {
-            out.print("<center><b><font color='red'>sửa thành công! </font> <a href = './WEB/admin/updateProduct.jsp'>quay về</a></b></center>");
+            out.print("<center><b><font color='red'>sửa thành công! </font> <a href = './WEB/admin/showProduct.jsp'>quay về</a></b></center>");
         } else {
-            out.print("<center><b><font color='red'>thất bại! </font> <a href = './WEB/admin/updateProduct.jsp'>quay về</a></b></center>");
+            out.print("<center><b><font color='red'>thất bại! </font> <a href = './WEB/admin/showProduct.jsp'>quay về</a></b></center>");
         }
     }
 

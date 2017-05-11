@@ -117,11 +117,11 @@
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Tạm tính : <%=cart.getTotalPrice()%></strong></td>
                                 </tr> 
-                                <tr>
+<!--                                <tr>
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Phí vận chuyển : <font color="red">0</font></strong></td>
-                                    <!--<td class="hidden-xs text-center"><strong></strong></td>-->
-                                </tr>
+                                    <td class="hidden-xs text-center"><strong></strong></td>
+                                </tr>-->
                                 <tr>
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Tổng tiền thanh toán : <%out.print(cart.getTotalPrice() + 0);%></strong></td>                   

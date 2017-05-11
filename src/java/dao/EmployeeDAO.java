@@ -186,7 +186,7 @@ public class EmployeeDAO {
     public static Employees checkLoginEmployee(String username, String password) {
         Employees employee = null;
         Connection con = Connector.getConnection();
-        String sql = "SELECT EmployeeID, Role, Name FROM Employees WHERE Username = ? AND Password = ?;";
+        String sql = "SELECT EmployeeID, Role, Name FROM Employees WHERE Username = ? AND Password = ? AND NOT Note=N'đã xóa' ;";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, username);
             pr.setString(2, MD5.encryptMD5(password));

@@ -151,9 +151,9 @@ public class insertProduct extends HttpServlet {
         Products product = new Products(productName, price, description, quantity, image, prinfo, produceID);
 
         if (ProductsDAO.insertProduct(product)) {
-            out.print("<center><b><font color='red'>thêm thành công! </font> <a href = './WEB/admin/insertProduct.jsp'>quay về</a></b></center>");
+            out.print("<center><b><font color='red'>thêm thành công! </font> <a href = './WEB/admin/showProduct.jsp'>quay về</a></b></center>");
         } else {
-            out.print("<center><b><font color='red'>Thêm thất bại! </font> <a href = './WEB/admin/insertProduct.jsp'>quay về</a></b></center>");
+            out.print("<center><b><font color='red'>Thêm thất bại! </font> <a href = './WEB/admin/showProduct.jsp'>quay về</a></b></center>");
         }
     }
 

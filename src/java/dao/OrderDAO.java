@@ -66,7 +66,37 @@ public class OrderDAO {
         }
         return order;
     }
-
+    
+    public static ArrayList<Oders> getOrderByDate(String from, String to){
+        ArrayList<Oders> oder = new ArrayList<>();
+        Connection con = Connector.getConnection();
+         Date dateFrom = DateConverter.date(from);
+          Date dateTo = DateConverter.date(to);
+        String sql = "SELECT * FROM Oders WHERE OderDate  BETWEEN    '"+dateFrom + "'AND   '" + dateTo +  "';";
+        try (PreparedStatement pr = con.prepareCall(sql);
+                ResultSet rs = pr.executeQuery()) {
+                while (rs.next()) {
+                    String OderID = rs.getString("OderID");
+                    String CustomerID = rs.getNString("CustomerID");
+                    Date OderDate = rs.getDate("OderDate");
+                    Date ShipDate = rs.getDate("ShipDate");
+                    int Price = (rs.getInt("OderPrice"));
+                    String PaymentMethod = rs.getString("PaymentMethod");
+                    String DeliveryAddress = rs.getString("DeliveryAddress");
+                    String Status = rs.getString("Status");
+                    String employeeID = rs.getString("EmployeeID");
+                    String deliveryPhone = rs.getString("DeliveryPhone");
+                    oder.add(new Oders(OderID, (java.sql.Date) OderDate, (java.sql.Date) ShipDate, Price, PaymentMethod, DeliveryAddress, deliveryPhone, Status, CustomerID, employeeID));
+                }
+//        }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return oder;
+    }
+    
     public static ArrayList<Oders> getProductsByProduceID(String EmployeeID) {
         ArrayList<Oders> oder = new ArrayList<>();
         Connection con = Connector.getConnection();
@@ -97,9 +127,9 @@ public class OrderDAO {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> produce = OrderDAO.getOrderStatus();
+        ArrayList<Oders> produce = OrderDAO.getOrderByDate("01-02-2017","01-05-2017");
         produce.forEach((item) -> {
-            System.out.println(item.toString());
+            System.out.println(item.getOderID());
         });
     }
 }

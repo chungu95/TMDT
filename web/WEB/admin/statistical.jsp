@@ -35,6 +35,9 @@
                     <div class="shortcutHome">
                         <a href="<%=request.getContextPath()%>/ChartOrder"><img src="admincss/img/list.png" style="width: 80%;"><br>Thống kê tình trạng đơn hàng</a>
                     </div>
+                    <div class="shortcutHome">
+                        <a href="orderDate.jsp"><img src="admincss/img/posting.png" style="width: 80%;"><br>Thống kê đơn hàng theo ngày</a>
+                    </div>
                 </div>
                 <div class="clear"></div>
             <jsp:include page="footer.jsp"></jsp:include>
