@@ -21,7 +21,12 @@
     </head>
     <body>
         <h1 class="text-center" style="color: #398439;">ĐƠN HÀNG CỦA BẠN</h1>
-        <%            ArrayList<Oders> order = OderDAO.getAllOrderByCustomerID(customer.getCustomerID());
+        <%  
+            if(customer==null){
+                response.sendRedirect("login.jsp");  
+                return;
+            }
+            ArrayList<Oders> order = OderDAO.getAllOrderByCustomerID(customer.getCustomerID());
             if (order.isEmpty() || order == null) {
                 out.print("<center><b style='color:red'>Bạn chưa có đơn hàng nào!</b></center>");
                 return;
