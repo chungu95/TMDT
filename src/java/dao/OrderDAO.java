@@ -96,10 +96,4 @@ public class OrderDAO {
         return oder;
     }
 
-    public static void main(String[] args) {
-        ArrayList<String> produce = OrderDAO.getOrderStatus();
-        produce.forEach((item) -> {
-            System.out.println(item.toString());
-        });
-    }
 }

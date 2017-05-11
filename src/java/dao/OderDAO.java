@@ -105,7 +105,22 @@ public class OderDAO {
             Connector.close(con);
         }
         return (result != 0);
-
+    }
+    
+        public static boolean updateOrder(String orderID, String status) {
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Oders SET Status = ? WHERE OderID = ? ;";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, status);
+            pr.setString(2, orderID);
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        return (result != 0);
     }
 
     public static boolean deleteOder(String oderID) {
@@ -153,7 +168,7 @@ public class OderDAO {
     public static ArrayList<Oders> getAllOrderByCustomerID(String id) {
         ArrayList<Oders> oders = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "Select * from Oders WHERE CustomerID = '" + id + "';";
+        String sql = "Select * from Oders WHERE CustomerID = '" + id + "' ORDER BY Status;";
         try (PreparedStatement pr = con.prepareCall(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {
@@ -176,12 +191,6 @@ public class OderDAO {
             Connector.close(con);
         }
         return oders;
-    }
-
-    public static void main(String[] args) {
-        Oders oder = getOrderByID("D165AVV2");
-        System.out.println(oder.getCustomerID() + " | "+oder.getOderDetailsList().get(0).getProductID()); 
-
     }
 
 }

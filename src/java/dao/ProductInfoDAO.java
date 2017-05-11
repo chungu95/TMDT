@@ -92,13 +92,4 @@ public class ProductInfoDAO {
         return productInfo;
     }
 
-    public static void main(String[] args) {
-        ProductInfo pr = ProductInfoDAO.getProductInfo("QWERTA");
-        if (pr != null) {
-            System.out.println(pr.getProductID() + " | " + pr.getProductType() + " | " + pr.getUsb() + " | " + pr.getModel());
-        } else {
-            System.out.println("null");
-        }
-    }
-
 }

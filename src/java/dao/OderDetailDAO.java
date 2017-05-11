@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.OderDetails;
-import model.Oders;
 
 /**
  *
@@ -82,12 +81,6 @@ public class OderDetailDAO {
             Connector.close(conn);
         }
         return oderDetail;
-    }
-    public static void main(String[] args) {
-        ArrayList<OderDetails> oder = OderDetailDAO.getOderDetailByID("12345678");
-        oder.forEach((item)->{
-            System.out.println(item.getOderID()+" | "+item.getProductID()+ " | "+item.getQuantity()); 
-        }); 
     }
 
 }
