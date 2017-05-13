@@ -48,8 +48,13 @@
                         </div>
                         <div class="details col-md-6">
                             <h3 class="product-title"><%=product.getProductName()%>     (<%=product.getProductInfo().getModel()%>)</h3>
-
-                            <p class="product-description"><%=product.getProductInfo().getSize()%></p>
+                            <%
+                                if (product.getQuantity() <= 0) {
+                            %>
+                            <h3 class="product-title">HẾT HÀNG</h3>
+                            <%} else {%>
+                            <h3 class="product-title">CÒN HÀNG</h3>
+                            <%}%>
                             <h4 class="price" style="color: red;">GIÁ BÁN : <%=product.getPrice()%> VNĐ</h4>
                             <table class="table table-striped" >
                                 <thead>
@@ -67,6 +72,10 @@
                                         <td> <%=product.getProductInfo().getResolution()%></td>
                                     </tr>
                                     <tr>
+                                        <td>Kích thước</td>
+                                        <td> <%=product.getProductInfo().getSize()%></td> 
+                                    </tr>
+                                    <tr>
                                         <td>HDMI</td>
                                         <td><%=product.getProductInfo().getHdmi()%></td>
                                     </tr>
@@ -80,13 +89,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <%
+                                if (product.getQuantity() > 0) {
+                            %>
+                            <form method ="get" action ="../CartController">
+                                <input type="hidden" name ="productID" value="<%=product.getProductID()%>"/>
+                                <input type="hidden" name ="cmd" value="add"/>
+                                <center><input type ="submit"  class="btn btn-success" style="color: #e4b9b9; background-color: #d0e9c6; padding: 4px ; font-weight: bold" value ="Thêm vào giỏ hàng"/></center>
+                            </form>
+                            <%}%>
 
-                                    <form method ="get" action ="../CartController">
-                                        <input type="hidden" name ="productID" value="<%=product.getProductID()%>"/>
-                                        <input type="hidden" name ="cmd" value="add"/>
-                                        <center><input type ="submit"  class="btn btn-success" style="color: #e4b9b9; background-color: #d0e9c6; padding: 4px ; font-weight: bold" value ="Thêm vào giỏ hàng"/></center>
-                                    </form>
-                                      
 
 
                             <!--<button type="button" class="btn btn-success">Mua ngay</button>-->
@@ -94,18 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container" id="contact">
-            <h2>Bình luận</h2>    
-            <p>Bạn có câu hỏi, thắc mắc về sản phẩm hãy liên hệ với chúng tôi: </p>
-            <form action="/action_page.php" target="_blank" style="margin-bottom: 100px;">
-                <p><input class="input border" type="text" placeholder="Tên Đăng nhập" required name="Name" style="width: 100%;"></p>
-                <p><input class="input border" type="text" placeholder="Email" required name="Email" style="width: 100%;"></p>
-                <p><textarea class="form-control" rows="3" placeholder="Lời nhắn" name="Message" style="width: 100%;"></textarea></p>
-                <button type="submit" class="btn btn-success">Gửi phản hồi</button>
-
-            </form>
-        </div>                       
+        </div>                  
         <footer >
             <%@include file="footer.jsp" %>
         </footer>

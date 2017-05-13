@@ -42,7 +42,6 @@
                                 <th class="data">Email</th>
                                 <th  class="data">Điện thoại</th>
                                 <th  class="data">Tên Đăng nhập</th>
-                                <th  class="data">Điểm</th>
                                 <!--<th  class="data"></th>-->
                             </tr>
                             <tr class="data">
@@ -62,7 +61,6 @@
                             <td class="data"><%=customer.get(i).getEmail()%></td>
                             <td  class="data"><%=customer.get(i).getPhoneNumber()%></td>
                             <td  class="data"><%=customer.get(i).getUsername()%></td> 
-                            <td  class="data"><%=customer.get(i).getAccumulatedScore()%></td> 
                             <!--                        <td> 
                                                         <button type="submit"  class="button"name="cmd" value="updateInfo">Sửa</button>
                                                                                        

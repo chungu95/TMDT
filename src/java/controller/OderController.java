@@ -6,9 +6,11 @@
 package controller;
 
 import dao.OderDAO;
+import dao.ProductsDAO;
 import function.DateConverter;
 import function.RandomKey;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -34,13 +36,19 @@ public class OderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String orderID = request.getParameter("orderID");
-        OderDAO.updateOrder(orderID, "Đã hủy");
+        Oders oder = OderDAO.getOrderByID(orderID);
+        if (OderDAO.updateOrder(orderID, "Đã hủy")) {
+            for (int i = 0; i < oder.getOderDetailsList().size(); i++) {
+                ProductsDAO.updateQuantityProduct(oder.getOderDetailsList().get(i).getProductID(), oder.getOderDetailsList().get(i).getQuantity(), "subtract");
+            }
+        }
         response.sendRedirect("./WEB/checkorders.jsp");
     }
 
     private void saveCart(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         System.out.println("abc");
         Cart cart = (Cart) session.getAttribute("cart");
@@ -74,10 +82,19 @@ public class OderController extends HttpServlet {
             System.out.println(orderDetails.get(0).getOderID());
         }
 
+        for (int i = 0; i < cart.getListProduct().size(); i++) {
+            if (ProductsDAO.getProductByID(cart.getListProduct().get(i).getProductID()).getQuantity() <= cart.getListProduct().get(i).getQuantity()) {
+                session.removeAttribute("cart");
+                out.print("<center><b style='color:red'>Có lỗi xảy ra, Số lượng hàng trong kho  không đủ!</b></center>");
+                return;
+            }
+        }
         Oders oder = new Oders(OderID, oderDate, shipDate, price, paymentMethod, deliveryAddress, deliveryPhone, status, customerID, employeeID);
         oder.setOderDetailsList(orderDetails);
-        System.out.println(oder.getOderID());
         if (OderDAO.insertOder(oder)) {
+            for (int i = 0; i < oder.getOderDetailsList().size(); i++) {
+                ProductsDAO.updateQuantityProduct(oder.getOderDetailsList().get(i).getProductID(), oder.getOderDetailsList().get(i).getQuantity(), "add");
+            }
             if (paymentMethod.equals("cart")) {
                 session.removeAttribute("cart");
                 response.sendRedirect("./WEB/payment.jsp?orderid=" + OderID);
@@ -88,7 +105,7 @@ public class OderController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -102,7 +119,7 @@ public class OderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        cancelOrder(request, response); 
+        cancelOrder(request, response);
     }
 
     /**

@@ -31,10 +31,11 @@
                                 <select  name="sex"   required="">                                  
                                     <option value="Nữ" selected>Nữ</option>                                        
                                     <option  value="Nam">Nam</option>
+                                    <option  value="Khác">Khác</option>
                                 </select>
                             </td></tr>
                         <tr><td><b>Ngày tháng năm sinh</b></td><td><input type="date" class="form-control" id="pickDate" name="DoB" required=""/></td></tr>
-                        <tr><td><b>Nhập số ĐT: </b></td><td><input type="number"  class="sedang" name="Phone" required=""></td></tr>
+                        <tr><td><b>Nhập số ĐT: </b></td><td><input id="tel" type="number"  class="sedang" name="Phone" required=""></td></tr>
                         <tr><td><b>Địa chỉ email : </b></td><td><input type="email" class="sedang" name="youremail" required=""></td></tr>
                         <tr><td><b>Địa chỉ : </b></td><td><input type="text" class="sedang" name="address" required=""></td></tr>
                         <tr><td><b>Nhập tên đăng nhập: </b></td><td><input type="text" class="sedang" name="username" required=""></td></tr>
@@ -45,6 +46,7 @@
                     <script>
                         var password = document.getElementById("pass")
                                 , confirm_password = document.getElementById("repass");
+                        tel = document.getElementById("tel");
                         function validatePassword() {
                             if (password.value !== confirm_password.value.trim()) {
                                 confirm_password.setCustomValidity("Mật khẩu nhập lại không đúng!");
@@ -52,8 +54,18 @@
                                 confirm_password.setCustomValidity('');
                             }
                         }
+                        function validatePhoneNumber() {
+                            if (tel.value.trim().length <= 9 || tel.value.trim().length > 11) {
+                                tel.value = '';
+                                alert("Số điện thoại phải chứa 9 đến 11 số");
+                            } else {
+                                tel.setCustomValidity();
+                            }
+                        }
+
                         password.onchange = validatePassword;
                         confirm_password.onkeyup = validatePassword;
+                        tel.onblur = validatePhoneNumber;
 
                         $('#pickDate').datepicker({
                             'format': 'dd-mm-yyyy',

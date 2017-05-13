@@ -33,7 +33,7 @@
                                 <th class="data" >Mã HĐ</th>
                                 <th class="data">Mã KH</th> 
                                 <th  class="data">Trạng thái đơn hàng</th>
-                                <th  class="data">Mã NV</th>  
+                                <th  class="data">Ngày đặt</th>  
                                  <th class="data"></th>
                             </tr>
                             <tr class="data">
@@ -48,7 +48,7 @@
                             <td class="data" ><%=order.get(i).getOderID()%></td>
                             <td class="data" ><%=order.get(i).getCustomerID()%></td>                           
                             <td class="data" ><%=order.get(i). getStatus()%></td>
-                            <td class="data" ><%=order.get(i).getEmployeeID()%></td>
+                            <td class="data" ><%=order.get(i).getOderDate()%></td>
                             <td><a href="detailOrder.jsp?OrderID=<%=order.get(i).getOderID()%>">Xem chi tiết</a></td>
                         </tr>
                         <%}%>

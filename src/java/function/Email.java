@@ -59,7 +59,7 @@ public class Email {
             email.setFrom(MY_EMAIL);
             email.addTo(CustomnerEmail);
             email.setSubject("Thanh toán thành công.");
-            email.setHtmlMsg("<html><h2>Hóa đơn của bạn với mã hóa đơn" + OrderID + "đã thanh toán thành công,</h2>"
+            email.setHtmlMsg("<html><h2>Hóa đơn của bạn với mã hóa đơn <font color='red'>" + OrderID + "</font> đã thanh toán thành công.</h2>"
                     + "<b>Cảm ơn bạn đã ủng hộ chúng tôi!!!</b></div>"
                     + "</html>");
             email.setCharset("UTF-8");

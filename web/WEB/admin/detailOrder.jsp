@@ -37,17 +37,34 @@
                 <div class="informasi">
                     ĐƠN HÀNG MÃ <b style="color:red"><%=order.getOderID()%></b>
                 </div><div class="data">
+                    <%
+                        String status = "";
+                        if (order.getPaymentMethod().equals("delivery")) {
+                            if (order.getStatus().equals("Đang xác nhận")) {
+                                status = "Đang giao hàng";
+                            }
+                            if (order.getStatus().equals("Đang giao hàng")) {
+                                status = "Hoàn thành";
+                            }
+                        } else {
+                            if (order.getStatus().equals("Đang giao hàng")) {
+                                status = "Hoàn thành";
+                            }
+                        }
+
+                    %>
                     <form method="post" action="<%=request.getContextPath()%>/updateOrder">
-                        <label for="status">Tình trạng đơn hàng </label>
-                        <select name="status" >   
-                            <option value="<%=order.getStatus()%>" selected=""><%=order.getStatus()%></option>
-                            <option value="đang xác nhận">đang xác nhận</option>                                        
-                            <option value="đang giao hàng">đang giao hàng</option>
-                            <option value="hoàn thành">hoàn thành</option>
-                            <td class="data"><input type="hidden" class="form-control"  name="employeeID"  value="<%=employee.getEmployeeID()%>"></td>
-                        </select>
+                        <label for="status">Tình trạng đơn hàng :</label> <%=order.getStatus()%> 
+                        <input type="hidden" class="form-control"  name="employeeID"  value="<%=employee.getEmployeeID()%>">
                         <input type="hidden" name="orderID" value="<%=order.getOderID()%>" />
+                        <input type="hidden" name="status" value="<%=status%>"/>
+                        <%
+                            if(order.getStatus().equals("Chưa thanh toán") || order.getStatus().equals("Hoàn thành") || order.getStatus().equals("Đã hủy")){
+                        %>
+                        <button type="submit" class="button" name="sub" value="update" disabled="">Cập nhật</button>   
+                        <%} else {%>
                         <button type="submit" class="button" name="sub" value="update">Cập nhật</button>   
+                        <%}%>
                     </form>
                 </div>
                 <table class="data">

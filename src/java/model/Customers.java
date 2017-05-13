@@ -21,7 +21,6 @@ public class Customers implements Serializable {
     private String address;
     private String email;
     private String phoneNumber;
-    private Integer accumulatedScore;
     private String username;
     private String password;
     private List<Comment> commentList;
@@ -58,21 +57,6 @@ public class Customers implements Serializable {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
     }
-
-    public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, Integer accumulatedScore, String username, String gender) {
-        this.customerID = customerID;
-        this.customerName = customerName;
-        this.doB = doB;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.accumulatedScore = accumulatedScore;
-        this.username = username;
-        this.gender = gender;
-    }
-
-    
-
     
      public Customers(String customerID, String customerName, Date doB, String address, String email, String phoneNumber, String username,  String gender) {
         this.customerID = customerID;
@@ -84,17 +68,6 @@ public class Customers implements Serializable {
         this.phoneNumber = phoneNumber;
         this.username = username;
         
-    }
-
-    public Customers(String customerID, String customerName, Date doB, String address, String customerEmail, String phoneNumber, Integer accumulatedScore, String username) {
-        this.customerID = customerID;
-        this.customerName = customerName;
-        this.doB = doB;
-        this.address = address;
-        this.email = customerEmail;
-        this.phoneNumber = phoneNumber;
-        this.accumulatedScore = accumulatedScore;
-        this.username = username;
     }
 
     public String getGender() {
@@ -157,14 +130,6 @@ public class Customers implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Integer getAccumulatedScore() {
-        return accumulatedScore;
-    }
-
-    public void setAccumulatedScore(Integer accumulatedScore) {
-        this.accumulatedScore = accumulatedScore;
     }
 
     public String getUsername() {

@@ -45,7 +45,19 @@
                             </div> 
                         </td> 
                         <td data-th="Price"><%=cart.getListProduct().get(i).getPrice()%></td> 
-                        <td style="text-align: center" data-th="Quantity"><div class="row"><center><a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=add" class="btn btn-primary">+</a><span style="max-width: 35px; margin-left: 10px; margin-right: 10px ;color: red;font-weight: bold; border:1px solid gray; border-radius: 3px; padding: 10px; text-align: center"> <%=cart.getListProduct().get(i).getQuantity()%> </span><a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=subtract" class="btn btn-primary">-</a></center></div></td> 
+                        <td style="text-align: center" data-th="Quantity"><div class="row"><center>
+                                    
+                                    <%
+                                        if(cart.getListProduct().get(i).getQuantity()<ProductsDAO.getQuantityOfProduct(cart.getListProduct().get(i).getProductID())){
+                                    %>
+                                    
+                                    <a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=add" class="btn btn-primary">+</a>
+                                    <%}else{%>
+                                    <a href="" class="btn btn-primary disabled">+</a>
+                                    <%}%>
+                                    
+                                    
+                                    <span style="max-width: 35px; margin-left: 10px; margin-right: 10px ;color: red;font-weight: bold; border:1px solid gray; border-radius: 3px; padding: 10px; text-align: center"> <%=cart.getListProduct().get(i).getQuantity()%> </span><a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=subtract" class="btn btn-primary">-</a></center></div></td> 
                         <td data-th="Subtotal" class="text-center"><%=(cart.getListProduct().get(i).getPrice() * cart.getListProduct().get(i).getQuantity())%></td> 
                         <td class="actions" data-th="" style="text-align: center">
                             <!--                            <div class="row">-->
@@ -104,7 +116,7 @@
                                             </div>
                                         </div> 
                                     </td>                                     
-                                    <td data-th="Quantity"><input class="form-control text-center" value="<%=cart.getListProduct().get(i).getQuantity()%>" type="number">
+                                    <td data-th="Quantity"><span class="form-control text-center"><%=cart.getListProduct().get(i).getQuantity()%></span>
                                     </td> 
                                     <td data-th="Subtotal" class="text-center"><%=(cart.getListProduct().get(i).getPrice() * cart.getListProduct().get(i).getQuantity())%></td> 
                                 </tr> 

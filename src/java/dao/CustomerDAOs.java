@@ -38,7 +38,6 @@ public class CustomerDAOs {
                     customer.setAddress(rs.getString("Address"));
                     customer.setEmail(rs.getString("Email"));
                     customer.setPhoneNumber(rs.getString("PhoneNumber"));
-                    customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                     customer.setUsername(rs.getString("Username"));
                     customer.setPassword(rs.getString("Password"));
                     customer.setGender(rs.getString("Gender"));
@@ -167,7 +166,6 @@ public class CustomerDAOs {
                 customer.setAddress(rs.getString("Address"));
                 customer.setEmail(rs.getString("Email"));
                 customer.setPhoneNumber(rs.getString("PhoneNumber"));
-                customer.setAccumulatedScore(rs.getInt("AccumulatedScore"));
                 customer.setUsername(rs.getString("Username"));
                 customer.setGender(rs.getString("Gender"));
             }
@@ -190,10 +188,9 @@ public class CustomerDAOs {
                 String customerAdd = rs.getString("Address");
                 String customerEmail = rs.getString("Email");
                 String customerPhone = rs.getString("PhoneNumber");
-                int customerScore = rs.getInt("AccumulatedScore");
                 String customerUsername = rs.getString("Username");
                 String gender=rs.getString("gender");
-                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerScore, customerUsername,gender));
+                custommers.add(new Customers(customerID, customerName, (java.sql.Date) customerDoB, customerAdd, customerEmail, customerPhone, customerUsername,gender));
             }
         } catch (Exception ex) {
         } finally {

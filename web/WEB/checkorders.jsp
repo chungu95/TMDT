@@ -21,9 +21,8 @@
     </head>
     <body>
         <h1 class="text-center" style="color: #398439;">ĐƠN HÀNG CỦA BẠN</h1>
-        <%  
-            if(customer==null){
-                response.sendRedirect("login.jsp");  
+        <%            if (customer == null) {
+                response.sendRedirect("login.jsp");
                 return;
             }
             ArrayList<Oders> order = OderDAO.getAllOrderByCustomerID(customer.getCustomerID());
@@ -47,22 +46,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        int quantity = 0;
+                        for (int k = 0; k < order.get(i).getOderDetailsList().size(); k++) {
+                            quantity += order.get(i).getOderDetailsList().get(k).getQuantity();
+                        }
+                    %>
                     <tr class="active">
                         <td style="text-align: center">
                             <h4 class="nomargin"><%=i + 1%></h4> 
                         <td data-th="Product" style="text-align: center"> 
                             <h4 class="nomargin"><%=order.get(i).getOderID()%></h4> 
                         </td> 
-                        <td data-th="Quantity" style="text-align: center"> <h4 class="nomargin"><%=order.get(i).getOderDetailsList().size()%></h4></td>
+                        <td data-th="Quantity" style="text-align: center"> <h4 class="nomargin"><%=quantity%></h4></td>
                         <td data-th="Price" style="text-align: center"> <h4 class="nomargin"><%=order.get(i).getPrice()%></h4></td> 
                         <td style="text-align: center"> <h4 class="nomargin"><%=order.get(i).getStatus()%></h4></td>
                             <%if (order.get(i).getPaymentMethod().equals("cart") && order.get(i).getStatus().equals("Chưa thanh toán")) {%> 
                         <td style="text-align: center"> <a href="payment.jsp?orderid=<%=order.get(i).getOderID()%>" class="btn btn-primary" style="border-radius: 6px">Thanh toán</a></td>
                         <td style="text-align: center"> <a href="../CancelOrder?orderID=<%=order.get(i).getOderID()%>" class="btn btn-danger" style="border-radius: 6px">Hủy</a></td>
-                        <%} else if(order.get(i).getPaymentMethod().equals("delivery") && order.get(i).getStatus().equals("Đang xác nhận")){%>
+                        <%} else if (order.get(i).getPaymentMethod().equals("delivery") && order.get(i).getStatus().equals("Đang xác nhận")) {%>
                         <td style="text-align: center"> <a class="btn btn-primary disabled" style="border-radius: 6px">Thanh toán</a></td>
                         <td style="text-align: center"> <a href="../CancelOrder?orderID=<%=order.get(i).getOderID()%>" class="btn btn-danger" style="border-radius: 6px">Hủy</a></td>
-                        <%} else{%>
+                        <%} else {%>
                         <td style="text-align: center"> <a class="btn btn-primary disabled" style="border-radius: 6px">Thanh toán</a></td>
                         <td style="text-align: center"> <a class="btn btn-danger disabled" style="border-radius: 6px">Hủy</a></td>
                         <%}%>

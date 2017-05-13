@@ -123,21 +123,22 @@ public class ProductsDAO {
         return products;
     }
 
-    public static int getQuantityOfProduct() {
+    public static int getQuantityOfProduct(String productID) {
         int quantity = 0;
         Connection con = Connector.getConnection();
-        String sql = "SELECT COUNT(*) AS COUNT FROM Products; ";
-        try (PreparedStatement pr = con.prepareCall(sql);
-                ResultSet rs = pr.executeQuery()) {
-            if (rs.next()) {
-                quantity = rs.getInt("COUNT");
+        String sql = "SELECT Quantity FROM Products WHERE ProductID = ?; ";
+        try (PreparedStatement pr = con.prepareCall(sql)) {
+            pr.setString(1, productID);
+            try (ResultSet rs = pr.executeQuery()) {
+                if (rs.next()) {
+                    quantity = rs.getInt("Quantity");
+                }
             }
         } catch (Exception ex) {
             System.out.println(ex);
         } finally {
             Connector.close(con);
         }
-
         return quantity;
     }
 
@@ -174,24 +175,28 @@ public class ProductsDAO {
         }
         return result;
     }
-    
-    public static boolean updateQuantityProduct(Products product){
+
+    public static boolean updateQuantityProduct(String productID, int quantity, String method) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Products SET  Quantity = ? WHERE ProductID = ?";
-        try (PreparedStatement pr = con.prepareStatement(sql)) {           
-            pr.setInt(1, product.getQuantity());            
-            pr.setString(2, product.getProductID());
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            if (method.equals("add")) {
+                pr.setInt(1, getQuantityOfProduct(productID) - quantity);
+            } else if (method.equals("subtract")) {
+                pr.setInt(1, getQuantityOfProduct(productID) + quantity);
+            }
+            pr.setString(2, productID);
             result = pr.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex);
         } finally {
             Connector.close(con);
         }
-        
+
         return (result != 0);
     }
-    
+
     public static boolean updateProduct(Products product) {
         int result = 0;
         Connection con = Connector.getConnection();
@@ -201,7 +206,7 @@ public class ProductsDAO {
             pr.setString(2, product.getProduceID());
             pr.setInt(3, product.getPrice());
             pr.setString(4, product.getDescription());
-            pr.setInt(5, product.getQuantity());            
+            pr.setInt(5, product.getQuantity());
             pr.setString(6, product.getProductID());
             result = pr.executeUpdate();
         } catch (Exception ex) {
@@ -337,5 +342,3 @@ public class ProductsDAO {
     }
 
 }
-
-

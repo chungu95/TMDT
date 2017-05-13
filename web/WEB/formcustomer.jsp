@@ -22,20 +22,19 @@
         <script src="./js/bootstrap-datepicker.js"></script>
     </head>
     <body>
-            <%
-                if(customer==null){
-                    return;
-                }
-            %>
+        <%                if (customer == null) {
+                return;
+            }
+        %>
         <div class="jumbotron" >               
             <center>
                 <h3>THÔNG TIN KHÁCH HÀNG</h3> 
                 <%
                     if (customer != null) {
-                    if (customer.getStatus().equals("NotActive")) {
-                        out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../SendVerify'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
+                        if (customer.getStatus().equals("NotActive")) {
+                            out.print("<div><center><b style='color:red'>Tài khoản của bạn chưa kích hoạt,vui lòng <a href='../SendVerify'> <font color='brown'>kích hoạt</font> </a> tài khoản</b><center></div>");
+                        }
                     }
-                }
                 %>
             </center>            
         </div>
@@ -50,7 +49,6 @@
                         <th>Địa chỉ</th>
                         <th>Email</th>
                         <th>SĐT</th>
-                        <th>Điểm tích lũy</th>
                         <th> Tên đăng nhập</th>
                     </tr>
                 </thead>
@@ -63,7 +61,6 @@
                         <td><%=customer.getAddress()%></td>
                         <td><%=customer.getEmail()%></td>
                         <td><%=customer.getPhoneNumber()%></td>
-                        <td><%=customer.getAccumulatedScore()%></td>
                         <td><%=customer.getUsername()%></td>                        
                         <td><a href="#edit" class="btn btn-info" data-toggle="collapse">Sửa</a></td>
                         <td><a href="#Pass" class="btn btn-success" data-toggle="collapse" >Đổi Mật Khẩu</a></td>
@@ -76,7 +73,7 @@
             Calendar car = Calendar.getInstance();
             car.setTime(customer.getDoB());
             int day = car.get(Calendar.DAY_OF_MONTH);
-            int month = car.get(Calendar.MONTH)+1; 
+            int month = car.get(Calendar.MONTH) + 1;
             int year = car.get(Calendar.YEAR);
             String date = day + "-" + month + "-" + year;
         %>
@@ -93,7 +90,6 @@
                                 <th>Địa chỉ</th>
                                 <th>Email</th>
                                 <th>SĐT</th>                       
-
                             </tr>
                         </thead>
                         <tbody>
@@ -106,18 +102,25 @@
                                 <%
                                     if (customer.getGender().equals("Nam")) {
                                         out.print("<option value='Nam' selected>Nam</option>"
-                                                + "<option value='Nữ'>Nữ</option>");
+                                                + "<option value='Nữ'>Nữ</option>"
+                                                + "<option value='Khác'>Khác</option>");
                                     }
                                     if (customer.getGender().equals("Nữ")) {
                                         out.print("<option value='Nữ' selected>Nữ</option>"
-                                                + "<option value='Nam'>Nam</option>");
+                                                + "<option value='Nam'>Nam</option>"
+                                                + "<option value='Khác'>Khác</option>");
+                                    }
+                                    if (customer.getGender().equals("Khác")) {
+                                        out.print("<option value='Nữ'>Nữ</option>"
+                                                + "<option value='Nam'>Nam</option>"
+                                                + "<option value='Khác' selected>Khác</option>");
                                     }
                                 %>
                             </select>
                         </td>
                         <td><input type="text" class="form-control"  name="address" value="<%=customer.getAddress()%>" ></td>
                         <td><input type="email" class="form-control"  name="youremail" value="<%=customer.getEmail()%>" ></td>
-                        <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" ></td>                                        
+                        <td><input type="text" class="form-control"  name="Phone" value="<%=customer.getPhoneNumber()%>" id="tel"></td>                                        
                         <td><button type="submit" class="btn btn-danger" name="cmd" value="updateInfo">Lưu</button></td>                           
                         </tr>                     
                         </tbody> 
@@ -146,6 +149,7 @@
         <script language="javascript" type="text/javascript">
             var password = document.getElementById("password")
                     , confirm_password = document.getElementById("retypepassword");
+                    var tel = document.getElementById("tel");
             function validatePassword() {
                 if (password.value !== confirm_password.value.trim()) {
                     confirm_password.setCustomValidity("Mật khẩu nhập lại không đúng!");
@@ -153,8 +157,17 @@
                     confirm_password.setCustomValidity('');
                 }
             }
+            function validatePhoneNumber() {
+                if (tel.value.trim().length <= 9 || tel.value.trim().length > 11) {
+                    tel.value = '';
+                    alert("Số điện thoại phải chứa 9 đến 11 số");
+                } else {
+                    tel.setCustomValidity();
+                }
+            }
             password.onchange = validatePassword;
             confirm_password.onkeyup = validatePassword;
+            tel.onblur = validatePhoneNumber;
 
             $('#pickDate').datepicker({
                 'format': 'dd-mm-yyyy',

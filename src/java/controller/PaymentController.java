@@ -5,8 +5,10 @@
  */
 package controller;
 
+import dao.CustomerDAOs;
 import dao.OderDAO;
 import static dao.OderDAO.getOrderByID;
+import function.Email;
 import function.PaymentModule;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Customers;
 import model.Oders;
 
 /**
@@ -31,17 +34,19 @@ public class PaymentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String orderID = request.getParameter("OrderID");
-        System.out.println(orderID); 
+        System.out.println(orderID);
         String remitterID = request.getParameter("ID").trim();
         String password = request.getParameter("pwd").trim();
-        Oders order = getOrderByID(orderID); 
-        String receiverID = "1234567890123";  
+        Oders order = getOrderByID(orderID);
+        String receiverID = "1234567890123";
         System.out.println(order.getCustomerID());
         BigInteger amount = new BigInteger(order.getPrice() + "");
         String result = PaymentModule.payment(remitterID, receiverID, amount, orderID, password);
-        if (result.equals(order.getOderID())) {    
+        if (result.equals(order.getOderID())) {
             result = "Thanh toán thành công đơn hàng " + order.getOderID();
             OderDAO.updateOrder(order.getOderID(), "B76PL10N", "Đang giao hàng");
+            Customers cus = CustomerDAOs.getCustomer(order.getCustomerID());
+            Email.sendOrderEmail(orderID, cus.getEmail());
         } else if (result == null || result.equals("")) {
             result = "Có lỗi xảy ra!";
         }
@@ -78,7 +83,7 @@ public class PaymentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         pay(request, response);
     }
- 
+
     /**
      * Returns a short description of the servlet.
      *

@@ -86,7 +86,7 @@ public class OderDAO {
         } finally {
             Connector.close(conn);
         }
-        order.setOderDetail(OderDetailDAO.getOderDetail(OrderID));
+        order.setOderDetailsList(OderDetailDAO.getOderDetailByID(OrderID));
         return order;
     }
 
@@ -140,7 +140,7 @@ public class OderDAO {
     public static ArrayList<Oders> getAllOders() {
         ArrayList<Oders> oders = new ArrayList<>();
         Connection con = Connector.getConnection();
-        String sql = "Select * from Oders;";
+        String sql = "Select * from Oders ORDER BY OderDate DESC;";
         try (PreparedStatement pr = con.prepareCall(sql);
                 ResultSet rs = pr.executeQuery()) {
             while (rs.next()) {

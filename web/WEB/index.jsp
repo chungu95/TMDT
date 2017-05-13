@@ -195,7 +195,7 @@
                     }
 
                     ArrayList<Products> product = ProductsDAO.getProductsByProduceslocsp(hang, gia, size);
-                    int maxProductDisplay = 4;
+                    int maxProductDisplay = 9;
                     if (request.getParameter("max") != null) {
                         maxProductDisplay = Integer.parseInt(request.getParameter("max"));
                     }
@@ -209,8 +209,13 @@
                     <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>
                     <div class="choose" >
                         <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
-
+                            <%
+                                if(product.get(i).getQuantity()>0){
+                            %>
                             <li><a href="../CartController?productID=<%=product.get(i).getProductID()%>&cmd=add" style="color: black; background-color: #d0e9c6;"><i class="fa fa-shopping-cart" ></i>Thêm vào giỏ hàng</a></li>
+                        <%} else {%>
+                            <li><a class="disabled" style="color: red; background-color: #d0e9c6;">Hết hàng</a></li>
+                            <%}%>
                         </ul> 
                     </div>
                 </div> 
@@ -218,8 +223,8 @@
             </div>
 
             <%
-                if (maxProductDisplay < product.size() && (maxProductDisplay + 4) < product.size()) {
-                    maxProductDisplay += 4;
+                if (maxProductDisplay < product.size() && (maxProductDisplay + 9) < product.size()) {
+                    maxProductDisplay += 9;
                     out.print("<center> <a href='?max=" + maxProductDisplay + "'>Xem thêm sản phẩm</a></center>");
                 } else if (maxProductDisplay < product.size()) {
                     maxProductDisplay += product.size() - maxProductDisplay;
