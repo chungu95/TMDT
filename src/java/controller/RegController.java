@@ -57,9 +57,10 @@ public class RegController extends HttpServlet {
             customer.setStatus("NotActive");
             customer.setAccumulatedScore(0); 
             String hash = MD5.encryptMD5(customerID + username);
-            Email.sendVerifyEmail(customer, hash);
             HttpSession session = request.getSession();
             session.setAttribute("customer", customer);
+            System.out.println("created session");
+             Email.sendVerifyEmail(customer, hash);
             response.sendRedirect("./WEB/regsuccess.jsp");
         } else {
             response.sendRedirect("./WEB/reg.jsp");

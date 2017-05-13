@@ -25,7 +25,6 @@
                     <h3>THỐNG KÊ</h3>
                 <%
                     if (employee.getRole().equals("Admin")) {
-                        response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
                 %>
 
                 <div class="shortcutHome">

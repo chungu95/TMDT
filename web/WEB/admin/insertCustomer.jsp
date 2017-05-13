@@ -33,7 +33,7 @@
                                     <option  value="Nam">Nam</option>
                                 </select>
                             </td></tr>
-                        <tr><td><b>Ngày tháng năm sinh</b></td><td><input type="datetime" class="form-control" id="pickDate" name="DoB" required=""/></td></tr>
+                        <tr><td><b>Ngày tháng năm sinh</b></td><td><input type="date" class="form-control" id="pickDate" name="DoB" required=""/></td></tr>
                         <tr><td><b>Nhập số ĐT: </b></td><td><input type="number"  class="sedang" name="Phone" required=""></td></tr>
                         <tr><td><b>Địa chỉ email : </b></td><td><input type="email" class="sedang" name="youremail" required=""></td></tr>
                         <tr><td><b>Địa chỉ : </b></td><td><input type="text" class="sedang" name="address" required=""></td></tr>

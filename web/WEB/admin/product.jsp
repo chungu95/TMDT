@@ -23,7 +23,6 @@
                     <h3>QUẢN LÝ SẢN PHẨM</h3>
                 <%
                     if (employee.getRole().equals("Admin")) {
-                        response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
                 %>
                 <div class="shortcutHome">
                     <a href="showProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>

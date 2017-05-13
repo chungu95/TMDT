@@ -44,9 +44,9 @@ public class insertProduce extends HttpServlet {
         String produceID = RandomKey.randomKey();
         String produceName = request.getParameter("produceName");
         Produce pr = new Produce(produceID, produceName);
-//        if (ProduceDAO.getProduce(produceName) != null) {
-//            response.sendRedirect("./WEB/admin/insertProduce.jsp?error=existed");
-//        } else
+        if (ProduceDAO.getProduce(produceName) != null) {
+            response.sendRedirect("./WEB/admin/insertProduce.jsp?error=existed");
+        } else
 if (ProduceDAO.insertProduce(pr)) {
             out.print("<center><b><font color='red'>Thêm thành công! </font> <a href = './WEB/admin/insertProduce.jsp'>quay về</a></b></center>");
         }

@@ -174,7 +174,24 @@ public class ProductsDAO {
         }
         return result;
     }
-
+    
+    public static boolean updateQuantityProduct(Products product){
+        int result = 0;
+        Connection con = Connector.getConnection();
+        String sql = "UPDATE Products SET  Quantity = ? WHERE ProductID = ?";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {           
+            pr.setInt(1, product.getQuantity());            
+            pr.setString(2, product.getProductID());
+            result = pr.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            Connector.close(con);
+        }
+        
+        return (result != 0);
+    }
+    
     public static boolean updateProduct(Products product) {
         int result = 0;
         Connection con = Connector.getConnection();
@@ -320,3 +337,5 @@ public class ProductsDAO {
     }
 
 }
+
+

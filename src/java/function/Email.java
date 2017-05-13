@@ -46,5 +46,28 @@ public class Email {
             System.err.println(eex);
         }
     }
+    
+     public static void sendOrderEmail(String OrderID, String CustomnerEmail) {
+        try {
+            HtmlEmail email = new HtmlEmail();
 
+            email.setHostName("smtp.googlemail.com");
+            email.setSmtpPort(465);
+            email.setAuthenticator(new DefaultAuthenticator(
+                    MY_EMAIL, MY_PASSWORD));
+            email.setSSLOnConnect(true);
+            email.setFrom(MY_EMAIL);
+            email.addTo(CustomnerEmail);
+            email.setSubject("Thanh toán thành công.");
+            email.setHtmlMsg("<html><h2>Hóa đơn của bạn với mã hóa đơn" + OrderID + "đã thanh toán thành công,</h2>"
+                    + "<b>Cảm ơn bạn đã ủng hộ chúng tôi!!!</b></div>"
+                    + "</html>");
+            email.setCharset("UTF-8");
+            email.setTextMsg("Trình duyệt không hỗ trợ định dạng html!");
+            String a = email.send();
+            System.out.println(a);
+        } catch (EmailException eex) {
+            System.err.println(eex);
+        }
+    }
 }
