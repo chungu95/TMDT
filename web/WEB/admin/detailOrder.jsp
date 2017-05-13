@@ -92,10 +92,12 @@
                                 <button type="submit" class="button" name="sub" value="update">Sửa</button>                            
                             </td>
                         </tr>
+                        
                         <%} catch (Exception ex) {
-                                out.print("<center><b style = 'color:red'>Không có sản p //hầm này!</b></center>");
+                                out.print("<center><b style = 'color:red'>Không có hóa đơn này!</b></center>");
                             }
                         %>
+                        
                     </table> </form>
             </div>
             <div class="clear"></div>

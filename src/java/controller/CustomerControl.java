@@ -63,6 +63,7 @@ public class CustomerControl extends HttpServlet {
                 cus.setDoB(DoB);
                 cus.setPhoneNumber(phone);
                 cus.setEmail(email);
+                cus.setAddress(addr);
                 cus.setGender(gender);
                 response.sendRedirect("./WEB/formcustomer.jsp?");
             } else {

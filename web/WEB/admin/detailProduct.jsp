@@ -74,7 +74,8 @@
                         <td class="data"><%=product.getProductInfo().getModel()%></td>
                         <td class="data" ><%=product.getProductInfo().getSize()%></td>
                         <td class="data" ><%=product.getProductInfo().getWarranty()%></td> 
-                        <td> 
+                        <td>
+                           
                             <a href="updateProduct.jsp?productID=<%=product.getProduceID()%>" class="button" data-toggle="collapse" style="background-color: #e4b9c0; size: 15pt;">Sửa</a>                            
                         </td>
                     </tr>

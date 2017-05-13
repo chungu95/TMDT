@@ -70,7 +70,7 @@ public class OderDetailDAO {
                 if (rs.next()) {
                      oderDetail = new OderDetails();
                      oderDetail.setOderID(OderID);
-                   oderDetail.setProductID(rs.getString("ProductID"));
+                    oderDetail.setProductID(rs.getString("ProductID"));
                     oderDetail.setQuantity(rs.getInt("Quantity"));
                     oderDetail.setPrice(rs.getInt("Price"));                   
                 }

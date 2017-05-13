@@ -45,7 +45,7 @@ public class OrderByDate extends HttpServlet {
         String from = request.getParameter("from");
         String to = request.getParameter("to");
         HttpSession session = request.getSession();
-        session.setAttribute("from", from);
+        session.setAttribute("from",from);
         session.setAttribute("to", to);
         response.sendRedirect("./WEB/admin/orderByDate.jsp");
     }

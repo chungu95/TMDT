@@ -86,7 +86,7 @@ public class OderDAO {
         } finally {
             Connector.close(conn);
         }
-        order.setOderDetailsList(OderDetailDAO.getOderDetailByID(OrderID));
+        order.setOderDetail(OderDetailDAO.getOderDetail(OrderID));
         return order;
     }
 
@@ -106,8 +106,8 @@ public class OderDAO {
         }
         return (result != 0);
     }
-    
-        public static boolean updateOrder(String orderID, String status) {
+
+    public static boolean updateOrder(String orderID, String status) {
         int result = 0;
         Connection con = Connector.getConnection();
         String sql = "UPDATE Oders SET Status = ? WHERE OderID = ? ;";

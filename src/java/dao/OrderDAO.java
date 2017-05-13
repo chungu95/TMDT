@@ -72,7 +72,7 @@ public class OrderDAO {
         Connection con = Connector.getConnection();
          Date dateFrom = DateConverter.date(from);
           Date dateTo = DateConverter.date(to);
-        String sql = "SELECT * FROM Oders WHERE OderDate  BETWEEN    '"+dateFrom + "'AND   '" + dateTo +  "';";
+        String sql = "SELECT * FROM Oders WHERE OderDate  BETWEEN    '"+from + "'AND   '" + to +  "';";
         try (PreparedStatement pr = con.prepareCall(sql);
                 ResultSet rs = pr.executeQuery()) {
                 while (rs.next()) {
