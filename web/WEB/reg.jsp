@@ -12,8 +12,8 @@
         <title>ĐĂNG KÝ TÀI KHOẢN</title>
 
         <%@include file = "header.jsp" %> 
-<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
+        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+                <script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
         <link href="./css/bootstrap-datepicker.css" rel="stylesheet" />
         <script src="./js/bootstrap-datepicker.js"></script>
         <link rel="stylesheet" href="../WEB/css/logincss.css">        
@@ -45,7 +45,7 @@
                             <input class="form-control" style="float: left; width: 45%; margin-right: 10%;" name="firstname" placeholder="Họ" required="" autofocus="" type="text">
                             <input class="form-control" style="float: left; width: 45%;" name="lastname" placeholder="Tên" required="" type="text" autofocus="" >
                         </div>
-                        <input class="form-control" name="Phone" placeholder="Điện thoại" type="number" required=""/> 
+                        <input class="form-control" name="Phone" placeholder="Điện thoại" type="number" id="tel" required=""/> 
                         <input class="form-control" name="youremail" placeholder="Email" type="email" required=""/> 
                         <input class="form-control" name="address" placeholder="Địa chỉ" type="text" required=""/> 
                         <input class="form-control" name="username" placeholder="Tên đăng nhập" type="text" required=""/> 
@@ -63,6 +63,7 @@
         <script>
             var password = document.getElementById("password")
                     , confirm_password = document.getElementById("retypepassword");
+            var tel = document.getElementById("tel");
             function validatePassword() {
                 if (password.value !== confirm_password.value.trim()) {
                     confirm_password.setCustomValidity("Mật khẩu nhập lại không đúng!");
@@ -70,8 +71,17 @@
                     confirm_password.setCustomValidity('');
                 }
             }
+            function validatePhoneNumber() {
+                if (tel.value.trim().length <= 9 || tel.value.trim().length > 11) {
+                    tel.value = '';
+                    alert("Số điện thoại phải chứa 9 đến 11 số"); 
+                }else{
+                    tel.setCustomValidity();
+                }
+            }
             password.onchange = validatePassword;
             confirm_password.onkeyup = validatePassword;
+            tel.onblur = validatePhoneNumber;
 
             $('#pickDate').datepicker({
                 'format': 'dd-mm-yyyy',

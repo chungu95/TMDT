@@ -25,9 +25,9 @@
             <table id="cart" class="table table-striped table-bordered"> 
                 <thead> 
                     <tr> 
-                        <th style="width:40%">Tên sản phẩm</th> 
+                        <th style="width:30%">Tên sản phẩm</th> 
                         <th style="width:14%">Giá</th> 
-                        <th style="width:14%">Số lượng</th> 
+                        <th style="width:24%">Số lượng</th> 
                         <th style="width:22%" class="text-center">Thành tiền</th> 
                         <th style="width:10%"> </th> 
                     </tr> 
@@ -45,15 +45,13 @@
                             </div> 
                         </td> 
                         <td data-th="Price"><%=cart.getListProduct().get(i).getPrice()%></td> 
-                        <td data-th="Quantity"><input class="form-control text-center" value="<%=cart.getListProduct().get(i).getQuantity()%>" type="number">
-                        </td> 
+                        <td style="text-align: center" data-th="Quantity"><div class="row"><center><a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=add" class="btn btn-primary">+</a><span style="max-width: 35px; margin-left: 10px; margin-right: 10px ;color: red;font-weight: bold; border:1px solid gray; border-radius: 3px; padding: 10px; text-align: center"> <%=cart.getListProduct().get(i).getQuantity()%> </span><a href="../CartController?productID=<%=cart.getListProduct().get(i).getProductID()%>&cmd=subtract" class="btn btn-primary">-</a></center></div></td> 
                         <td data-th="Subtotal" class="text-center"><%=(cart.getListProduct().get(i).getPrice() * cart.getListProduct().get(i).getQuantity())%></td> 
                         <td class="actions" data-th="" style="text-align: center">
-<!--                            <div class="row">-->
-                                <a href="../CartController?cmd=delete&productID=<%=cart.getListProduct().get(i).getProductID()%>" class="btn btn-danger btn-lg"> 
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                            <!--</div>-->
+                            <!--                            <div class="row">-->
+                            <a href="../CartController?cmd=delete&productID=<%=cart.getListProduct().get(i).getProductID()%>" class="btn btn-danger btn-lg"> 
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </td> 
                     </tr> 
                     <%}%>
@@ -117,11 +115,11 @@
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Tạm tính : <%=cart.getTotalPrice()%></strong></td>
                                 </tr> 
-<!--                                <tr>
-                                    <td colspan="1" class="hidden-xs"> </td>   
-                                    <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Phí vận chuyển : <font color="red">0</font></strong></td>
-                                    <td class="hidden-xs text-center"><strong></strong></td>
-                                </tr>-->
+                                <!--                                <tr>
+                                                                    <td colspan="1" class="hidden-xs"> </td>   
+                                                                    <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Phí vận chuyển : <font color="red">0</font></strong></td>
+                                                                    <td class="hidden-xs text-center"><strong></strong></td>
+                                                                </tr>-->
                                 <tr>
                                     <td colspan="1" class="hidden-xs"> </td>   
                                     <td style="text-align: left" colspan="2" class="hidden-xs text-center"><strong>Tổng tiền thanh toán : <%out.print(cart.getTotalPrice() + 0);%></strong></td>                   

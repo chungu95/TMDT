@@ -113,6 +113,42 @@ public class CartController extends HttpServlet {
         response.sendRedirect("./WEB/cart.jsp");
     }
 
+    @SuppressWarnings("null")
+    private void subtractProductFormCart(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {
+            response.sendRedirect("./WEB/cart.jsp");
+        }
+        String productID = request.getParameter("productID");
+        for (int i = 0; i < cart.getListProduct().size(); i++) {
+            if (productID.equals(cart.getListProduct().get(i).getProductID())) {
+                if (cart.getListProduct().get(i).getQuantity() == 1) {
+                    deleteProduct(cart, productID); 
+                } else {
+                    cart.getListProduct().get(i).setQuantity(cart.getListProduct().get(i).getQuantity() - 1);
+                    cart.updateTotalPrice();
+                    cart.updateTotalQuantity();
+                }
+                break;
+            }
+        }
+        response.sendRedirect("./WEB/cart.jsp");
+    }
+
+    private void deleteProduct(Cart cart, String productID) {
+        for (int i = 0; i < cart.getListProduct().size(); i++) {
+            if (productID.equals(cart.getListProduct().get(i).getProductID())) {
+                cart.getListProduct().remove(i);
+                cart.updateTotalPrice();
+                cart.updateTotalQuantity();
+                break;
+            }
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -137,6 +173,10 @@ public class CartController extends HttpServlet {
                 break;
             case "delete":
                 deleteProductFormCart(request, response);
+                break;
+            case "subtract":
+                subtractProductFormCart(request, response);
+                break;
             // to do
         }
     }
