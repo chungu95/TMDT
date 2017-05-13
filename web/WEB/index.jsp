@@ -203,7 +203,7 @@
                 %>
                 <div class="col-md-3" style="width: 350px; height: 550px;">                   
                     <img class="img-responsive" src="../Product/Images/<%=product.get(i).getProductImg()%>" style="width: 100%;">                   
-                    <h2 style="color: red"><%=product.get(i).getPrice()%> vnđ</h2>
+                    <h2 style="color: red" ><%=product.get(i).getPrice()%> vnđ</h2>
                     <% Produce pr = (Produce) ProduceDAO.getProduceByID(product.get(i).getProduceID());%>
                     <p align="center" style="color: #2b542c;"><h2><b><%=product.get(i).getProductName()%>    <%=pr.getProduceName()%></b></h2></p>
                     <a href="productdetail.jsp?productID=<%=product.get(i).getProductID()%>"  >Thông tin chi tiết</a>

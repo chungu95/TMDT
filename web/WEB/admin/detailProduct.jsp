@@ -31,10 +31,12 @@
 
             <div id="rightContent">
                 <h3>THÔNG TIN CHI TIẾT SẢN PHẨM</h3>
-
-                <div class="informasi">
-                    SẢN PHẨM
-                </div>
+               
+                <div class="informasi">                    
+                    <%=product.getProductName()%>
+                </div>                 
+                    <img src="<%=request.getContextPath()%>/Product/Images/<%=product.getProductImg()%>" style="width: 40%; margin-left: 100px;">
+                
                 <table class="data">
                     <tr class="data">
                         <th class="data" >Tên sản phẩm</th>
@@ -42,7 +44,7 @@
                         <th class="data">Giá</th>
                         <th class="data">Miêu tả</th>
                         <th class="data">Số lượng</th>
-                        <th class="data">Hình ảnh</th>
+                       
                        
                     </tr>
                     <tr class="data">
@@ -50,8 +52,7 @@
                         <td class="data"><%=produce.getProduceName()%></td>
                         <td class="data"><%=product.getPrice()%></td>
                         <td class="data"><%=product.getDescription()%></td>
-                        <td class="data" ><%=product.getQuantity()%></td>
-                        <td class="data" ><%=product.getProductImg()%></td>                         
+                        <td class="data" ><%=product.getQuantity()%></td>                                             
                     </tr>
                 </table>
                 <div class="informasi">

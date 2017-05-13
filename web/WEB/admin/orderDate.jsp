@@ -22,7 +22,7 @@
 
                 <div id="rightContent">
                     <form method="post" action="<%=request.getContextPath()%>/OrderByDate">
-                    <h2>Mời bạn nhập khoảng thời gian muốn xem hóa đơn theo mẫu (ngày-tháng-năm)</h2>
+                    <h2>Mời bạn nhập khoảng thời gian muốn xem hóa đơn </h2>
                     <div class="form-group">
                         <label for="from">Từ ngày : </label>
                         <input type="date" class="form-control" name="from"  >

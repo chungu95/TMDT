@@ -23,7 +23,6 @@
                     <h3>QUẢN LÝ NGƯỜI DÙNG</h3>
                 <%
                     if (employee.getRole().equals("Admin")) {
-                        response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
                 %>
                 <div class="shortcutHome">
                     <a href="customer.jsp"><img src="admincss/img/halaman.png"><br>Xem danh sách khách hàng</a>
