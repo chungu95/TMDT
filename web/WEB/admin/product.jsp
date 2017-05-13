@@ -16,23 +16,31 @@
     </head>
     <body>
 
-            <div id="wrapper">
+        <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
 
                 <div id="rightContent">
                     <h3>QUẢN LÝ SẢN PHẨM</h3>
-
-                    <div class="shortcutHome">
-                        <a href="showProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
-                    </div>
-                    <div class="shortcutHome">
-                        <a href="insertProduct.jsp"><img src="admincss/img/photo.png" ><br>Thêm sản phẩm</a>
-                    </div>
-                    <div class="shortcutHome">
-                        <a href="insertProduce.jsp"><img src="admincss/img/addProduce.png" style="width: 70%;"><br>Thêm nhà sản xuất</a>
-                    </div>  
+                <%
+                    if (employee.getRole().equals("Admin")) {
+                        response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
+                %>
+                <div class="shortcutHome">
+                    <a href="showProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
                 </div>
-                <div class="clear"></div>
+                <div class="shortcutHome">
+                    <a href="insertProduct.jsp"><img src="admincss/img/photo.png" ><br>Thêm sản phẩm</a>
+                </div>
+                <div class="shortcutHome">
+                    <a href="insertProduce.jsp"><img src="admincss/img/addProduce.png" style="width: 70%;"><br>Thêm nhà sản xuất</a>
+                </div>  
+                <%} else {%>
+                <div class="shortcutHome">
+                    <a href="showProduct.jsp"><img src="admincss/img/posting.png"><br>Xem sản phẩm</a>
+                </div>
+                <%}%>
+            </div>
+            <div class="clear"></div>
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>

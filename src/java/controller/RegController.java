@@ -54,6 +54,8 @@ public class RegController extends HttpServlet {
         if (CustomerDAOs.getCustomer(username) != null) {
             response.sendRedirect("./WEB/reg.jsp?error=existed");
         } else if (CustomerDAOs.insertCustomer(customer)) {
+            customer.setStatus("NotActive");
+            customer.setAccumulatedScore(0); 
             String hash = MD5.encryptMD5(customerID + username);
             HttpSession session = request.getSession();
             session.setAttribute("customer", customer);

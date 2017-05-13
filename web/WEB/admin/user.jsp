@@ -21,21 +21,31 @@
 
                 <div id="rightContent">
                     <h3>QUẢN LÝ NGƯỜI DÙNG</h3>
-
-                    <div class="shortcutHome">
-                        <a href="customer.jsp"><img src="admincss/img/halaman.png"><br>Xem danh sách khách hàng</a>
-                    </div>
-                    <div class="shortcutHome">
-                        <a href="employee.jsp"><img src="admincss/img/list.png" style="width: 70%;"><br>Xem danh sách nhân viên</a>
-                    </div>                     
-                    <div class="shortcutHome">
-                        <a href="insertEmployee.jsp"><img src="admincss/img/addemployee.png" style="width: 70%;"><br>Thêm tài khoản nhân viên</a>
-                    </div>
-                    <div class="shortcutHome">
-                        <a href="insertCustomer.jsp"><img src="admincss/img/AddUser.png" style="width: 70%;"><br>Thêm tài khoản Khách hàng</a>
-                    </div>
+                <%
+                    if (employee.getRole().equals("Admin")) {
+                        response.sendRedirect(request.getContextPath() + "/EmployeeLogout");
+                %>
+                <div class="shortcutHome">
+                    <a href="customer.jsp"><img src="admincss/img/halaman.png"><br>Xem danh sách khách hàng</a>
                 </div>
-                <div class="clear"></div>
+                <div class="shortcutHome">
+                    <a href="employee.jsp"><img src="admincss/img/list.png" style="width: 70%;"><br>Xem danh sách nhân viên</a>
+                </div>                     
+                <div class="shortcutHome">
+                    <a href="insertEmployee.jsp"><img src="admincss/img/addemployee.png" style="width: 70%;"><br>Thêm tài khoản nhân viên</a>
+                </div>
+                <div class="shortcutHome">
+                    <a href="insertCustomer.jsp"><img src="admincss/img/AddUser.png" style="width: 70%;"><br>Thêm tài khoản Khách hàng</a>
+                </div>
+                <%} else {%>
+                <div class="shortcutHome">
+                    <a href="customer.jsp"><img src="admincss/img/halaman.png"><br>Xem danh sách khách hàng</a>
+                </div>
+                <div class="shortcutHome">
+                    <a href="insertCustomer.jsp"><img src="admincss/img/AddUser.png" style="width: 70%;"><br>Thêm tài khoản Khách hàng</a>
+                </div><%}%>
+            </div>
+            <div class="clear"></div>
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
     </body>
